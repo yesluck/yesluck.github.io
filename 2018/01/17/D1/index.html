@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Zikun’s space">
 <meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-07T16:45:10.000Z">
+<meta property="og:updated_time" content="2018-05-07T16:47:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Practical Aspects of Deep Learning">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
@@ -349,16 +349,13 @@
 </blockquote>
 <p>开篇讲述深度学习的调参过程困难，感人至深，催人泪下。</p>
 <ul>
-<li><p>Train / Dev(elopment, 用于交叉验证) / Test sets</p>
-</li>
-<li><p>Bias:</p>
-<ul>
+<li>Train / Dev(elopment, 用于交叉验证) / Test sets</li>
+<li>Bias:<ul>
 <li>high→欠拟合，判断:训练集是否训练结果差</li>
 <li>解决办法：网络更大、时间更长、优化算法更高级</li>
 </ul>
 </li>
-<li><p>Variance:</p>
-<ul>
+<li>Variance:<ul>
 <li>high→过拟合，判断：Dev集是否比训练集结果差</li>
 <li>解决办法：数据更多、正则化(Regularization)</li>
 </ul>
@@ -372,23 +369,20 @@
 </ol>
 <h1 id="2-Regularizing-your-neural-network"><a href="#2-Regularizing-your-neural-network" class="headerlink" title="2 Regularizing your neural network"></a>2 Regularizing your neural network</h1><p>前不久收到的面试，教授问了个“Do you know regularization? Please explain it.” 我觉得我答得无比垃圾……</p>
 <ul>
-<li><p>正则化</p>
-<ul>
+<li>正则化<ul>
 <li>逻辑回归中的正则化<ul>
 <li>L2正则化：$\frac{\lambda{}}{2m}||w||^2_2 =\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}w_j^2=\frac{\lambda{}}{2m}w^Tw$ ，使用较多</li>
 <li>L1正则化：$\frac{\lambda{}}{2m}||w||_1=\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}|w_j|$ ，会变得稀疏</li>
 <li>λ：正则化参数（regularization parameter），使用Dev集进行验证调整</li>
 </ul>
 </li>
-<li><p>多层神经网络中的正则化</p>
-<ul>
+<li>多层神经网络中的正则化<ul>
 <li>$\frac{\lambda{}}{2m}\sum^{L}_{l=1}||w^{[l]}||^2_2=\frac{\lambda{}}{2m}\sum^{L}_{l=1}\sum^{n^{[L-1]}}_{i=1}\sum^{n^{[L]}}_{j=1}(w_{ij}^{[l]})^2$</li>
 <li>这个矩阵的范数称为矩阵的弗罗贝尼乌斯范数（我培提尔其乌斯表示不服）</li>
 <li>更新时“dw[l]”（J对w[l]的偏导）需加上一项$\frac{\lambda{}}{m}w^{[l]}$，因此L2正则化也被称为权重衰减</li>
 </ul>
 </li>
-<li><p>为什么正则化可以减轻过拟合？</p>
-<ul>
+<li>为什么正则化可以减轻过拟合？<ul>
 <li>从网络结构来看：因为通过权重衰减将一些权重削减到~0，相当于简化了神经网络的结构。</li>
 <li>从激活函数来看：通过正则化使激活函数工作在近似线性区。</li>
 </ul>
@@ -400,20 +394,17 @@
 <ul>
 <li><p>Dropout（随机失活正则化）</p>
 <ul>
-<li><p>对每个节点以一定概率失活→简化网络结构</p>
-<ul>
+<li>对每个节点以一定概率失活→简化网络结构<ul>
 <li>反向随机失活（最后系数要除以失活概率以保证每一层a的期望不变）</li>
 <li>不在测试阶段使用失活</li>
 </ul>
 </li>
-<li><p>为什么Dropout可以减轻过拟合？</p>
-<ul>
+<li>为什么Dropout可以减轻过拟合？<ul>
 <li>不能依赖任何一个特征（因为随时可能被丢弃），所以会分配较小权重</li>
 <li>对于较大的权值矩阵可以设置较小的留存率</li>
 </ul>
 </li>
-<li><p>缺点：让J函数变得不明确</p>
-</li>
+<li>缺点：让J函数变得不明确</li>
 </ul>
 </li>
 <li><p>其它方法</p>
@@ -424,16 +415,13 @@
 </li>
 </ul>
 <h1 id="3-Setting-up-your-optimization-problem"><a href="#3-Setting-up-your-optimization-problem" class="headerlink" title="3 Setting up your optimization problem"></a>3 Setting up your optimization problem</h1><ul>
-<li><p>输入归一化：$\mu=\frac{1}{m}\sum_{i=1}^mx^{(i)}; \sigma^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)})^2$</p>
-</li>
+<li>输入归一化：$\mu=\frac{1}{m}\sum_{i=1}^mx^{(i)}; \sigma^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)})^2$</li>
 <li><p>梯度消失与爆炸：在很深的网络里</p>
 <ul>
-<li>解决：更细致地初始化神经网络</li>
-</ul>
+<li>解决：更细致地初始化神经网络<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w[l]=np.random.randn(shape)*np.sqrt(1/n[l-1]) #sigmoid, tanh(Xavier)</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/n[l-1]) #relu</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/(n[l-1]+n[l])) #tanh另一种</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w[l]=np.random.randn(shape)*np.sqrt(1/n[l-1]) #sigmoid, tanh(Xavier)</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/n[l-1]) #relu</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/(n[l-1]+n[l])) #tanh另一种</span><br></pre></td></tr></table></figure>
-<ul>
+</li>
 <li><p>梯度检验</p>
 <ul>
 <li>将所有参数拼成一个巨大的参数向量，将所有导数拼成一个巨大的导数向量。</li>
@@ -441,8 +429,7 @@
 <li>判断近似梯度与“dθ”是否大致相等（$\frac{||d\theta_{approx}-d\theta||_2}{||d\theta_{approx}||_2+||d\theta||_2}&lt;\epsilon=10^{-7}$）</li>
 </ul>
 </li>
-<li><p>实用技巧（人生经验）</p>
-<ul>
+<li>实用技巧（人生经验）<ul>
 <li>很慢，调试时才用</li>
 <li>检查各组成找出漏洞</li>
 <li>记得正则化</li>
