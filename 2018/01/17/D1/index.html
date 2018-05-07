@@ -371,12 +371,12 @@
 <ul>
 <li>逻辑回归中的正则化<ul>
 <li>L2正则化：$\frac{\lambda{}}{2m}||w||^2_2 =\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}w_j^2=\frac{\lambda{}}{2m}w^Tw$ ，使用较多</li>
-<li>L1正则化：$\frac{\lambda{}}{2m}||w||<em>1=\frac{\lambda{}}{2m}\sum</em>{j=1}^{n_x}|w_j|$ ，会变得稀疏</li>
+<li>L1正则化：$\frac{\lambda{}}{2m}||w||_1=\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}|w_j|$ ，会变得稀疏</li>
 <li>λ：正则化参数（regularization parameter），使用Dev集进行验证调整</li>
 </ul>
 </li>
 <li>多层神经网络中的正则化<ul>
-<li>$\frac{\lambda{}}{2m}\sum^{L}_{l=1}||w^{[l]}||^2_2=\frac{\lambda{}}{2m}\sum^{L}<em>{l=1}\sum^{n^{[L-1]}}</em>{i=1}\sum^{n^{[L]}}<em>{j=1}(w</em>{ij}^{[l]})^2$</li>
+<li>$\frac{\lambda{}}{2m}\sum^{L}_{l=1}||w^{[l]}||^2_2=\frac{\lambda{}}{2m}\sum^{L}_{l=1}\sum^{n^{[L-1]}}_{i=1}\sum^{n^{[L]}}_{j=1}(w_{ij}^{[l]})^2$</li>
 <li>这个矩阵的范数称为矩阵的弗罗贝尼乌斯范数（我培提尔其乌斯表示不服）</li>
 <li>更新时“dw[l]”（J对w[l]的偏导）需加上一项$\frac{\lambda{}}{m}w^{[l]}$，因此L2正则化也被称为权重衰减</li>
 </ul>
@@ -422,7 +422,7 @@
 <ul>
 <li>将所有参数拼成一个巨大的参数向量，将所有导数拼成一个巨大的导数向量。</li>
 <li>近似计算梯度：$g(\theta)\approx\frac{f(\theta+\epsilon)-f(\theta-\epsilon)}{2\epsilon}$</li>
-<li>判断近似梯度与“dθ”是否大致相等（ \frac{||d\theta_{approx}-d\theta||<em>2}{||d\theta</em>{approx}||_2+||d\theta||_2}&lt;\epsilon=10^{-7} ）</li>
+<li>判断近似梯度与“dθ”是否大致相等（ \frac{||d\theta_{approx}-d\theta||_2}{||d\theta_{approx}||_2+||d\theta||_2}&lt;\epsilon=10^{-7} ）</li>
 </ul>
 </li>
 <li>实用技巧（人生经验）<ul>
