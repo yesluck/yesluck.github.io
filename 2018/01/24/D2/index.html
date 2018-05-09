@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About (关于我)">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimization Algorithms">
+<meta property="og:url" content="http://yoursite.com/2018/01/24/D2/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T07:14:41.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/2.jpg">
+<meta property="og:updated_time" content="2018-05-09T07:51:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About (关于我)">
-<meta name="twitter:description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
+<meta name="twitter:title" content="Optimization Algorithms">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/24/D2/"/>
 
 
 
 
 
-  <title>About (关于我) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Optimization Algorithms | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -240,47 +243,237 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/D2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">About (关于我)</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="About-myself-关于我自己"><a href="#About-myself-关于我自己" class="headerlink" title="About myself (关于我自己)"></a><br>About myself (关于我自己)</h2><p><br>你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。</p>
-<p>Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, and I am an incoming master student in Columbia University’s computer science program from this fall.</p>
-<p><br>在我的本科阶段，我培养起了对计算机科学的兴趣。在学习了一些相关课程后，我也参与了一些机器学习和自然语言处理的科研项目。我现在正在学习更多有关深度学习、算法和操作系统的相关知识。</p>
-<p>In my undergraduate period, I cultivated my interest in computer science. After attending some related courses, I also conducted research in machine learning and natural language processing. And I’m now learning more about deep learning, algorithms and operating systems.</p>
-<p><br>说到空余时间，我和系里、院里很多同学一样，喜欢看动画（这也是我在清华选了日语课的原因）。我也是osu!（一款不太热门的节奏游戏）的新手玩家。</p>
-<p>As for my spare time, like many peers in my department and my school, I enjoy watching animations (and that’s why I’m taking Japanese courses in Tsinghua). I’m also an newbie in osu!, a not-so-well-known rhythm game.</p>
-<p><br>如果你希望获得更多有关我的科研和项目经历的信息，请点击我的<a href="https://www.linkedin.com/in/zikun-lin-989586132/" target="_blank" rel="noopener">领英主页</a>。</p>
-<p>If you want to get more information about my research and project experience, please refer to my <a href="https://www.linkedin.com/in/zikun-lin-989586132/" target="_blank" rel="noopener">LinkedIn page</a>.</p>
-<h2 id="About-this-website-关于这个网站"><a href="#About-this-website-关于这个网站" class="headerlink" title="About this website (关于这个网站)"></a><br><br>About this website (关于这个网站)</h2><p><br>这个网站将会包含我自2018年以来的学习内容的笔记和理解，包括Coursera课程“deeplearning.ai”、学堂在线课程“操作系统”、“Leetcode”中的算法分析和我正在清华上的日语课。</p>
-<p>This website will contain my notes and understandings about my study from 2018, including Coursera course “deeplearning.ai”, Xuetangx course “Operating System”, algorithm analyses in “Leetcode” and the Japanese course I’m now taking in Tsinghua.</p>
-<p><br>我也想在此分享我生活中的一些感受，如果我有时间的话……</p>
-<p>I also want to share some feelings in my life here, if I have time…</p>
-<p><br>我很抱歉我没法像这篇文章一样将每句话进行汉译英或英译汉。我更喜欢使用中文记录笔记，因为这能让我复习起来更方便。但是有些计算机名词不太方便翻译成中文，所以我文章的一些部分将会是英文（毕竟英语是国际语言……）</p>
-<p>I’m sorry that I don’t have time to translate every sentence from Chinese to English or conversely, like this passage. I prefer to write my notes in Chinese since it’s much easier for me to review. But there are some terms in computer science which are difficult to translate to Chinese, so some parts of my passages will be in English (after all, English is the global language…)</p>
-
+          <h1 class="post-title" itemprop="name headline">Optimization Algorithms</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T00:00:00+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deeplearning-ai-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Deeplearning.ai Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/24/D2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/24/D2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">Zhihu</a>.)</p>
+<p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/home/week/2" target="_blank" rel="noopener">Week 2</a>。</p>
+<hr>
+<h1 id="1-Mini-batch-gradient-decent"><a href="#1-Mini-batch-gradient-decent" class="headerlink" title="1 Mini-batch gradient decent"></a>1 Mini-batch gradient decent</h1><ul>
+<li>小批量训练集：每一个子集都运行一遍。1次遍历，5000步逼近<br><img src="/2018/01/24/D2/1.jpg" alt=""></li>
+<li>特点：不是每次迭代J都会下降，但整体趋势向下   </li>
+<li>极端：  <ul>
+<li>batch-size→m：批量梯度下降，噪声小步长大，最终达到最低点；m大耗时长 </li>
+<li>batch-size→1：随机梯度下降，噪声大，最终在最低点附近震荡；无法向量化加速 </li>
+<li>batch-size取中间，既能向量化加速，又可以不需每次遍历全部数据</li>
+</ul>
+</li>
+<li>选取：<ul>
+<li>m≤2000：批量梯度下降    </li>
+<li>m&gt;2000：64~512作为batch-size  </li>
+</ul>
+</li>
+</ul>
+<h1 id="2-Adam-optimization-algorithm"><a href="#2-Adam-optimization-algorithm" class="headerlink" title="2 Adam optimization algorithm"></a>2 Adam optimization algorithm</h1><ul>
+<li>Exponentially weighted averages<ul>
+<li>指数加权滑动平均（系工大小作业都写过）：<ul>
+<li>$v_t=\beta v_{t-1}+(1-\beta)\theta_t$</li>
+<li>约等于$\frac{1}{1-\beta}$个数据的平均，所以β↑→平滑</li>
+</ul>
+</li>
+<li>偏差修正：<ul>
+<li>问题：$v_0=0$导致起步值过低</li>
+<li>解决：预测值由$v_t$变为$\frac{v_t}{1-\beta^t}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Gradient decent with momentum<ul>
+<li>以梯度的指数加权平均来更新权重<ul>
+<li>$v_{dW}=\beta_1 v_{dW}+(1-\beta_1)dW$，用$v_{dW}$更新</li>
+<li>$v_{db}=\beta_1 v_{db}+(1-\beta_1)db$，用$v_{db}$更新</li>
+</ul>
+</li>
+<li>效果：在垂直方向震荡↓，在水平方向速度↑</li>
+</ul>
+</li>
+<li>RMSprop<ul>
+<li>均方根传递<ul>
+<li>$s_{dW}=\beta_2 s_{dW}+(1-\beta_2)dW^2$，用$\frac{dW}{\sqrt{s_{dW}}}$更新</li>
+<li>$s_{db}=\beta_2 s_{db}+(1-\beta_2)db^2$，用$\frac{db}{\sqrt{s_{db}}}$更新</li>
+</ul>
+</li>
+<li>效果：在垂直方向震荡↓（抑制了震荡）</li>
+</ul>
+</li>
+<li>自适应矩估计（Adaptive Moment Estimation）：将momentum与RMSprop结合<br><img src="/2018/01/24/D2/2.jpg" alt=""></li>
+<li>参数配置： $\beta_1=0.9, \beta_2=0.999$</li>
+</ul>
+<h1 id="3-Learning-rate-dacay"><a href="#3-Learning-rate-dacay" class="headerlink" title="3 Learning rate dacay"></a>3 Learning rate dacay</h1><p>学习率衰减（我运筹大作业时好像用过）</p>
+<ul>
+<li>特点：最开始使用较大步长，接近极小值点采用较小步长</li>
+<li>几种公式：<ul>
+<li>$\alpha=\frac{1}{1+decayrate\cdot epochnum}\alpha_0$</li>
+<li>$\alpha=0.95^{epochnum}\cdot \alpha_0$</li>
+<li>$\alpha=\frac{k}{\sqrt{epochnum}}\cdot \alpha_0$</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-The-problem-of-local-optima"><a href="#4-The-problem-of-local-optima" class="headerlink" title="4 The problem of local optima"></a>4 The problem of local optima</h1><ul>
+<li>局部最优：其实一般不成问题 </li>
+<li>停滞区：导数长时间接近于0的区域，让学习变得很慢。Adam算法能帮助改善。</li>
+</ul>
+<p>这门课Week2的课程内容这样看起来好像很少，做笔记的难度也比Week1大幅下降……可能是这周很多知识点之前都接触过所以学习起来很快。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/D1/" rel="next" title="Practical Aspects of Deep Learning">
+                <i class="fa fa-chevron-left"></i> Practical Aspects of Deep Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -392,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-myself-关于我自己"><span class="nav-number">1.</span> <span class="nav-text">About myself (关于我自己)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-this-website-关于这个网站"><span class="nav-number">2.</span> <span class="nav-text">About this website (关于这个网站)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Mini-batch-gradient-decent"><span class="nav-number">1.</span> <span class="nav-text">1 Mini-batch gradient decent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Adam-optimization-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2 Adam optimization algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Learning-rate-dacay"><span class="nav-number">3.</span> <span class="nav-text">3 Learning rate dacay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-The-problem-of-local-optima"><span class="nav-number">4.</span> <span class="nav-text">4 The problem of local optima</span></a></li></ol></div>
             
 
           </div>
