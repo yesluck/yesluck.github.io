@@ -79,17 +79,26 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
+<meta name="description" content="周五就要期末考了，但是感觉之前对这学期的唯一一门课都学得不清不楚的。本来想把《新世纪日本语教程（初级）》的语法整理出一个体系来，结果发现真的太乱了……可能也是因为我的整理方式不太对，整理出来后我对期末考的信心又减了一大半。  文法部分1. 用言的各种形式 把形容词、形容动词和动词放在了一个表格里，因为我本来觉得能够形成一个完整的体系，而课本里分散在了好多课中显得不直观。  2. 动词未然形接续的词">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Practical Aspects of Deep Learning">
-<meta property="og:url" content="http://yoursite.com/2018/01/17/D1/index.html">
+<meta property="og:title" content="Optimization Algorithms">
+<meta property="og:url" content="http://yoursite.com/2018/01/05/J1/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
+<meta property="og:description" content="周五就要期末考了，但是感觉之前对这学期的唯一一门课都学得不清不楚的。本来想把《新世纪日本语教程（初级）》的语法整理出一个体系来，结果发现真的太乱了……可能也是因为我的整理方式不太对，整理出来后我对期末考的信心又减了一大半。  文法部分1. 用言的各种形式 把形容词、形容动词和动词放在了一个表格里，因为我本来觉得能够形成一个完整的体系，而课本里分散在了好多课中显得不直观。  2. 动词未然形接续的词">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-07T16:47:24.000Z">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-640fca2ed84533abb34d0cdbb6338da0_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-06fd4a2420a65e67a2074ec0c43ab4fd_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-45ae0ff3e4175f66c06018ffe9f819f8_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-e855520c2792a21a46e6a6f07f5a1662_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-117d394e311706784f21dfa49378a75e_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-d421c20240cd98806643bc02af6f0cbd_b.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-2d58c04afc424080e0c8f6e5126c599e_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-3e726ab229500b68b4ca625031ac58b4_b.jpg">
+<meta property="og:updated_time" content="2018-05-09T07:57:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Practical Aspects of Deep Learning">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
+<meta name="twitter:title" content="Optimization Algorithms">
+<meta name="twitter:description" content="周五就要期末考了，但是感觉之前对这学期的唯一一门课都学得不清不楚的。本来想把《新世纪日本语教程（初级）》的语法整理出一个体系来，结果发现真的太乱了……可能也是因为我的整理方式不太对，整理出来后我对期末考的信心又减了一大半。  文法部分1. 用言的各种形式 把形容词、形容动词和动词放在了一个表格里，因为我本来觉得能够形成一个完整的体系，而课本里分散在了好多课中显得不直观。  2. 动词未然形接续的词">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-640fca2ed84533abb34d0cdbb6338da0_b.jpg">
 
 
 
@@ -119,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/17/D1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/05/J1/"/>
 
 
 
 
 
-  <title>Practical Aspects of Deep Learning | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Optimization Algorithms | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -252,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/D1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/05/J1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zikun Lin">
@@ -269,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Practical Aspects of Deep Learning</h1>
+          <h1 class="post-title" itemprop="name headline">Optimization Algorithms</h1>
         
 
         <div class="post-meta">
@@ -281,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T00:00:00+08:00">
-                2018-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T00:00:00+08:00">
+                2018-01-05
               </time>
             
 
@@ -304,8 +313,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deeplearning-ai-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Deeplearning.ai Notes</span>
+                  <a href="/categories/日语学习/" itemprop="url" rel="index">
+                    <span itemprop="name">日语学习</span>
                   </a>
                 </span>
 
@@ -322,8 +331,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/17/D1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/17/D1/" itemprop="commentsCount"></span>
+                <a href="/2018/01/05/J1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/05/J1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,105 +360,28 @@
       
 
       
-        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/32972092" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/32972092" target="_blank" rel="noopener">Zhihu</a>.)</p>
-<p>之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。</p>
-<p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/lecture/cxG1s" target="_blank" rel="noopener">Week 1</a>。</p>
-<h1 id="1-Setting-up-your-machine-learning-application"><a href="#1-Setting-up-your-machine-learning-application" class="headerlink" title="1 Setting up your machine learning application"></a>1 Setting up your machine learning application</h1><blockquote>
-<p>So for a lot of applications I think it’s almost impossible. Even very experienced deep learning people find it almost impossible to correctly guess the best choice of hyperparameters the very first time.</p>
-</blockquote>
-<p>开篇讲述深度学习的调参过程困难，感人至深，催人泪下。</p>
-<ul>
-<li>Train / Dev(elopment, 用于交叉验证) / Test sets</li>
-<li>Bias:<ul>
-<li>high→欠拟合，判断:训练集是否训练结果差</li>
-<li>解决办法：网络更大、时间更长、优化算法更高级</li>
-</ul>
-</li>
-<li>Variance:<ul>
-<li>high→过拟合，判断：Dev集是否比训练集结果差</li>
-<li>解决办法：数据更多、正则化(Regularization)</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>测试集训练垃圾且Dev集结果同样垃圾→high bias</li>
-<li>测试集训练良好但Dev集结果变得垃圾→high variance</li>
-<li>测试集训练垃圾但Dev集结果更加垃圾→都high</li>
-<li>测试集训练良好且Dev集训练良好→都low “喜闻乐见”（原翻译）</li>
-</ol>
-<h1 id="2-Regularizing-your-neural-network"><a href="#2-Regularizing-your-neural-network" class="headerlink" title="2 Regularizing your neural network"></a>2 Regularizing your neural network</h1><p>前不久收到的面试，教授问了个“Do you know regularization? Please explain it.” 我觉得我答得无比垃圾……</p>
-<ul>
-<li>正则化<ul>
-<li>逻辑回归中的正则化<ul>
-<li>L2正则化：$\frac{\lambda{}}{2m}||w||^2_2 =\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}w_j^2=\frac{\lambda{}}{2m}w^Tw$ ，使用较多</li>
-<li>L1正则化：$\frac{\lambda{}}{2m}||w||_1=\frac{\lambda{}}{2m}\sum_{j=1}^{n_x}|w_j|$ ，会变得稀疏</li>
-<li>λ：正则化参数（regularization parameter），使用Dev集进行验证调整</li>
-</ul>
-</li>
-<li>多层神经网络中的正则化<ul>
-<li>$\frac{\lambda{}}{2m}\sum^{L}_{l=1}||w^{[l]}||^2_2=\frac{\lambda{}}{2m}\sum^{L}_{l=1}\sum^{n^{[L-1]}}_{i=1}\sum^{n^{[L]}}_{j=1}(w_{ij}^{[l]})^2$</li>
-<li>这个矩阵的范数称为矩阵的弗罗贝尼乌斯范数（我培提尔其乌斯表示不服）</li>
-<li>更新时“dw[l]”（J对w[l]的偏导）需加上一项$\frac{\lambda{}}{m}w^{[l]}$，因此L2正则化也被称为权重衰减</li>
-</ul>
-</li>
-<li>为什么正则化可以减轻过拟合？<ul>
-<li>从网络结构来看：因为通过权重衰减将一些权重削减到~0，相当于简化了神经网络的结构。</li>
-<li>从激活函数来看：通过正则化使激活函数工作在近似线性区。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% 公式打起来真长……</span><br><span class="line">\frac&#123;\lambda&#123;&#125;&#125;&#123;2m&#125;\sum^&#123;L&#125;_&#123;l=1&#125;||w^&#123;[l]&#125;||^2_2=\frac&#123;\lambda&#123;&#125;&#125;&#123;2m&#125;\sum^&#123;L&#125;_&#123;l=1&#125;\sum^&#123;n^&#123;[L-1]&#125;&#125;_&#123;i=1&#125;\sum^&#123;n^&#123;[L]&#125;&#125;_&#123;j=1&#125;(w_&#123;ij&#125;^&#123;[l]&#125;)^2</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Dropout（随机失活正则化）</p>
-<ul>
-<li>对每个节点以一定概率失活→简化网络结构<ul>
-<li>反向随机失活（最后系数要除以失活概率以保证每一层a的期望不变）</li>
-<li>不在测试阶段使用失活</li>
-</ul>
-</li>
-<li>为什么Dropout可以减轻过拟合？<ul>
-<li>不能依赖任何一个特征（因为随时可能被丢弃），所以会分配较小权重</li>
-<li>对于较大的权值矩阵可以设置较小的留存率</li>
-</ul>
-</li>
-<li>缺点：让J函数变得不明确</li>
-</ul>
-</li>
-<li><p>其它方法</p>
-<ul>
-<li>水平翻转/裁剪/扭曲使得训练样本翻倍（还有这种操作 Σ(っ °Д °;)っ）</li>
-<li>早停止法：找最小Dev集误差所对应的迭代次数</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-Setting-up-your-optimization-problem"><a href="#3-Setting-up-your-optimization-problem" class="headerlink" title="3 Setting up your optimization problem"></a>3 Setting up your optimization problem</h1><ul>
-<li>输入归一化：$\mu=\frac{1}{m}\sum_{i=1}^mx^{(i)}; \sigma^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)})^2$</li>
-<li><p>梯度消失与爆炸：在很深的网络里</p>
-<ul>
-<li>解决：更细致地初始化神经网络<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w[l]=np.random.randn(shape)*np.sqrt(1/n[l-1]) #sigmoid, tanh(Xavier)</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/n[l-1]) #relu</span><br><span class="line">w[l]=np.random.randn(shape)*np.sqrt(2/(n[l-1]+n[l])) #tanh另一种</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>梯度检验</p>
-<ul>
-<li>将所有参数拼成一个巨大的参数向量，将所有导数拼成一个巨大的导数向量。</li>
-<li>近似计算梯度：$g(\theta)\approx\frac{f(\theta+\epsilon)-f(\theta-\epsilon)}{2\epsilon}$</li>
-<li>判断近似梯度与“dθ”是否大致相等（$\frac{||d\theta_{approx}-d\theta||_2}{||d\theta_{approx}||_2+||d\theta||_2}&lt;\epsilon=10^{-7}$）</li>
-</ul>
-</li>
-<li>实用技巧（人生经验）<ul>
-<li>很慢，调试时才用</li>
-<li>检查各组成找出漏洞</li>
-<li>记得正则化</li>
-<li>不能用dropout</li>
-<li>随机初始化检验一波，隔一段训练再继续检验</li>
-</ul>
-</li>
-</ul>
-<p>练习和编程题都很简单……多学了一个numpy函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.linalg.norm() #求范数（默认二范数）</span><br></pre></td></tr></table></figure>
+        <p>周五就要期末考了，但是感觉之前对这学期的唯一一门课都学得不清不楚的。本来想把《新世纪日本语教程（初级）》的语法整理出一个体系来，结果发现真的太乱了……可能也是因为我的整理方式不太对，整理出来后我对期末考的信心又减了一大半。</p>
+<hr>
+<h1 id="文法部分"><a href="#文法部分" class="headerlink" title="文法部分"></a>文法部分</h1><p><strong>1. 用言的各种形式</strong></p>
+<p>把形容词、形容动词和动词放在了一个表格里，因为我本来觉得能够形成一个完整的体系，而课本里分散在了好多课中显得不直观。</p>
+<p><img src="https://pic2.zhimg.com/v2-640fca2ed84533abb34d0cdbb6338da0_b.jpg" alt=""></p>
+<p><strong>2. 动词未然形接续的词组</strong></p>
+<p><img src="https://pic3.zhimg.com/v2-06fd4a2420a65e67a2074ec0c43ab4fd_b.jpg" alt=""></p>
+<p><strong>3. +て・た连用形接续的词组</strong></p>
+<p><img src="https://pic2.zhimg.com/v2-45ae0ff3e4175f66c06018ffe9f819f8_b.jpg" alt=""></p>
+<p><strong>4. 接正常连用形的词组</strong></p>
+<p><img src="https://pic3.zhimg.com/v2-e855520c2792a21a46e6a6f07f5a1662_b.jpg" alt=""></p>
+<p>其实表中动词和形容词、形容动词没有任何交集，但是都是用言的连用形就放在一起了</p>
+<p><strong>5. 体言能够接续的词组</strong></p>
+<p>最乱的一组……本来觉得这部分基本上能跟体言掺和上应该是一类的，结果越整理越绝望。</p>
+<p><img src="https://pic3.zhimg.com/v2-117d394e311706784f21dfa49378a75e_b.jpg" alt=""></p>
+<p><img src="https://pic2.zhimg.com/v2-d421c20240cd98806643bc02af6f0cbd_b.jpg" alt=""></p>
+<p><img src="https://pic1.zhimg.com/v2-2d58c04afc424080e0c8f6e5126c599e_b.jpg" alt=""></p>
+<p><strong>6. 16~28课的其他语法</strong></p>
+<p>为什么是16~28课，因为这是我们的期末考范围。</p>
+<p><img src="https://pic2.zhimg.com/v2-3e726ab229500b68b4ca625031ac58b4_b.jpg" alt=""></p>
+<p>はい、おしまい。</p>
+
       
     </div>
     
@@ -473,18 +405,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/05/J1/" rel="next" title="Optimization Algorithms">
-                <i class="fa fa-chevron-left"></i> Optimization Algorithms
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/24/D2/" rel="prev" title="Optimization Algorithms">
-                Optimization Algorithms <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/17/D1/" rel="prev" title="Practical Aspects of Deep Learning">
+                Practical Aspects of Deep Learning <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Setting-up-your-machine-learning-application"><span class="nav-number">1.</span> <span class="nav-text">1 Setting up your machine learning application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Regularizing-your-neural-network"><span class="nav-number">2.</span> <span class="nav-text">2 Regularizing your neural network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Setting-up-your-optimization-problem"><span class="nav-number">3.</span> <span class="nav-text">3 Setting up your optimization problem</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文法部分"><span class="nav-number">1.</span> <span class="nav-text">文法部分</span></a></li></ol></div>
             
 
           </div>
