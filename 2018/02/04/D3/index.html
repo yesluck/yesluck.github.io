@@ -79,20 +79,28 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta name="description" content="本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 3。至此，第二门课程内容也正式结束。    1 Hyperparameter Tuning 重要性排序（不是死板的） 最重要：$\alpha$ 其次：$\b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optimization Algorithms">
-<meta property="og:url" content="http://yoursite.com/2018/01/24/D2/index.html">
+<meta property="og:title" content="D3">
+<meta property="og:url" content="http://yoursite.com/2018/02/04/D3/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta property="og:description" content="本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 3。至此，第二门课程内容也正式结束。    1 Hyperparameter Tuning 重要性排序（不是死板的） 最重要：$\alpha$ 其次：$\b">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/2.jpg">
-<meta property="og:updated_time" content="2018-05-09T07:51:33.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/02/04/D3/10.jpg">
+<meta property="og:updated_time" content="2018-05-12T17:00:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Optimization Algorithms">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
+<meta name="twitter:title" content="D3">
+<meta name="twitter:description" content="本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 3。至此，第二门课程内容也正式结束。    1 Hyperparameter Tuning 重要性排序（不是死板的） 最重要：$\alpha$ 其次：$\b">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/04/D3/1.jpg">
 
 
 
@@ -122,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/24/D2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/04/D3/"/>
 
 
 
 
 
-  <title>Optimization Algorithms | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>D3 | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -255,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/D2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/04/D3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zikun Lin">
@@ -272,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Optimization Algorithms</h1>
+          <h1 class="post-title" itemprop="name headline">D3</h1>
         
 
         <div class="post-meta">
@@ -284,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T00:00:00+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T00:00:00+08:00">
+                2018-02-04
               </time>
             
 
@@ -295,28 +303,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deeplearning-ai-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Deeplearning.ai Notes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -325,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/24/D2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/24/D2/" itemprop="commentsCount"></span>
+                <a href="/2018/02/04/D3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/04/D3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,74 +340,135 @@
       
 
       
-        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">Zhihu</a>.)</p>
-<p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/home/week/2" target="_blank" rel="noopener">Week 2</a>。</p>
+        <p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/home/week/3" target="_blank" rel="noopener">Week 3</a>。至此，第二门课程内容也正式结束。</p>
+<p><img src="/2018/02/04/D3/1.jpg" alt=""></p>
+<p><img src="/2018/02/04/D3/2.jpg" alt=""></p>
 <hr>
-<h1 id="1-Mini-batch-gradient-decent"><a href="#1-Mini-batch-gradient-decent" class="headerlink" title="1 Mini-batch gradient decent"></a>1 Mini-batch gradient decent</h1><ul>
-<li>小批量训练集：每一个子集都运行一遍。1次遍历，5000步逼近<br><img src="/2018/01/24/D2/1.jpg" alt=""></li>
-<li>特点：不是每次迭代J都会下降，但整体趋势向下   </li>
-<li>极端：  <ul>
-<li>batch-size→m：批量梯度下降，噪声小步长大，最终达到最低点；m大耗时长 </li>
-<li>batch-size→1：随机梯度下降，噪声大，最终在最低点附近震荡；无法向量化加速 </li>
-<li>batch-size取中间，既能向量化加速，又可以不需每次遍历全部数据</li>
+<h1 id="1-Hyperparameter-Tuning"><a href="#1-Hyperparameter-Tuning" class="headerlink" title="1 Hyperparameter Tuning"></a>1 Hyperparameter Tuning</h1><ul>
+<li>重要性排序（不是死板的）<ul>
+<li>最重要：$\alpha$</li>
+<li>其次：$\beta,\space{}#hidden\space{}units,\space{}mini\space{}batch\space{}size$</li>
+<li>再次：$#layers, learning\space{}rate\space{}dacay$</li>
 </ul>
 </li>
-<li>选取：<ul>
-<li>m≤2000：批量梯度下降    </li>
-<li>m&gt;2000：64~512作为batch-size  </li>
+<li>尝试步骤技巧<ul>
+<li>try random values, don’t use a grid ——增大找到合适值概率</li>
+<li>coarse to fine ——先粗调、后微调</li>
 </ul>
 </li>
-</ul>
-<h1 id="2-Adam-optimization-algorithm"><a href="#2-Adam-optimization-algorithm" class="headerlink" title="2 Adam optimization algorithm"></a>2 Adam optimization algorithm</h1><ul>
-<li>Exponentially weighted averages<ul>
-<li>指数加权滑动平均（系工大小作业都写过）：<ul>
-<li>$v_t=\beta v_{t-1}+(1-\beta)\theta_t$</li>
-<li>约等于$\frac{1}{1-\beta}$个数据的平均，所以β↑→平滑</li>
+<li>合适的尺度<ul>
+<li>隐藏单元数/层数：均匀随机</li>
+<li>学习率：对数尺度随机</li>
+<li>$\beta$：变成$(1-\beta)$后对数尺度随机</li>
 </ul>
 </li>
-<li>偏差修正：<ul>
-<li>问题：$v_0=0$导致起步值过低</li>
-<li>解决：预测值由$v_t$变为$\frac{v_t}{1-\beta^t}$</li>
+<li>实践方法<ul>
+<li>计算资源少——babysitting：精心照料，不离不弃，耐心微调（~熊猫：少生优生）</li>
+<li>计算资源多——in parallel：并行训练，撒野尝试，寻找最优（~鱼子酱：多生放养）</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>Gradient decent with momentum<ul>
-<li>以梯度的指数加权平均来更新权重<ul>
-<li>$v_{dW}=\beta_1 v_{dW}+(1-\beta_1)dW$，用$v_{dW}$更新</li>
-<li>$v_{db}=\beta_1 v_{db}+(1-\beta_1)db$，用$v_{db}$更新</li>
+<h1 id="2-Batch-Normalization-BN"><a href="#2-Batch-Normalization-BN" class="headerlink" title="2 Batch Normalization (BN)"></a>2 Batch Normalization (BN)</h1><ul>
+<li>神经网络中间值归一化<ul>
+<li>对某层中的$z^{(i)}$进行归一化：$z^{(i)}_{norm}=\frac{z^{(i)}-\mu}{\sqrt{\sigma^2+\epsilon}}$</li>
+<li>$\tilde{z}^{(i)} = γ\cdot{}z^{(i)}_{norm}+ β$，$γ$和$β$值可从模型中学习<ul>
+<li>它们设置了第l层z[l]参数的均值和方差</li>
+<li>它们的学习可以通过gradient descent, Adam, Gradient descent with momentum, 或RMSprop等</li>
 </ul>
 </li>
-<li>效果：在垂直方向震荡↓，在水平方向速度↑</li>
 </ul>
 </li>
-<li>RMSprop<ul>
-<li>均方根传递<ul>
-<li>$s_{dW}=\beta_2 s_{dW}+(1-\beta_2)dW^2$，用$\frac{dW}{\sqrt{s_{dW}}}$更新</li>
-<li>$s_{db}=\beta_2 s_{db}+(1-\beta_2)db^2$，用$\frac{db}{\sqrt{s_{db}}}$更新</li>
+<li>BN<ul>
+<li>$x-^{w^{[1]},b^{[1]}}\rightarrow z^{[1]}-^{\beta^{[1]},\gamma^{[1]}}_{BN}\rightarrow \tilde{z}^{[1]}\rightarrow a^{[1]}=g^{[1]}(z^{[1]})-^{w^{[2]},b^{[2]}}\rightarrow z^{[2]} \rightarrow …$<ul>
+<li>mini-batch：将$x^{\{1\}},\space x^{\{2\}},\space…$进行同样操作</li>
+<li>$b^{[l]}$的不必要性：因为BN算法使层级中各个$z^{[l]}$的均值为0，$b^{[l]}$可忽略 </li>
 </ul>
 </li>
-<li>效果：在垂直方向震荡↓（抑制了震荡）</li>
+<li>效果<ul>
+<li>加速训练</li>
+<li>解决“协变量问题”<ul>
+<li>“协变量问题”：如果我们学习了某种x-y映射，x的分布变化了，那么我们就得重新训练学习算法，尽管x-y映射的真函数没变</li>
+<li>后面隐藏层值随前面隐藏层的训练一直在变，出现“协变量问题”</li>
+<li>BN的作用：减少这些隐藏单元值分布的不确定性</li>
 </ul>
 </li>
-<li>自适应矩估计（Adaptive Moment Estimation）：将momentum与RMSprop结合<br><img src="/2018/01/24/D2/2.jpg" alt=""></li>
-<li>参数配置： $\beta_1=0.9, \beta_2=0.999$</li>
+<li>轻微的正则化效果：因为给一些激活函数加上了噪声，使后续隐藏单元不过度依赖其它隐藏单元<ul>
+<li>使用更大尺寸minibatch，可以同时减少噪声并减少正则化效果</li>
+<li>只是一种无意的副作用</li>
 </ul>
-<h1 id="3-Learning-rate-dacay"><a href="#3-Learning-rate-dacay" class="headerlink" title="3 Learning rate dacay"></a>3 Learning rate dacay</h1><p>学习率衰减（我运筹大作业时好像用过）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>测试时的BN：通过训练集估算$\mu,\space \sigma^2$    <ul>
+<li>对第l层，训练时得到$\mu^{\{1\}[l]},\space \mu^{\{2\}[l]},\space \mu^{\{3\}[l]},\space …$记为$\theta_1,\space \theta_2,\space \theta_3$</li>
+<li>对$\theta_1,\space \theta_2,\space \theta_3$指数加权平均（移动均值）</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-Multi-class-classification"><a href="#3-Multi-class-classification" class="headerlink" title="3 Multi-class classification"></a>3 Multi-class classification</h1><ul>
+<li>Softmax<ul>
+<li>输出层单元数=C=#classes</li>
+<li>输出结果是各类别的概率</li>
+<li>$t=e^{(z^{[l]})},\space a^{[l]}=\frac{e^{z^{[l]}}}{\sum^{C}_{j=1}t_j},\space a_i^{[l]}=\frac{t_i}{\sum^{C}_{j=1}t_j}$</li>
+</ul>
+</li>
+<li>训练<ul>
+<li>softmax激活函数将logistic激活函数从2分类推广到C分类（可证）</li>
+<li>loss函数：$L(\hat{y},y)=-\sum^C_{j=1} y_j\log(\hat{y_j})$</li>
+<li>cost函数：$J=\frac{1}{m}\sum_{i=1}^m L(\hat{y}^{(i)},y^{(i)})$</li>
+<li>反向传播：$dz^{[L]}=\hat{y}-y$，依次倒推<br>插一句：字幕组翻译真会玩（讲到softmax对应hardmax的起名时）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/02/04/D3/3.jpg" alt=""></p>
+<p><img src="/2018/02/04/D3/4.jpg" alt=""></p>
+<h1 id="4-Introduction-to-programming-frameworks"><a href="#4-Introduction-to-programming-frameworks" class="headerlink" title="4 Introduction to programming frameworks"></a>4 Introduction to programming frameworks</h1><ul>
+<li>简介<ul>
+<li>选择：方便、高速、开源</li>
+<li>种类很多（但是没列出pyTorch…）</li>
+</ul>
+</li>
+<li><p>TensorFlow（想到了张量流男孩2333）</p>
 <ul>
-<li>特点：最开始使用较大步长，接近极小值点采用较小步长</li>
-<li>几种公式：<ul>
-<li>$\alpha=\frac{1}{1+decayrate\cdot epochnum}\alpha_0$</li>
-<li>$\alpha=0.95^{epochnum}\cdot \alpha_0$</li>
-<li>$\alpha=\frac{k}{\sqrt{epochnum}}\cdot \alpha_0$</li>
+<li><p>import</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义$J=w^2-10w+25$并用Gradient Descent训练</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">w = tf.Variable(0,dtype=tf.float32)</span><br><span class="line">cost = tf.add(tf.add(w**2,tf.multiply(-10.,w)),25)</span><br><span class="line"># 或直接 cost = w**2-10*w+25 也行，因为tf已经重载了基本运算，前提是w已经被定义为tf的Variable</span><br><span class="line">train=tf.train.GradientDescentOptimizer(0.01).minimize(cost)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动并输出w</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">session = tf.Session()</span><br><span class="line">session.run(init)</span><br><span class="line">print(session.run(w))</span><br><span class="line"></span><br><span class="line"># 最后三行也可换为：</span><br><span class="line">with tf.Session() as session:</span><br><span class="line">    session.run(init)</span><br><span class="line">    print(session.run(w))</span><br><span class="line"></span><br><span class="line"># 输出0.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>训练一步并输出w</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.run(train)</span><br><span class="line">print(session.run(w))</span><br><span class="line"># 输出0.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>训练1000步并输出w</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in range(1000):</span><br><span class="line">    session.run(train)</span><br><span class="line">print(session.run(w))</span><br><span class="line"># 输出4.99999</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>placeholder：在用minibatch时需要用feed_dict把训练集的不同的子集代入cost函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 相应代码进行增加或替换如下</span><br><span class="line">coefficients = np.array([[1.],[-10.],[25.]])</span><br><span class="line">x = tf.placeholder(tf.float32, [3,1])</span><br><span class="line">cost = x[0][0]*w**2 + x[1][0]*w + x[2][0]</span><br><span class="line">session.run(train, feed_dict=&#123;x:coefficients&#125;)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
-<h1 id="4-The-problem-of-local-optima"><a href="#4-The-problem-of-local-optima" class="headerlink" title="4 The problem of local optima"></a>4 The problem of local optima</h1><ul>
-<li>局部最优：其实一般不成问题 </li>
-<li>停滞区：导数长时间接近于0的区域，让学习变得很慢。Adam算法能帮助改善。</li>
-</ul>
-<p>这门课Week2的课程内容这样看起来好像很少，做笔记的难度也比Week1大幅下降……可能是这周很多知识点之前都接触过所以学习起来很快。</p>
+<h1 id="5-练习部分"><a href="#5-练习部分" class="headerlink" title="5 练习部分"></a>5 练习部分</h1><p>编程练习坑好多，而且没法像之前那样每步都能直接查出结果来，一不小心最后就发散了……看课程论坛后查了好一会儿才发现问题。</p>
+<p>不过这次编程内容很有意思，是根据手势识别数字，样例如下。</p>
+<p><img src="/2018/02/04/D3/5.jpg" alt=""></p>
+<p>按照两层relu的网络，测试集正确率也只有71%左右。我先拍了下自己的手，试试效果。</p>
+<p><img src="/2018/02/04/D3/6.jpg" alt=""></p>
+<p>蛤？</p>
+<p><img src="/2018/02/04/D3/7.jpg" alt=""></p>
+<p>蛤？？？</p>
+<p>我又找了一些乱七八糟的图，背景也没那么纯净，看看效果如何。</p>
+<p><img src="/2018/02/04/D3/8.jpg" alt=""></p>
+<p>预测4，实际5</p>
+<p><img src="/2018/02/04/D3/9.jpg" alt=""></p>
+<p>预测0，实际1</p>
+<p><img src="/2018/02/04/D3/10.jpg" alt=""></p>
+<p>预测4，实际就当差不多是4吧</p>
+<p>嗯，效果相当不行。</p>
 
       
     </div>
@@ -446,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/17/D1/" rel="next" title="Practical Aspects of Deep Learning">
-                <i class="fa fa-chevron-left"></i> Practical Aspects of Deep Learning
+              <a href="/2018/01/24/D2/" rel="next" title="Optimization Algorithms">
+                <i class="fa fa-chevron-left"></i> Optimization Algorithms
               </a>
             
           </div>
@@ -455,10 +502,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/04/D3/" rel="prev" title="D3">
-                D3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Mini-batch-gradient-decent"><span class="nav-number">1.</span> <span class="nav-text">1 Mini-batch gradient decent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Adam-optimization-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2 Adam optimization algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Learning-rate-dacay"><span class="nav-number">3.</span> <span class="nav-text">3 Learning rate dacay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-The-problem-of-local-optima"><span class="nav-number">4.</span> <span class="nav-text">4 The problem of local optima</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Hyperparameter-Tuning"><span class="nav-number">1.</span> <span class="nav-text">1 Hyperparameter Tuning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Batch-Normalization-BN"><span class="nav-number">2.</span> <span class="nav-text">2 Batch Normalization (BN)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Multi-class-classification"><span class="nav-number">3.</span> <span class="nav-text">3 Multi-class classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Introduction-to-programming-frameworks"><span class="nav-number">4.</span> <span class="nav-text">4 Introduction to programming frameworks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-练习部分"><span class="nav-number">5.</span> <span class="nav-text">5 练习部分</span></a></li></ol></div>
             
 
           </div>
