@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/02/04/D3/8.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/02/04/D3/9.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/02/04/D3/10.jpg">
-<meta property="og:updated_time" content="2018-05-12T17:12:42.000Z">
+<meta property="og:updated_time" content="2018-05-13T02:58:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hyperparameter tuning, Batch Normalization and Programming Frameworks">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 3。至此，第二门课程内容也正式结束。">
@@ -367,7 +367,7 @@
 <p><img src="/2018/02/04/D3/1.jpg" alt=""></p>
 <p><img src="/2018/02/04/D3/2.jpg" alt=""></p>
 <hr>
-<h1 id="1-Hyperparameter-Tuning"><a href="#1-Hyperparameter-Tuning" class="headerlink" title="1 Hyperparameter Tuning"></a>1 Hyperparameter Tuning</h1><ul>
+<h1 id="Hyperparameter-Tuning"><a href="#Hyperparameter-Tuning" class="headerlink" title="Hyperparameter Tuning"></a>Hyperparameter Tuning</h1><ul>
 <li>重要性排序（不是死板的）<ul>
 <li>最重要：$\alpha$</li>
 <li>其次：$\beta$, $#hidden units$, $mini\space batch\space size$</li>
@@ -391,7 +391,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="2-Batch-Normalization-BN"><a href="#2-Batch-Normalization-BN" class="headerlink" title="2 Batch Normalization (BN)"></a>2 Batch Normalization (BN)</h1><ul>
+<h1 id="Batch-Normalization-BN"><a href="#Batch-Normalization-BN" class="headerlink" title="Batch Normalization (BN)"></a>Batch Normalization (BN)</h1><ul>
 <li>神经网络中间值归一化<ul>
 <li>对某层中的$z^{(i)}$进行归一化：$z^{(i)}_{norm}=\frac{z^{(i)}-\mu}{\sqrt{\sigma^2+\epsilon}}$</li>
 <li>$\tilde{z}^{(i)} = γ\cdot{}z^{(i)}_{norm}+ β$，$γ$和$β$值可从模型中学习<ul>
@@ -430,7 +430,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-Multi-class-classification"><a href="#3-Multi-class-classification" class="headerlink" title="3 Multi-class classification"></a>3 Multi-class classification</h1><ul>
+<h1 id="Multi-class-classification"><a href="#Multi-class-classification" class="headerlink" title="Multi-class classification"></a>Multi-class classification</h1><ul>
 <li>Softmax<ul>
 <li>输出层单元数=C=#classes</li>
 <li>输出结果是各类别的概率</li>
@@ -447,7 +447,7 @@
 </ul>
 <p><img src="/2018/02/04/D3/3.jpg" alt=""></p>
 <p><img src="/2018/02/04/D3/4.jpg" alt=""></p>
-<h1 id="4-Introduction-to-programming-frameworks"><a href="#4-Introduction-to-programming-frameworks" class="headerlink" title="4 Introduction to programming frameworks"></a>4 Introduction to programming frameworks</h1><ul>
+<h1 id="Introduction-to-programming-frameworks"><a href="#Introduction-to-programming-frameworks" class="headerlink" title="Introduction to programming frameworks"></a>Introduction to programming frameworks</h1><ul>
 <li>简介<ul>
 <li>选择：方便、高速、开源</li>
 <li>种类很多（但是没列出pyTorch…）</li>
@@ -476,7 +476,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="5-练习部分"><a href="#5-练习部分" class="headerlink" title="5 练习部分"></a>5 练习部分</h1><p>编程练习坑好多，而且没法像之前那样每步都能直接查出结果来，一不小心最后就发散了……看课程论坛后查了好一会儿才发现问题。</p>
+<h1 id="练习部分"><a href="#练习部分" class="headerlink" title="练习部分"></a>练习部分</h1><p>编程练习坑好多，而且没法像之前那样每步都能直接查出结果来，一不小心最后就发散了……看课程论坛后查了好一会儿才发现问题。</p>
 <p>不过这次编程内容很有意思，是根据手势识别数字，样例如下。</p>
 <p><img src="/2018/02/04/D3/5.jpg" alt=""></p>
 <p>按照两层relu的网络，测试集正确率也只有71%左右。我先拍了下自己的手，试试效果。</p>
@@ -659,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Hyperparameter-Tuning"><span class="nav-number">1.</span> <span class="nav-text">1 Hyperparameter Tuning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Batch-Normalization-BN"><span class="nav-number">2.</span> <span class="nav-text">2 Batch Normalization (BN)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Multi-class-classification"><span class="nav-number">3.</span> <span class="nav-text">3 Multi-class classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Introduction-to-programming-frameworks"><span class="nav-number">4.</span> <span class="nav-text">4 Introduction to programming frameworks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-练习部分"><span class="nav-number">5.</span> <span class="nav-text">5 练习部分</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hyperparameter-Tuning"><span class="nav-number">1.</span> <span class="nav-text">Hyperparameter Tuning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-Normalization-BN"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization (BN)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multi-class-classification"><span class="nav-number">3.</span> <span class="nav-text">Multi-class classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-programming-frameworks"><span class="nav-number">4.</span> <span class="nav-text">Introduction to programming frameworks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#练习部分"><span class="nav-number">5.</span> <span class="nav-text">练习部分</span></a></li></ol></div>
             
 
           </div>

@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimization Algorithms">
 <meta property="og:url" content="http://yoursite.com/2018/01/24/D2/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/01/24/D2/2.jpg">
-<meta property="og:updated_time" content="2018-05-09T07:51:33.000Z">
+<meta property="og:updated_time" content="2018-05-13T02:58:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optimization Algorithms">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  1 Mini-batch gra">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
 <meta name="twitter:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
 
 
@@ -357,7 +357,7 @@
         <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">Zhihu</a>.)</p>
 <p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/home/week/2" target="_blank" rel="noopener">Week 2</a>。</p>
 <hr>
-<h1 id="1-Mini-batch-gradient-decent"><a href="#1-Mini-batch-gradient-decent" class="headerlink" title="1 Mini-batch gradient decent"></a>1 Mini-batch gradient decent</h1><ul>
+<h1 id="Mini-batch-gradient-decent"><a href="#Mini-batch-gradient-decent" class="headerlink" title="Mini-batch gradient decent"></a>Mini-batch gradient decent</h1><ul>
 <li>小批量训练集：每一个子集都运行一遍。1次遍历，5000步逼近<br><img src="/2018/01/24/D2/1.jpg" alt=""></li>
 <li>特点：不是每次迭代J都会下降，但整体趋势向下   </li>
 <li>极端：  <ul>
@@ -372,7 +372,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="2-Adam-optimization-algorithm"><a href="#2-Adam-optimization-algorithm" class="headerlink" title="2 Adam optimization algorithm"></a>2 Adam optimization algorithm</h1><ul>
+<h1 id="Adam-optimization-algorithm"><a href="#Adam-optimization-algorithm" class="headerlink" title="Adam optimization algorithm"></a>Adam optimization algorithm</h1><ul>
 <li>Exponentially weighted averages<ul>
 <li>指数加权滑动平均（系工大小作业都写过）：<ul>
 <li>$v_t=\beta v_{t-1}+(1-\beta)\theta_t$</li>
@@ -407,7 +407,7 @@
 <li>自适应矩估计（Adaptive Moment Estimation）：将momentum与RMSprop结合<br><img src="/2018/01/24/D2/2.jpg" alt=""></li>
 <li>参数配置： $\beta_1=0.9, \beta_2=0.999$</li>
 </ul>
-<h1 id="3-Learning-rate-dacay"><a href="#3-Learning-rate-dacay" class="headerlink" title="3 Learning rate dacay"></a>3 Learning rate dacay</h1><p>学习率衰减（我运筹大作业时好像用过）</p>
+<h1 id="Learning-rate-dacay"><a href="#Learning-rate-dacay" class="headerlink" title="Learning rate dacay"></a>Learning rate dacay</h1><p>学习率衰减（我运筹大作业时好像用过）</p>
 <ul>
 <li>特点：最开始使用较大步长，接近极小值点采用较小步长</li>
 <li>几种公式：<ul>
@@ -417,7 +417,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="4-The-problem-of-local-optima"><a href="#4-The-problem-of-local-optima" class="headerlink" title="4 The problem of local optima"></a>4 The problem of local optima</h1><ul>
+<h1 id="The-problem-of-local-optima"><a href="#The-problem-of-local-optima" class="headerlink" title="The problem of local optima"></a>The problem of local optima</h1><ul>
 <li>局部最优：其实一般不成问题 </li>
 <li>停滞区：导数长时间接近于0的区域，让学习变得很慢。Adam算法能帮助改善。</li>
 </ul>
@@ -589,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Mini-batch-gradient-decent"><span class="nav-number">1.</span> <span class="nav-text">1 Mini-batch gradient decent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Adam-optimization-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2 Adam optimization algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Learning-rate-dacay"><span class="nav-number">3.</span> <span class="nav-text">3 Learning rate dacay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-The-problem-of-local-optima"><span class="nav-number">4.</span> <span class="nav-text">4 The problem of local optima</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mini-batch-gradient-decent"><span class="nav-number">1.</span> <span class="nav-text">Mini-batch gradient decent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adam-optimization-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Adam optimization algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-rate-dacay"><span class="nav-number">3.</span> <span class="nav-text">Learning rate dacay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-problem-of-local-optima"><span class="nav-number">4.</span> <span class="nav-text">The problem of local optima</span></a></li></ol></div>
             
 
           </div>

@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Zikun’s space">
 <meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-07T16:47:24.000Z">
+<meta property="og:updated_time" content="2018-05-13T02:58:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Practical Aspects of Deep Learning">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。 本周笔记摘自“deeplea">
@@ -354,7 +354,7 @@
         <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/32972092" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/32972092" target="_blank" rel="noopener">Zhihu</a>.)</p>
 <p>之前虽然已经各种用过深度学习了，但是感觉学的内容还是比较零碎，用啥学啥也导致可能存在一些遗漏的知识点。刚好去年暑假“deeplearning.ai”和花书中文版都出来了，就打算重新学习一波。第一门课程因为内容之前大多学过，而且知识都很基础，就不补笔记了。</p>
 <p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/lecture/cxG1s" target="_blank" rel="noopener">Week 1</a>。</p>
-<h1 id="1-Setting-up-your-machine-learning-application"><a href="#1-Setting-up-your-machine-learning-application" class="headerlink" title="1 Setting up your machine learning application"></a>1 Setting up your machine learning application</h1><blockquote>
+<h1 id="Setting-up-your-machine-learning-application"><a href="#Setting-up-your-machine-learning-application" class="headerlink" title="Setting up your machine learning application"></a>Setting up your machine learning application</h1><blockquote>
 <p>So for a lot of applications I think it’s almost impossible. Even very experienced deep learning people find it almost impossible to correctly guess the best choice of hyperparameters the very first time.</p>
 </blockquote>
 <p>开篇讲述深度学习的调参过程困难，感人至深，催人泪下。</p>
@@ -377,7 +377,7 @@
 <li>测试集训练垃圾但Dev集结果更加垃圾→都high</li>
 <li>测试集训练良好且Dev集训练良好→都low “喜闻乐见”（原翻译）</li>
 </ol>
-<h1 id="2-Regularizing-your-neural-network"><a href="#2-Regularizing-your-neural-network" class="headerlink" title="2 Regularizing your neural network"></a>2 Regularizing your neural network</h1><p>前不久收到的面试，教授问了个“Do you know regularization? Please explain it.” 我觉得我答得无比垃圾……</p>
+<h1 id="Regularizing-your-neural-network"><a href="#Regularizing-your-neural-network" class="headerlink" title="Regularizing your neural network"></a>Regularizing your neural network</h1><p>前不久收到的面试，教授问了个“Do you know regularization? Please explain it.” 我觉得我答得无比垃圾……</p>
 <ul>
 <li>正则化<ul>
 <li>逻辑回归中的正则化<ul>
@@ -424,7 +424,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-Setting-up-your-optimization-problem"><a href="#3-Setting-up-your-optimization-problem" class="headerlink" title="3 Setting up your optimization problem"></a>3 Setting up your optimization problem</h1><ul>
+<h1 id="Setting-up-your-optimization-problem"><a href="#Setting-up-your-optimization-problem" class="headerlink" title="Setting up your optimization problem"></a>Setting up your optimization problem</h1><ul>
 <li>输入归一化：$\mu=\frac{1}{m}\sum_{i=1}^mx^{(i)}; \sigma^2=\frac{1}{m}\sum_{i=1}^m(x^{(i)})^2$</li>
 <li><p>梯度消失与爆炸：在很深的网络里</p>
 <ul>
@@ -616,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Setting-up-your-machine-learning-application"><span class="nav-number">1.</span> <span class="nav-text">1 Setting up your machine learning application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Regularizing-your-neural-network"><span class="nav-number">2.</span> <span class="nav-text">2 Regularizing your neural network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Setting-up-your-optimization-problem"><span class="nav-number">3.</span> <span class="nav-text">3 Setting up your optimization problem</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Setting-up-your-machine-learning-application"><span class="nav-number">1.</span> <span class="nav-text">Setting up your machine learning application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regularizing-your-neural-network"><span class="nav-number">2.</span> <span class="nav-text">Regularizing your neural network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Setting-up-your-optimization-problem"><span class="nav-number">3.</span> <span class="nav-text">Setting up your optimization problem</span></a></li></ol></div>
             
 
           </div>
