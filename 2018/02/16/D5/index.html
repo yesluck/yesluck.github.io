@@ -79,20 +79,19 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第三门课程“Structuring Machine Learning Projects”的Week 2。  Error Analysis Carry out ceiling(天花板)：表现结果的上界（花费较多时间也无法将效果提升到更好）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optimization Algorithms">
-<meta property="og:url" content="http://yoursite.com/2018/01/24/D2/index.html">
+<meta property="og:title" content="ML Strategy (2)">
+<meta property="og:url" content="http://yoursite.com/2018/02/16/D5/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第三门课程“Structuring Machine Learning Projects”的Week 2。  Error Analysis Carry out ceiling(天花板)：表现结果的上界（花费较多时间也无法将效果提升到更好）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/01/24/D2/2.jpg">
-<meta property="og:updated_time" content="2018-05-13T02:58:30.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/02/16/D5/1.jpg">
+<meta property="og:updated_time" content="2018-05-13T03:07:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Optimization Algorithms">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的Week 2。  Mini-batch gradi">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/24/D2/1.jpg">
+<meta name="twitter:title" content="ML Strategy (2)">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第三门课程“Structuring Machine Learning Projects”的Week 2。  Error Analysis Carry out ceiling(天花板)：表现结果的上界（花费较多时间也无法将效果提升到更好）">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/16/D5/1.jpg">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/24/D2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/16/D5/"/>
 
 
 
 
 
-  <title>Optimization Algorithms | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>ML Strategy (2) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -255,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/D2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/16/D5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zikun Lin">
@@ -272,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Optimization Algorithms</h1>
+          <h1 class="post-title" itemprop="name headline">ML Strategy (2)</h1>
         
 
         <div class="post-meta">
@@ -284,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T00:00:00+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-16T00:00:00+08:00">
+                2018-02-16
               </time>
             
 
@@ -325,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/24/D2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/24/D2/" itemprop="commentsCount"></span>
+                <a href="/2018/02/16/D5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/16/D5/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,74 +353,115 @@
       
 
       
-        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/33088447" target="_blank" rel="noopener">Zhihu</a>.)</p>
-<p>本周笔记摘自“deeplearning.ai”第二门课程“Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization”的<a href="https://www.coursera.org/learn/deep-neural-network/home/week/2" target="_blank" rel="noopener">Week 2</a>。</p>
+        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/33827932" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/33827932" target="_blank" rel="noopener">Zhihu</a>.)</p>
+<p>本周笔记摘自“deeplearning.ai”第三门课程“Structuring Machine Learning Projects”的<a href="https://www.coursera.org/learn/machine-learning-projects/home/week/2" target="_blank" rel="noopener">Week 2</a>。</p>
 <hr>
-<h1 id="Mini-batch-gradient-decent"><a href="#Mini-batch-gradient-decent" class="headerlink" title="Mini-batch gradient decent"></a>Mini-batch gradient decent</h1><ul>
-<li>小批量训练集：每一个子集都运行一遍。1次遍历，5000步逼近<br><img src="/2018/01/24/D2/1.jpg" alt=""></li>
-<li>特点：不是每次迭代J都会下降，但整体趋势向下   </li>
-<li>极端：  <ul>
-<li>batch-size→m：批量梯度下降，噪声小步长大，最终达到最低点；m大耗时长 </li>
-<li>batch-size→1：随机梯度下降，噪声大，最终在最低点附近震荡；无法向量化加速 </li>
-<li>batch-size取中间，既能向量化加速，又可以不需每次遍历全部数据</li>
+<h1 id="Error-Analysis"><a href="#Error-Analysis" class="headerlink" title="Error Analysis"></a>Error Analysis</h1><ul>
+<li>Carry out<ul>
+<li>ceiling(天花板)：表现结果的上界（花费较多时间也无法将效果提升到更好）</li>
+<li>Error Analysis好处：可以告诉我们改进的方向</li>
+<li>方式：手工挑选错误数据，列表说明，统计分析</li>
 </ul>
 </li>
-<li>选取：<ul>
-<li>m≤2000：批量梯度下降    </li>
-<li>m&gt;2000：64~512作为batch-size  </li>
-</ul>
-</li>
-</ul>
-<h1 id="Adam-optimization-algorithm"><a href="#Adam-optimization-algorithm" class="headerlink" title="Adam optimization algorithm"></a>Adam optimization algorithm</h1><ul>
-<li>Exponentially weighted averages<ul>
-<li>指数加权滑动平均（系工大小作业都写过）：<ul>
-<li>$v_t=\beta v_{t-1}+(1-\beta)\theta_t$</li>
-<li>约等于$\frac{1}{1-\beta}$个数据的平均，所以β↑→平滑</li>
-</ul>
-</li>
-<li>偏差修正：<ul>
-<li>问题：$v_0=0$导致起步值过低</li>
-<li>解决：预测值由$v_t$变为$\frac{v_t}{1-\beta^t}$</li>
+<li>Clean up incorrectly labeled data<ul>
+<li>对于少数随机错误，DL较为鲁棒（例如手滑敲错）</li>
+<li>对于systemic的错误，DL不鲁棒（例如总把白狗认为是猫）</li>
+<li>是否要清理数据：看是否能够带来显著的提高</li>
+<li>建议<ul>
+<li>对dev集和测试集也做同样处理，保证它们依旧来自相同的分布</li>
+<li>不仅要检查自己算法中错误的例子，也要检查正确的例子（经常被忽略）</li>
+<li>训练集和dev/test集此处可以来自稍微不同的分布（所以训练集不一定要改正），但dev和test集依旧要来自相同的分布</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Gradient decent with momentum<ul>
-<li>以梯度的指数加权平均来更新权重<ul>
-<li>$v_{dW}=\beta_1 v_{dW}+(1-\beta_1)dW$，用$v_{dW}$更新</li>
-<li>$v_{db}=\beta_1 v_{db}+(1-\beta_1)db$，用$v_{db}$更新</li>
+<li>Build your first system quickly, then iterate<ul>
+<li>设置dev/test集和评估指标</li>
+<li>迅速建立最初的系统（quick and dirty，不用太复杂）</li>
+<li>使用bias/variance分析&amp;错误分析，来判断接下来优先在哪个方向更改</li>
 </ul>
 </li>
-<li>效果：在垂直方向震荡↓，在水平方向速度↑</li>
+</ul>
+<h1 id="Mismatched-training-and-dev-test-set"><a href="#Mismatched-training-and-dev-test-set" class="headerlink" title="Mismatched training and dev/test set"></a>Mismatched training and dev/test set</h1><ul>
+<li>Training and testing on different distributions<ul>
+<li>例如：200000web猫样本，10000mobile猫样本<ul>
+<li>200000web+5000mobile：训练集</li>
+<li>2500mobile：dev集</li>
+<li>2500mobile：测试集</li>
 </ul>
 </li>
-<li>RMSprop<ul>
-<li>均方根传递<ul>
-<li>$s_{dW}=\beta_2 s_{dW}+(1-\beta_2)dW^2$，用$\frac{dW}{\sqrt{s_{dW}}}$更新</li>
-<li>$s_{db}=\beta_2 s_{db}+(1-\beta_2)db^2$，用$\frac{db}{\sqrt{s_{db}}}$更新</li>
 </ul>
 </li>
-<li>效果：在垂直方向震荡↓（抑制了震荡）</li>
+<li>Bias and Variance with mismatched data distributions<ul>
+<li>假设人类错误0%，训练集错误1%，dev集错误10%，如果来自不同的分布，则不一定是variance问题</li>
+<li>设置training-dev set：和训练集相同分布，但是不用来训练<ul>
+<li>人类错误与训练错误相差大：avoidable bias问题</li>
+<li>训练错误与training-dev错误相差大：variance问题</li>
+<li>training-dev错误与dev错误相差大：data mismatch问题</li>
+<li>dev错误与test错误相差大：dev集过拟合</li>
 </ul>
 </li>
-<li>自适应矩估计（Adaptive Moment Estimation）：将momentum与RMSprop结合<br><img src="/2018/01/24/D2/2.jpg" alt=""></li>
-<li>参数配置： $\beta_1=0.9, \beta_2=0.999$</li>
 </ul>
-<h1 id="Learning-rate-dacay"><a href="#Learning-rate-dacay" class="headerlink" title="Learning rate dacay"></a>Learning rate dacay</h1><p>学习率衰减（我运筹大作业时好像用过）</p>
+</li>
+</ul>
+<p><img src="/2018/02/16/D5/1.jpg" alt=""></p>
 <ul>
-<li>特点：最开始使用较大步长，接近极小值点采用较小步长</li>
-<li>几种公式：<ul>
-<li>$\alpha=\frac{1}{1+decayrate\cdot epochnum}\alpha_0$</li>
-<li>$\alpha=0.95^{epochnum}\cdot \alpha_0$</li>
-<li>$\alpha=\frac{k}{\sqrt{epochnum}}\cdot \alpha_0$</li>
+<li>解决data mismatch<ul>
+<li>手工错误分析，并尝试理解训练集和dev/test集之间的不同</li>
+<li>尽可能获得更加接近dev/test集的训练样本（样本相似化）<ul>
+<li>做法：将训练样本加上可能出现的背景噪声（如车载系统可加车辆噪声）</li>
+<li>可能出现的问题：背景噪声样本不足必须重复多次，人类识别不出来，造成只相似化了其中一小部分的样本</li>
+<li>So long as the synthesized fog looks realistic to the human eye, you can be confident that the synthesized data is accurately capturing the distribution of real foggy images (or a subset of it), since human vision is very accurate for the problem you’re solving.</li>
 </ul>
 </li>
 </ul>
-<h1 id="The-problem-of-local-optima"><a href="#The-problem-of-local-optima" class="headerlink" title="The problem of local optima"></a>The problem of local optima</h1><ul>
-<li>局部最优：其实一般不成问题 </li>
-<li>停滞区：导数长时间接近于0的区域，让学习变得很慢。Adam算法能帮助改善。</li>
+</li>
 </ul>
-<p>这门课Week2的课程内容这样看起来好像很少，做笔记的难度也比Week1大幅下降……可能是这周很多知识点之前都接触过所以学习起来很快。</p>
+<h1 id="Learning-from-multiple-tasks"><a href="#Learning-from-multiple-tasks" class="headerlink" title="Learning from multiple tasks"></a>Learning from multiple tasks</h1><ul>
+<li>Transfer Learning（迁移学习）：把已学训练好的模型参数迁移到新的模型来帮助新模型训练<ul>
+<li>过程<ul>
+<li>训练旧的模型：pre-training，大数据量</li>
+<li>迁移到新的模型：fine-tuning，小数据量</li>
+</ul>
+</li>
+<li>好处：pre-training能够将帮助一些基本结构训练好（比如图像识别的low-level features），fine-tuning时可以在较小数据量下训练</li>
+<li>使用时刻<ul>
+<li>两任务的输入x相同</li>
+<li>任务A数据量远大于任务B</li>
+<li>任务A的low-level features对任务B有帮助</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multi-task learning（多任务学习）：多个任务并行学习，结果相互影响<ul>
+<li>好处<ul>
+<li>效果比分开单独训练更好</li>
+<li>即使部分任务数据信息缺失，也能进行训练（只加有label的loss函数）</li>
+</ul>
+</li>
+<li>使用时刻<ul>
+<li>训练任务具有相似的low-level features</li>
+<li>不同任务的数据量较为相近</li>
+<li>可以训练一个足够大的神经网络</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="End-to-end-deep-learning"><a href="#End-to-end-deep-learning" class="headerlink" title="End-to-end deep learning"></a>End-to-end deep learning</h1><ul>
+<li>省去中间的特征提取等步骤，直接将原始数据输入，在输出端获得最终结果</li>
+<li>优点<ul>
+<li>let the data speak，不加入人为的思考因素</li>
+<li>更少的hand-designing</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>需要大批量数据</li>
+<li>无视了可能有用的hand-desinged成分</li>
+</ul>
+</li>
+<li>使用时刻：是否拥有充足的数据，使得能够训练出具有必需复杂度的网络？</li>
+</ul>
 
       
     </div>
@@ -446,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/17/D1/" rel="next" title="Practical Aspects of Deep Learning">
-                <i class="fa fa-chevron-left"></i> Practical Aspects of Deep Learning
+              <a href="/2018/02/05/D4/" rel="next" title="ML Strategy (1)">
+                <i class="fa fa-chevron-left"></i> ML Strategy (1)
               </a>
             
           </div>
@@ -455,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/04/D3/" rel="prev" title="Hyperparameter tuning, Batch Normalization and Programming Frameworks">
-                Hyperparameter tuning, Batch Normalization and Programming Frameworks <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mini-batch-gradient-decent"><span class="nav-number">1.</span> <span class="nav-text">Mini-batch gradient decent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adam-optimization-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Adam optimization algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-rate-dacay"><span class="nav-number">3.</span> <span class="nav-text">Learning rate dacay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-problem-of-local-optima"><span class="nav-number">4.</span> <span class="nav-text">The problem of local optima</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-Analysis"><span class="nav-number">1.</span> <span class="nav-text">Error Analysis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mismatched-training-and-dev-test-set"><span class="nav-number">2.</span> <span class="nav-text">Mismatched training and dev/test set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-from-multiple-tasks"><span class="nav-number">3.</span> <span class="nav-text">Learning from multiple tasks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-to-end-deep-learning"><span class="nav-number">4.</span> <span class="nav-text">End-to-end deep learning</span></a></li></ol></div>
             
 
           </div>
