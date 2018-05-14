@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/5.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/6.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/7.jpg">
-<meta property="og:updated_time" content="2018-05-14T15:46:35.000Z">
+<meta property="og:updated_time" content="2018-05-14T15:48:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
@@ -461,18 +461,22 @@
 </li>
 </ul>
 </li>
-<li>Long Short Term Memory (LSTM)<ul>
-<li>方法<br><img src="/2018/04/16/D7/5.jpg" alt=""></li>
+<li><p>Long Short Term Memory (LSTM)</p>
+<p><img src="/2018/04/16/D7/5.jpg" alt=""></p>
+<ul>
+<li>方法<ul>
+<li>$\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）</li>
+<li>$\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）</li>
+<li>$\Gamma_o$：输出门，决定$a^{&lt;t&gt;}$与$c^{&lt;t&gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;}]$计算所有$\Gamma$值</li>
+<li>也有用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;},c^{&lt;t-1&gt;}]$计算所有$\Gamma$值（peephole）</li>
 </ul>
 </li>
 </ul>
-<pre><code>    - $\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）
-    - $\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）
-    - $\Gamma_o$：输出门，决定$a^{&amp;lt;t&amp;gt;}$与$c^{&amp;lt;t&amp;gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
--   特点
-    -   用$[a^{&amp;lt;t-1&amp;gt;},x^{&amp;lt;t&amp;gt;}]$计算所有$\Gamma$值
-    -   也有用$[a^{&amp;lt;t-1&amp;gt;},x^{&amp;lt;t&amp;gt;},c^{&amp;lt;t-1&amp;gt;}]$计算所有$\Gamma$值（peephole）
-</code></pre><ul>
+</li>
 <li>Bidirectional RNN（BRNN）<ul>
 <li>目的：能够从未来获取信息</li>
 <li>$\hat{y}^{&lt;t&gt;}=g(W_y[\overrightarrow{a}^{&lt;t&gt;},\overleftarrow{a}^{&lt;t&gt;}]+b_y)$</li>
