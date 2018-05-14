@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  1 Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Foundations of Convolutional Neural Networks">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/D6/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  1 Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/03/14/D6/1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/03/14/D6/2.jpg">
-<meta property="og:updated_time" content="2018-05-14T12:45:44.000Z">
+<meta property="og:updated_time" content="2018-05-14T12:47:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Foundations of Convolutional Neural Networks">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  1 Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
 <meta name="twitter:image" content="http://yoursite.com/2018/03/14/D6/1.jpg">
 
 
@@ -357,7 +357,7 @@
         <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/34476608" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/34476608" target="_blank" rel="noopener">Zhihu</a>.)</p>
 <p>本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的<a href="https://www.coursera.org/learn/convolutional-neural-networks/home/week/1" target="_blank" rel="noopener">Week 1</a>。</p>
 <hr>
-<h1 id="1-Edge-Detection（边缘检测）"><a href="#1-Edge-Detection（边缘检测）" class="headerlink" title="1 Edge Detection（边缘检测）"></a>1 Edge Detection（边缘检测）</h1><ul>
+<h1 id="Edge-Detection（边缘检测）"><a href="#Edge-Detection（边缘检测）" class="headerlink" title="Edge Detection（边缘检测）"></a>Edge Detection（边缘检测）</h1><ul>
 <li>原图*filter=新图（卷积）</li>
 <li>各种filter<ul>
 <li>检测垂直边缘（vertical edges）：$\begin{bmatrix} 1 &amp; 0 &amp; -1 \ 1 &amp; 0 &amp; -1 \ 1 &amp; 0 &amp; -1 \ \end{bmatrix}$</li>
@@ -369,7 +369,7 @@
 </li>
 <li>使用deep learning不需手工选择这9个数字，可以通过学习得到</li>
 </ul>
-<h1 id="2-Padding（填充）"><a href="#2-Padding（填充）" class="headerlink" title="2 Padding（填充）"></a>2 Padding（填充）</h1><ul>
+<h1 id="Padding（填充）"><a href="#Padding（填充）" class="headerlink" title="Padding（填充）"></a>Padding（填充）</h1><ul>
 <li>(n×n)*(f×f)=(n-f+1)×(n-f+1)</li>
 <li>问题<ul>
 <li>图片被缩小</li>
@@ -394,17 +394,17 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-Strided-Convolutions（带步长的卷积）"><a href="#3-Strided-Convolutions（带步长的卷积）" class="headerlink" title="3 Strided Convolutions（带步长的卷积）"></a>3 Strided Convolutions（带步长的卷积）</h1><ul>
+<h1 id="Strided-Convolutions（带步长的卷积）"><a href="#Strided-Convolutions（带步长的卷积）" class="headerlink" title="Strided Convolutions（带步长的卷积）"></a>Strided Convolutions（带步长的卷积）</h1><ul>
 <li>卷积核一次移动多个步长</li>
 <li><p>输出大小成为$\biggl \lfloor \frac{n+2p-f}{s}+1 \biggr \rfloor \times \biggl \lfloor \frac{n+2p-f}{s}+1 \biggr \rfloor$</p>
 </li>
 <li><p><strong>问题</strong>：卷积不是要翻转吗（如<a href="https://www.zhihu.com/question/52237725/answer/137933858" target="_blank" rel="noopener">该问题</a>）？<strong>解答</strong>：其实之前做的叫做“交叉相关”，但在机器学习的约定中，经常忽略掉翻转的操作称为“卷积”。</p>
 </li>
 </ul>
-<h1 id="4-Convolutions-Over-Volume（三维上的卷积）"><a href="#4-Convolutions-Over-Volume（三维上的卷积）" class="headerlink" title="4 Convolutions Over Volume（三维上的卷积）"></a>4 Convolutions Over Volume（三维上的卷积）</h1><ul>
+<h1 id="Convolutions-Over-Volume（三维上的卷积）"><a href="#Convolutions-Over-Volume（三维上的卷积）" class="headerlink" title="Convolutions Over Volume（三维上的卷积）"></a>Convolutions Over Volume（三维上的卷积）</h1><ul>
 <li>$(n×n×n_c)*(f×f×n_c)=(n-f+1)×(n-f+1)×n_c’$（$n_c’$ 是卷积核个数）</li>
 </ul>
-<h1 id="5-卷积网络"><a href="#5-卷积网络" class="headerlink" title="5 卷积网络"></a>5 卷积网络</h1><ul>
+<h1 id="卷积网络"><a href="#卷积网络" class="headerlink" title="卷积网络"></a>卷积网络</h1><ul>
 <li>单层卷积网络</li>
 </ul>
 <p><img src="/2018/03/14/D6/1.jpg" alt=""></p>
@@ -602,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Edge-Detection（边缘检测）"><span class="nav-number">1.</span> <span class="nav-text">1 Edge Detection（边缘检测）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Padding（填充）"><span class="nav-number">2.</span> <span class="nav-text">2 Padding（填充）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Strided-Convolutions（带步长的卷积）"><span class="nav-number">3.</span> <span class="nav-text">3 Strided Convolutions（带步长的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Convolutions-Over-Volume（三维上的卷积）"><span class="nav-number">4.</span> <span class="nav-text">4 Convolutions Over Volume（三维上的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-卷积网络"><span class="nav-number">5.</span> <span class="nav-text">5 卷积网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Edge-Detection（边缘检测）"><span class="nav-number">1.</span> <span class="nav-text">Edge Detection（边缘检测）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Padding（填充）"><span class="nav-number">2.</span> <span class="nav-text">Padding（填充）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Strided-Convolutions（带步长的卷积）"><span class="nav-number">3.</span> <span class="nav-text">Strided Convolutions（带步长的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolutions-Over-Volume（三维上的卷积）"><span class="nav-number">4.</span> <span class="nav-text">Convolutions Over Volume（三维上的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积网络"><span class="nav-number">5.</span> <span class="nav-text">卷积网络</span></a></li></ol></div>
             
 
           </div>
