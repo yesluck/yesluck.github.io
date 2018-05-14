@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i) &amp;lt; t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i) &amp;lt; t &amp;">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sequence Models">
 <meta property="og:url" content="http://yoursite.com/2018/04/16/D7/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i) &amp;lt; t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i) &amp;lt; t &amp;">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/2.jpg">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/5.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/6.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/7.jpg">
-<meta property="og:updated_time" content="2018-05-14T15:38:29.000Z">
+<meta property="og:updated_time" content="2018-05-14T15:39:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i) &amp;lt; t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i) &amp;lt; t &amp;">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
 <meta name="twitter:image" content="http://yoursite.com/2018/04/16/D7/1.jpg">
 
 
@@ -364,7 +364,7 @@
 <hr>
 <h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><ul>
 <li>Notation<ul>
-<li>$x^{(i) &lt; t &gt;}$ ：训练样本i中的第t个元素，$y^{(i) &lt; t &gt; }$：训练样本i中的第t个输出</li>
+<li>$x^{(i)&lt;t &gt;}$ ：训练样本i中的第t个元素，$y^{(i)&lt;t&gt;}$：训练样本i中的第t个输出</li>
 <li>$T_x^{(i)}$：训练样本i的输入元素个数，$T_y^{(i)}$：训练样本i的输出元素个数</li>
 <li>one-hot</li>
 </ul>
@@ -414,10 +414,10 @@
 <li>training set: large corpus of English text</li>
 <li><p>步骤</p>
 <ul>
-<li>tokenize (one-hot)（最后加入 &lt; EOS &gt; ，不在词典里的词 &lt; UNK &gt; ）</li>
-<li>$x^{ &lt; t &gt; }=y^{ &lt; t-1 &gt; }$（序列中将前一个预测结果作为下一个的输入x）</li>
+<li>tokenize (one-hot)（最后加入&lt;EOS&gt;，不在词典里的词&lt;UNK&gt;）</li>
+<li>$x^{&lt;t&gt;}=y^{&lt;t-1&gt;}$（序列中将前一个预测结果作为下一个的输入x）</li>
 </ul>
-<p><img src="/2018/04/16/D7/4.jpg" alt=""><br>（y &lt; t &gt; 为one-hot，y^hat &lt; t &gt; 为softmax后的概率向量）</p>
+<p><img src="/2018/04/16/D7/4.jpg" alt=""><br>（y&lt;t&gt;为one-hot，y^hat&lt;t&gt;为softmax后的概率向量）</p>
 </li>
 </ul>
 </li>
@@ -443,20 +443,20 @@
 <li>Gated Recurrent Unit (GRU)<ul>
 <li>目的：解决梯度消失问题</li>
 <li>方法（simplified）<ul>
-<li>设置变量c (=cell, memory cell)，$c^{ &lt; t &gt; }=a^{ &lt; t &gt; }$</li>
-<li>候选的新c（王储）：$\tilde{c}^{ &lt; t &gt; }=\tanh(w_c[c^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]+b_c)$</li>
-<li>0/1变量，决定是否换届： $\Gamma_u=\sigma(w_u[c^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]+b_u)$</li>
-<li>最终确定下一届：$c^{ &lt; t &gt; }=\Gamma_u\ast \tilde{c}^{ &lt; t &gt; }+(1-\Gamma_u)\ast \tilde{c}^{ &lt; t-1 &gt; }$（*代表矩阵元素间乘法）</li>
-<li>结果：如果需要，即使隔10年、15年，$c^{ &lt; t &gt; }$都可以一直不变</li>
+<li>设置变量c (=cell, memory cell)，$c^{&lt;t&gt;}=a^{&lt;t&gt;}$</li>
+<li>候选的新c（王储）：$\tilde{c}^{&lt;t&gt;}=\tanh(w_c[c^{&lt;t-1&gt;},x^{&lt;t&gt;}]+b_c)$</li>
+<li>0/1变量，决定是否换届： $\Gamma_u=\sigma(w_u[c^{&lt;t-1&gt;},x^{&lt;t&gt;}]+b_u)$</li>
+<li>最终确定下一届：$c^{&lt;t&gt;}=\Gamma_u\ast \tilde{c}^{&lt;t&gt;}+(1-\Gamma_u)\ast \tilde{c}^{&lt;t-1&gt;}$（*代表矩阵元素间乘法）</li>
+<li>结果：如果需要，即使隔10年、15年，$c^{&lt;t&gt;}$都可以一直不变</li>
 <li>注：c和$\Gamma_u$都可以是向量，所以可以选择性连任</li>
 </ul>
 </li>
 <li>Full GRU<ul>
-<li>设置变量c (=cell, memory cell)，$c^{ &lt; t &gt; }=a^{ &lt; t &gt; }$</li>
-<li>候选的新c（王储）：$\tilde{c}^{ &lt; t &gt; }=\tanh(w_c[\Gamma_r \cdot c^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]+b_c)$</li>
-<li>0/1变量，决定是否换届：$\Gamma_u=\sigma(w_u[c^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]+b_u)$</li>
-<li>新增的变量：$\Gamma_r = \sigma(w_r[c^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]+b_r)$</li>
-<li>最终确定下一届：$c^{ &lt; t &gt; }=\Gamma_u\ast \tilde{c}^{ &lt; t &gt; }+(1-\Gamma_u)\ast \tilde{c}^{ &lt; t-1 &gt; }$（*代表矩阵元素间乘法）</li>
+<li>设置变量c (=cell, memory cell)，$c^{&lt;t&gt;}=a^{&lt;t&gt;}$</li>
+<li>候选的新c（王储）：$\tilde{c}^{&lt;t&gt;}=\tanh(w_c[\Gamma_r \cdot c^{&lt;t-1&gt;},x^{&lt;t&gt;}]+b_c)$</li>
+<li>0/1变量，决定是否换届：$\Gamma_u=\sigma(w_u[c^{&lt;t-1&gt;},x^{&lt;t&gt;}]+b_u)$</li>
+<li>新增的变量：$\Gamma_r = \sigma(w_r[c^{&lt;t-1&gt;},x^{&lt;t&gt;}]+b_r)$</li>
+<li>最终确定下一届：$c^{&lt;t&gt;}=\Gamma_u\ast \tilde{c}^{&lt;t&gt;}+(1-\Gamma_u)\ast \tilde{c}^{&lt;t-1&gt;}$（*代表矩阵元素间乘法）</li>
 </ul>
 </li>
 </ul>
@@ -468,21 +468,21 @@
 <p><img src="/2018/04/16/D7/5.jpg" alt=""></p>
 <pre><code>- $\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）
 - $\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）
-- $\Gamma_o$：输出门，决定$a^{ &amp;lt; t &amp;gt; }$与$c^{ &amp;lt; t &amp;gt; }$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
+- $\Gamma_o$：输出门，决定$a^{&amp;lt;t&amp;gt;}$与$c^{&amp;lt;t&amp;gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
 </code></pre><ul>
 <li>特点<ul>
-<li>用$[a^{ &lt; t-1 &gt; },x^{ &lt; t &gt; }]$计算所有$\Gamma$值</li>
-<li>也有用$[a^{ &lt; t-1 &gt; },x^{ &lt; t &gt; },c^{ &lt; t-1 &gt; }]$计算所有$\Gamma$值（peephole）</li>
+<li>用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;}]$计算所有$\Gamma$值</li>
+<li>也有用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;},c^{&lt;t-1&gt;}]$计算所有$\Gamma$值（peephole）</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Bidirectional RNN（BRNN）<ul>
 <li>目的：能够从未来获取信息</li>
-<li>$\hat{y}^{ &lt; t &gt; }=g(W_y[\overrightarrow{a}^{ &lt; t &gt; },\overleftarrow{a}^{ &lt; t &gt; }]+b_y)$</li>
-<li>例子：计算$\hat{y}^{ &lt; 3 &gt; }$<ul>
-<li>flow1: $(x^{ &lt; 1 &gt; }\rightarrow\overrightarrow{a}^{ &lt; 1 &gt; })\rightarrow(x^{ &lt; 2 &gt; }\rightarrow\overrightarrow{a}^{ &lt; 2 &gt; })\rightarrow(x^{ &lt; 3 &gt; }\rightarrow\overrightarrow{a}^{ &lt; 3 &gt; })$</li>
-<li>flow2: $\overleftarrow{a}^{ &lt; 3 &gt; }\leftarrow(\overrightarrow{a}^{ &lt; 4 &gt; }\leftarrow x^{ &lt; 4 &gt; })$</li>
+<li>$\hat{y}^{&lt;t&gt;}=g(W_y[\overrightarrow{a}^{&lt;t&gt;},\overleftarrow{a}^{&lt;t&gt;}]+b_y)$</li>
+<li>例子：计算$\hat{y}^{&lt;3&gt;}$<ul>
+<li>flow1: $(x^{&lt;1&gt;}\rightarrow\overrightarrow{a}^{&lt;1&gt;})\rightarrow(x^{&lt;2&gt;}\rightarrow\overrightarrow{a}^{&lt;2&gt;})\rightarrow(x^{&lt;3&gt;}\rightarrow\overrightarrow{a}^{&lt;3&gt;})$</li>
+<li>flow2: $\overleftarrow{a}^{&lt;3&gt;}\leftarrow(\overrightarrow{a}^{&lt;4&gt;}\leftarrow x^{&lt;4&gt;})$</li>
 </ul>
 </li>
 <li>缺点：需要整篇文本的数据</li>
@@ -624,13 +624,13 @@
 <li>对比<ul>
 <li>language model：最初(生成器)输入a向量均为0<ul>
 <li>model the probability of the sentence</li>
-<li>$P(y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; })$</li>
+<li>$P(y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;})$</li>
 </ul>
 </li>
 <li>machine translation：最初(生成器)输入a向量为encoder的最终输出结果<ul>
 <li>model the English translation conditions on French sentence</li>
-<li>$P(y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; }|x^{ &lt; 1 &gt; },x^{ &lt; 2 &gt; },…,x^{ &lt; T_x &gt; })$</li>
-<li>Picking the most likely sentence: $\arg\max_{y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; }}{P(y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; }|x)}$</li>
+<li>$P(y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;}|x^{&lt;1&gt;},x^{&lt;2&gt;},…,x^{&lt;T_x&gt;})$</li>
+<li>Picking the most likely sentence: $\arg\max_{y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;}}{P(y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;}|x)}$</li>
 </ul>
 </li>
 </ul>
@@ -644,20 +644,20 @@
 </ul>
 </li>
 <li>Refinements<ul>
-<li>目的：解决 $P(y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; }|x)$数值越乘越小的问题</li>
-<li>方式：将最大化$P(y^{ &lt; 1 &gt; },y^{ &lt; 2 &gt; },…,y^{ &lt; T_y &gt; }|x)$的方式由最大化$\prod_{t=1}^{T_y}P(y^{ &lt; t &gt; }|x,y^{ &lt; 1 &gt; },…,y^{ &lt; t-1 &gt; })$变为最大化$\frac{1}{T_y^\alpha}\sum_{t=1}^{T_y}\log(P(y^{ &lt; t &gt; }|x,y^{ &lt; 1 &gt; },…,y^{ &lt; t-1 &gt; }))$(α=0.7)</li>
+<li>目的：解决 $P(y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;}|x)$数值越乘越小的问题</li>
+<li>方式：将最大化$P(y^{&lt;1&gt;},y^{&lt;2&gt;},…,y^{&lt;T_y&gt;}|x)$的方式由最大化$\prod_{t=1}^{T_y}P(y^{&lt;t&gt;}|x,y^{&lt;1&gt;},…,y^{&lt;t-1&gt;})$变为最大化$\frac{1}{T_y^\alpha}\sum_{t=1}^{T_y}\log(P(y^{&lt;t&gt;}|x,y^{&lt;1&gt;},…,y^{&lt;t-1&gt;}))$(α=0.7)</li>
 </ul>
 </li>
 <li>B的选择（大：结果好、慢；小：结果差、快）</li>
 <li>Error analysis in beam search: 计算比较$P(y^*|x)$与$P(\hat{y}|x)$大小<ul>
-<li>$P(y^<em>|x) &gt; P(\hat{y}|x)$: beam search 选择了$\hat{y}$，但其实$y^</em>$更好→beam search有问题</li>
+<li>$P(y^<em>|x)&gt;P(\hat{y}|x)$: beam search 选择了$\hat{y}$，但其实$y^</em>$更好→beam search有问题</li>
 <li>$P(y^<em>|x)\leq P(\hat{y}|x)$: $y^</em>$更好，但是RNN却觉得$\hat{y}$更好→RNN有问题</li>
 </ul>
 </li>
 <li>Bleu Score (Bilingual evaluation understudy)</li>
 <li>$P_n=\frac{\sum_{n-grams \in \hat{y}}{count_{clip}(n-gram)}}{\sum_{n-grams \in \hat{y}}{count(n-gram)}}$</li>
 <li>Combined Blue Score: $BP \cdot \exp{(\frac{1}{4}\sum_{n=1}^4 p_n)}$<ul>
-<li>MT_length &gt; ref_length:$BP=1$</li>
+<li>MT_length&gt;ref_length:$BP=1$</li>
 <li>else: $BP=\exp(1-\frac{length_{MT}}{length_{ref}})$</li>
 </ul>
 </li>
@@ -667,14 +667,14 @@
 <li>解决：增加attention weights，不同位置的输入对应不同权重</li>
 </ul>
 </li>
-<li><p>Model: $\alpha^{ &lt; t,t’ &gt; }$代表$y^{ &lt; t &gt; }$多受$a^{ &lt; t’ &gt; }$影响</p>
+<li><p>Model: $\alpha^{&lt;t,t’&gt;}$代表$y^{&lt;t&gt;}$多受$a^{&lt;t’&gt;}$影响</p>
 <ul>
-<li>计算：$a^{ &lt; t,t’ &gt; }=\frac{\exp(e^{ &lt; t,t’ &gt; })}{\sum_{t’=1}^{T_x}\exp(e^{ &lt; t,t’ &gt; })}$<ul>
-<li>计算e：由$s^{ &lt; t-1 &gt; }$和$a^{ &lt; t’ &gt; }$经过NN计算得</li>
+<li>计算：$a^{&lt;t,t’&gt;}=\frac{\exp(e^{&lt;t,t’&gt;})}{\sum_{t’=1}^{T_x}\exp(e^{&lt;t,t’&gt;})}$<ul>
+<li>计算e：由$s^{&lt;t-1&gt;}$和$a^{&lt;t’&gt;}$经过NN计算得</li>
 </ul>
 </li>
-<li>对于每个输出 (以输出1为例)：$\sum_{t’}{\alpha^{ &lt; 1,t’ &gt; }} = 1$</li>
-<li>${c^{ &lt; 1,t’ &gt; }}=\sum{\alpha^{ &lt; 1,t’ &gt; }}a^{ &lt; t’ &gt; }\space\space\space(a^{ &lt; t’ &gt; }=(\overrightarrow{a}^{ &lt; t’ &gt; },\overleftarrow{a}^{ &lt; t’ &gt; }))$</li>
+<li>对于每个输出 (以输出1为例)：$\sum_{t’}{\alpha^{&lt;1,t’&gt;}} = 1$</li>
+<li>${c^{&lt;1,t’&gt;}}=\sum{\alpha^{&lt;1,t’&gt;}}a^{&lt;t’&gt;}\space\space\space(a^{&lt;t’&gt;}=(\overrightarrow{a}^{&lt;t’&gt;},\overleftarrow{a}^{&lt;t’&gt;}))$</li>
 </ul>
 <p><img src="/2018/04/16/D7/7.jpg" alt=""></p>
 </li>
