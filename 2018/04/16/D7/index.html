@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/5.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/6.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/7.jpg">
-<meta property="og:updated_time" content="2018-05-14T15:42:59.000Z">
+<meta property="og:updated_time" content="2018-05-14T15:45:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
@@ -648,8 +648,8 @@
 </li>
 <li>B的选择（大：结果好、慢；小：结果差、快）</li>
 <li>Error analysis in beam search: 计算比较$P(y^*|x)$与$P(\hat{y}|x)$大小<ul>
-<li>$P(y^<em>|x)&gt;P(\hat{y}|x)$: beam search 选择了$\hat{y}$，但其实$y^</em>$更好→beam search有问题</li>
-<li>$P(y^<em>|x)\leq P(\hat{y}|x)$: $y^</em>$更好，但是RNN却觉得$\hat{y}$更好→RNN有问题</li>
+<li>$P(y^*|x)&gt;P(\hat{y}|x)$: beam search 选择了$\hat{y}$，但其实$y^*$更好→beam search有问题</li>
+<li>$P(y^*|x)\leq P(\hat{y}|x)$: $y^*$更好，但是RNN却觉得$\hat{y}$更好→RNN有问题</li>
 </ul>
 </li>
 <li>Bleu Score (Bilingual evaluation understudy)</li>
