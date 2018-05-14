@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)}$ ：训练样本i中的第t个元素，$y^{(i)}$：训练样本i中的第t个输出 $T_x^{(i)}$：训练样本i的输入元素个数，$T_y^{(i)}$：训练样本i的输出元素个数 one-hot   Rec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sequence Models">
+<meta property="og:url" content="http://yoursite.com/2018/04/16/D7/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)}$ ：训练样本i中的第t个元素，$y^{(i)}$：训练样本i中的第t个输出 $T_x^{(i)}$：训练样本i的输入元素个数，$T_y^{(i)}$：训练样本i的输出元素个数 one-hot   Rec">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/16/D7/7.jpg">
+<meta property="og:updated_time" content="2018-05-14T15:29:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sequence Models">
+<meta name="twitter:description" content="本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)}$ ：训练样本i中的第t个元素，$y^{(i)}$：训练样本i中的第t个输出 $T_x^{(i)}$：训练样本i的输入元素个数，$T_y^{(i)}$：训练样本i的输出元素个数 one-hot   Rec">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/16/D7/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/16/D7/"/>
+
+
+
+
+
+  <title>Sequence Models | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/D7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sequence Models</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T00:00:00+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deeplearning-ai-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Deeplearning.ai Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/16/D7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/16/D7/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本周笔记摘自“deeplearning.ai”第五门课程“<a href="https://www.coursera.org/learn/nlp-sequence-models/home/welcome" target="_blank" rel="noopener">Sequence Models</a>”的全部三周内容。</p>
+<hr>
+<h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><ul>
+<li>Notation<ul>
+<li>$x^{(i)<t>}$ ：训练样本i中的第t个元素，$y^{(i)<t>}$：训练样本i中的第t个输出</t></t></li>
+<li>$T_x^{(i)}$：训练样本i的输入元素个数，$T_y^{(i)}$：训练样本i的输出元素个数</li>
+<li>one-hot</li>
+</ul>
+</li>
+<li><p>Recurrent Neural Network Model</p>
+<ul>
+<li>为什么不用传统网络？<ul>
+<li>不同样本不同长度</li>
+<li>不会将从不同文本位置学到的特征进行共享</li>
+</ul>
+</li>
+<li>RNN Model</li>
+</ul>
+<p><img src="/2018/04/16/D7/1.jpg" alt=""></p>
+<ul>
+<li>特点<ul>
+<li>使用相同的$W_{aa}, W_{ax}$</li>
+<li>只考虑前文，不考虑后文</li>
+</ul>
+</li>
+<li>简化策略</li>
+</ul>
+<p><img src="/2018/04/16/D7/2.jpg" alt=""></p>
+</li>
+<li><p>Backpropagation through time</p>
+<ul>
+<li>loss函数L为各输出L之和</li>
+<li>沿时间回溯传导</li>
+</ul>
+</li>
+<li>Different types<ul>
+<li>many-to-many architecture<ul>
+<li>Tx=Ty</li>
+<li>Tx≠Ty (encoder + decoder)</li>
+</ul>
+</li>
+<li>many-to-one architecture (sentiments classification)</li>
+<li>one-to-many (music generation)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2018/04/16/D7/3.jpg" alt=""></p>
+<ul>
+<li><p>Language model and sequence generation</p>
+<ul>
+<li>计算各种句子单词序列组合出现的可能性</li>
+<li>training set: large corpus of English text</li>
+<li><p>步骤</p>
+<ul>
+<li>tokenize (one-hot)（最后加入<eos>，不在词典里的词<unk>）</unk></eos></li>
+<li>$x^{<t>}=y^{<t-1>}$（序列中将前一个预测结果作为下一个的输入x）</t-1></t></li>
+</ul>
+<p><img src="/2018/04/16/D7/4.jpg" alt=""><br>（y<t>为one-hot，y^hat<t>为softmax后的概率向量）</t></t></p>
+</li>
+</ul>
+</li>
+<li><p>Sampling novel sequences</p>
+<ul>
+<li>word-level</li>
+<li>character-level<ul>
+<li>pros：能够表示一些低频词 (eg. Mau)</li>
+<li>cons：序列太长、不好捕捉long-range dependencies</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Vanishing gradients with RNNs<ul>
+<li>类似很深的NN，会出现梯度消失</li>
+<li>较难受到较早输入的影响</li>
+<li>exploding gradients也会出现，但容易察觉（NaNs）<ul>
+<li>→gradient clippling，如果梯度太大超过阈值，进行rescale</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Gated Recurrent Unit (GRU)<ul>
+<li>目的：解决梯度消失问题</li>
+<li>方法（simplified）<ul>
+<li>设置变量c (=cell, memory cell)，$c^{<t>}=a^{<t>}$</t></t></li>
+<li>候选的新c（王储）：$\tilde{c}^{<t>}=\tanh(w_c[c^{<t-1>},x^{<t>}]+b_c)$</t></t-1></t></li>
+<li>0/1变量，决定是否换届： $\Gamma_u=\sigma(w_u[c^{<t-1>},x^{<t>}]+b_u)$</t></t-1></li>
+<li>最终确定下一届：$c^{<t>}=\Gamma_u\ast \tilde{c}^{<t>}+(1-\Gamma_u)\ast \tilde{c}^{<t-1>}$（*代表矩阵元素间乘法）</t-1></t></t></li>
+<li>结果：如果需要，即使隔10年、15年，$c^{<t>}$都可以一直不变</t></li>
+<li>注：c和$\Gamma_u$都可以是向量，所以可以选择性连任</li>
+</ul>
+</li>
+<li>Full GRU<ul>
+<li>设置变量c (=cell, memory cell)，$c^{<t>}=a^{<t>}$</t></t></li>
+<li>候选的新c（王储）：$\tilde{c}^{<t>}=\tanh(w_c[\Gamma_r \cdot c^{<t-1>},x^{<t>}]+b_c)$</t></t-1></t></li>
+<li>0/1变量，决定是否换届：$\Gamma_u=\sigma(w_u[c^{<t-1>},x^{<t>}]+b_u)$</t></t-1></li>
+<li>新增的变量：$\Gamma_r = \sigma(w_r[c^{<t-1>},x^{<t>}]+b_r)$</t></t-1></li>
+<li>最终确定下一届：$c^{<t>}=\Gamma_u\ast \tilde{c}^{<t>}+(1-\Gamma_u)\ast \tilde{c}^{<t-1>}$（*代表矩阵元素间乘法）</t-1></t></t></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Long Short Term Memory (LSTM)</p>
+<ul>
+<li>方法</li>
+</ul>
+<p><img src="/2018/04/16/D7/5.jpg" alt=""></p>
+<pre><code>- $\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）
+- $\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）
+- $\Gamma_o$：输出门，决定$a^{&lt;t&gt;}$与$c^{&lt;t&gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
+</code></pre><ul>
+<li>特点<ul>
+<li>用$[a^{<t-1>},x^{<t>}]$计算所有$\Gamma$值</t></t-1></li>
+<li>也有用$[a^{<t-1>},x^{<t>},c^{<t-1>}]$计算所有$\Gamma$值（peephole）</t-1></t></t-1></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bidirectional RNN（BRNN）<ul>
+<li>目的：能够从未来获取信息</li>
+<li>$\hat{y}^{<t>}=g(W_y[\overrightarrow{a}^{<t>},\overleftarrow{a}^{<t>}]+b_y)$</t></t></t></li>
+<li>例子：计算$\hat{y}^{<3>}$<ul>
+<li>flow1: $(x^{<1>}\rightarrow\overrightarrow{a}^{<1>})\rightarrow(x^{<2>}\rightarrow\overrightarrow{a}^{<2>})\rightarrow(x^{<3>}\rightarrow\overrightarrow{a}^{<3>})$</3></3></2></2></1></1></li>
+<li>flow2: $\overleftarrow{a}^{<3>}\leftarrow(\overrightarrow{a}^{<4>}\leftarrow x^{<4>})$</4></4></3></li>
+</ul>
+</3></li>
+<li>缺点：需要整篇文本的数据</li>
+</ul>
+</li>
+<li>Deep RNNs</li>
+</ul>
+<p><img src="/2018/04/16/D7/6.jpg" alt=""></p>
+<hr>
+<h1 id="Natural-Language-Processing-amp-Word-Embeddings"><a href="#Natural-Language-Processing-amp-Word-Embeddings" class="headerlink" title="Natural Language Processing &amp; Word Embeddings"></a>Natural Language Processing &amp; Word Embeddings</h1><ul>
+<li>Introduction to word embeddings<ul>
+<li>Word Representation<ul>
+<li>one-hot：不能表示不同词之间的关系（无法度量距离、两两内积均为0）</li>
+<li>word-embedding：能够表示不同词语中的不同特征，能够学到两个词语间相关性大小</li>
+</ul>
+</li>
+<li>Using word embeddings<ul>
+<li>examine large corpus / download embedding online → word embedding</li>
+<li>apply to our task (transfer learning)</li>
+<li>optional: continue to finetune embedding with new data</li>
+</ul>
+</li>
+<li>Properties of word embeddings (analogy reasoning)<ul>
+<li>eg. $e_{man}-e_{woman}\approx e_{king}-e_{queen}$</li>
+<li>cosine similarity: $sim(u, v) = \frac{u^Tv}{||u||_2||v||_2}$</li>
+<li>注意：t-SNE是非线性变换，因此变换后不能保证平行和良好的类比</li>
+</ul>
+</li>
+<li>Embedding matrix (E)<ul>
+<li>eg. 10000词300维→300*10000矩阵</li>
+<li>$E\cdot o_k = e_k$（实际操作中直接使用函数取一列）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Learning word embeddings: Word2vec &amp; GloVe<ul>
+<li>Learning word embeddings<ul>
+<li>将各个单词的$e_k$向量连接为新的向量</li>
+<li>扔入NN，进行softmax</li>
+<li>可以设置fixed historic window，仅考虑之前几个单词；也可以设置考虑多个之前和之后单词的context / target pairs</li>
+</ul>
+</li>
+<li>Word2vec<ul>
+<li>Skip-grams<ul>
+<li>输入一个单词，尝试预测几个单词前后(skip)的单词</li>
+<li>Model<ul>
+<li>c代表输入context，t代表预测target</li>
+<li>$o_c\rightarrow E\rightarrow e_c\rightarrow softmax\rightarrow \hat{y}$</li>
+<li>Softmax: $p(t|c) = \frac{\exp(\theta^T_te_c)}{\sum_{j=1}^{10000}{\exp(\theta^T_je_c)}},\space\theta_t$:与输出t有关的参数</li>
+<li>$L(\hat{y},y)=-\sum_{i=1}^{10000}{y_i\log y_i}$</li>
+</ul>
+</li>
+<li>Problems<ul>
+<li>softmax层计算量太大</li>
+<li>解决：使用“决策树”思想</li>
+</ul>
+</li>
+<li>How to sample context c?<ul>
+<li>如果常规操作，则训练集里a, the等词太多</li>
+<li>解决：不使用均匀抽取</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CBOW：恰好相反，输入几个左右的词，尝试预测中间的词</li>
+<li>Negative Sampling<ul>
+<li>输入context，word代表找的另一个单词，预测y (0,1)<ul>
+<li>正例：y=1，w为c前后文本中的词</li>
+<li>反例2~5个：y=0，w为词典中随机挑选的一个词</li>
+</ul>
+</li>
+<li>$P(y=1|c,t)=\sigma(\theta_t^Te_c)$</li>
+<li>效果<ul>
+<li>由10000-way softmax变为10000个二分类问题</li>
+<li>每次迭代只需要训练5个左右的二分类问题</li>
+</ul>
+</li>
+<li>How to sample negative word?<ul>
+<li>$P(w_i)=\frac{f(w_i)^{3/4}}{\sum_{j=1}^{10000}{f(w_j)^{3/4}}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GloVe (global vectors for word representation)<ul>
+<li>共现矩阵元素$X_{ij}=# times\space i\space appears \space in \space context \space of \space j$（i~t, j~c）<ul>
+<li>$X_{ij}=X_{ji}$（其他情况$X_{ij}$不一定等于$X_{ji}$，看如何定义context的范围）</li>
+</ul>
+</li>
+<li>minimize$\sum_{i=1}^{10000}{\sum_{j=1}^{10000}{f(x_{ij})(\theta_i^Te_j+b_i+b_j’-\log X_{ij})}}$</li>
+<li>因为$\theta_i, e_j$是对称的（具有相同功能，就是i和j的词向量），计算$e_w^{(final)}=\frac{e_w+\theta_w}{2}$</li>
+</ul>
+</li>
+<li>note：每一维未必都是人工可解释的</li>
+</ul>
+</li>
+<li>Applications using Word Embeddings<ul>
+<li>Sentiment Classification<ul>
+<li>步骤<ul>
+<li>从更大的corpus中获得E矩阵</li>
+<li>将一句话中每个词的e向量进行sum或average</li>
+<li>进入softmax classifier并输出最终预测结果</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>忽略文本顺序</li>
+</ul>
+</li>
+<li>解决：使用RNN（many-to-one）</li>
+</ul>
+</li>
+<li>Debiasing word embeddings    <ol>
+<li>identify bias direction (avarage: $(e_{male}-e_{female}),(e_{he}-e_{she}),…$)</li>
+<li>Neutralize: for every word that is not definitional (male, she, …), project to get rid of bias</li>
+<li>Equalize pairs: 将 definitional 词对移到axis两侧的对称位置</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>作者的做法：train a classifier 判断哪些是 definitional 词</li>
+</ul>
+<hr>
+<h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><ul>
+<li>Various sequence to sequence architectures<ul>
+<li>Basic models<ul>
+<li>Machine translation<ul>
+<li>encoder: many-to-one，最终输出一个向量</li>
+<li>decoder: one-to-many，由向量输出一序列文本（序列中将前一个预测结果作为下一个的输入x）</li>
+</ul>
+</li>
+<li>Image captioning<ul>
+<li>encoder: 通过AlexNet输出一个4096d向量</li>
+<li>decoder: one-to-many，由向量输出一序列文本（序列中将前一个预测结果作为下一个的输入x）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对比<ul>
+<li>language model：最初(生成器)输入a向量均为0<ul>
+<li>model the probability of the sentence</li>
+<li>$P(y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;})$</2></1></li>
+</ul>
+</li>
+<li>machine translation：最初(生成器)输入a向量为encoder的最终输出结果<ul>
+<li>model the English translation conditions on French sentence</li>
+<li>$P(y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;}|x^{<1>},x^{<2>},…,x^{&lt;T_x&gt;})$</2></1></2></1></li>
+<li>Picking the most likely sentence: $\arg\max_{y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;}}{P(y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;}|x)}$</2></1></2></1></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>问题：search量太大 → 解决：Beam Search<ol>
+<li>设定B值：寻找最有可能成为第一个单词的B个词</li>
+<li>计算这B个“首词”与之后预测的“第二词”的共现概率，挑出B个最大可能的“一二词”组合</li>
+<li>重复进行第二步，这样每次只需要计算(B*V)个概率</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Refinements<ul>
+<li>目的：解决 $P(y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;}|x)$数值越乘越小的问题</2></1></li>
+<li>方式：将最大化$P(y^{<1>},y^{<2>},…,y^{&lt;T_y&gt;}|x)$的方式由最大化$\prod_{t=1}^{T_y}P(y^{<t>}|x,y^{<1>},…,y^{<t-1>})$变为最大化$\frac{1}{T_y^\alpha}\sum_{t=1}^{T_y}\log(P(y^{<t>}|x,y^{<1>},…,y^{<t-1>}))$(α=0.7)</t-1></1></t></t-1></1></t></2></1></li>
+</ul>
+</li>
+<li>B的选择（大：结果好、慢；小：结果差、快）</li>
+<li>Error analysis in beam search: 计算比较$P(y^*|x)$与$P(\hat{y}|x)$大小<ul>
+<li>$P(y^<em>|x)&gt;P(\hat{y}|x)$: beam search 选择了$\hat{y}$，但其实$y^</em>$更好→beam search有问题</li>
+<li>$P(y^<em>|x)\leq P(\hat{y}|x)$: $y^</em>$更好，但是RNN却觉得$\hat{y}$更好→RNN有问题</li>
+</ul>
+</li>
+<li>Bleu Score (Bilingual evaluation understudy)</li>
+<li>$P_n=\frac{\sum_{n-grams \in \hat{y}}{count_{clip}(n-gram)}}{\sum_{n-grams \in \hat{y}}{count(n-gram)}}$</li>
+<li>Combined Blue Score: $BP \cdot \exp{(\frac{1}{4}\sum_{n=1}^4 p_n)}$<ul>
+<li>MT_length&gt;ref_length:$BP=1$</li>
+<li>else: $BP=\exp(1-\frac{length_{MT}}{length_{ref}})$</li>
+</ul>
+</li>
+<li>Attention Model</li>
+<li>Intuition：长句<ul>
+<li>问题：和人的阅读习惯不符、BLEU值下跌</li>
+<li>解决：增加attention weights，不同位置的输入对应不同权重</li>
+</ul>
+</li>
+<li><p>Model: $\alpha^{&lt;t,t’&gt;}$代表$y^{<t>}$多受$a^{&lt;t’&gt;}$影响</t></p>
+<ul>
+<li>计算：$a^{&lt;t,t’&gt;}=\frac{\exp(e^{&lt;t,t’&gt;})}{\sum_{t’=1}^{T_x}\exp(e^{&lt;t,t’&gt;})}$<ul>
+<li>计算e：由$s^{<t-1>}$和$a^{&lt;t’&gt;}$经过NN计算得</t-1></li>
+</ul>
+</li>
+<li>对于每个输出 (以输出1为例)：$\sum_{t’}{\alpha^{&lt;1,t’&gt;}} = 1$</li>
+<li>${c^{&lt;1,t’&gt;}}=\sum{\alpha^{&lt;1,t’&gt;}}a^{<t'>}\space\space\space(a^{<t'>}=(\overrightarrow{a}^{<t'>},\overleftarrow{a}^{<t'>}))$</t'></t'></t'></t'></li>
+</ul>
+<p><img src="/2018/04/16/D7/7.jpg" alt=""></p>
+</li>
+<li><p>Speech recognition - Audio Data</p>
+<ul>
+<li>Speech recognition CTC cost：因为输入维数过大导致输出维数很大，collapse (eg. ttt_h_eee <strong>_qqq_</strong>…→the q…)</li>
+<li>Trigger Word Detection</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/D6/" rel="next" title="Foundations of Convolutional Neural Networks">
+                <i class="fa fa-chevron-left"></i> Foundations of Convolutional Neural Networks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Recurrent-Neural-Networks"><span class="nav-number">1.</span> <span class="nav-text">Recurrent Neural Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Natural-Language-Processing-amp-Word-Embeddings"><span class="nav-number">2.</span> <span class="nav-text">Natural Language Processing &amp; Word Embeddings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-models-amp-Attention-mechanism"><span class="nav-number">3.</span> <span class="nav-text">Sequence models &amp; Attention mechanism</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
