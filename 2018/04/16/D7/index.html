@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/5.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/6.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/16/D7/7.jpg">
-<meta property="og:updated_time" content="2018-05-14T15:39:27.000Z">
+<meta property="og:updated_time" content="2018-05-14T15:42:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models">
 <meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第五门课程“Sequence Models”的全部三周内容。  Recurrent Neural Networks Notation $x^{(i)&amp;lt;t &amp;gt;}$ ：训练样本i中的第t个元素，$y^{(i)&amp;lt;t&amp;gt;}$">
@@ -466,17 +466,15 @@
 <li>方法</li>
 </ul>
 <p><img src="/2018/04/16/D7/5.jpg" alt=""></p>
-<pre><code>- $\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）
-- $\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）
-- $\Gamma_o$：输出门，决定$a^{&amp;lt;t&amp;gt;}$与$c^{&amp;lt;t&amp;gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
+</li>
+</ul>
+<pre><code>    - $\Gamma_u$：更新门，决定是否更新（将新的信息选择性的记录到细胞状态中，eg. 希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。）
+    - $\Gamma_f$：遗忘门，决定是否遗忘（将细胞状态中的信息选择性的遗忘，eg. 当我们看到新的主语，我们希望忘记旧的主语。）
+    - $\Gamma_o$：输出门，决定$a^{&amp;lt;t&amp;gt;}$与$c^{&amp;lt;t&amp;gt;}$关系（eg. 在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出代词是单数还是负数，这样我们也知道动词需要进行的词形变化。）
+-   特点
+    -   用$[a^{&amp;lt;t-1&amp;gt;},x^{&amp;lt;t&amp;gt;}]$计算所有$\Gamma$值
+    -   也有用$[a^{&amp;lt;t-1&amp;gt;},x^{&amp;lt;t&amp;gt;},c^{&amp;lt;t-1&amp;gt;}]$计算所有$\Gamma$值（peephole）
 </code></pre><ul>
-<li>特点<ul>
-<li>用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;}]$计算所有$\Gamma$值</li>
-<li>也有用$[a^{&lt;t-1&gt;},x^{&lt;t&gt;},c^{&lt;t-1&gt;}]$计算所有$\Gamma$值（peephole）</li>
-</ul>
-</li>
-</ul>
-</li>
 <li>Bidirectional RNN（BRNN）<ul>
 <li>目的：能够从未来获取信息</li>
 <li>$\hat{y}^{&lt;t&gt;}=g(W_y[\overrightarrow{a}^{&lt;t&gt;},\overleftarrow{a}^{&lt;t&gt;}]+b_y)$</li>
@@ -569,7 +567,7 @@
 </ul>
 </li>
 <li>GloVe (global vectors for word representation)<ul>
-<li>共现矩阵元素$X_{ij}=# times\space i\space appears \space in \space context \space of \space j$（i~t, j~c）<ul>
+<li>共现矩阵元素$X_{ij}=$#$times\space i\space appears \space in \space context \space of \space j$（i~t, j~c）<ul>
 <li>$X_{ij}=X_{ji}$（其他情况$X_{ij}$不一定等于$X_{ji}$，看如何定义context的范围）</li>
 </ul>
 </li>
