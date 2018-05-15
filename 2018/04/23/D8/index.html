@@ -79,20 +79,29 @@
 
 
 
-<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week2和Week3。  Case Studies LeNet-5  ($n_H$,$n_W$↓, $n_C$↑)  AlexNet  (have a lot m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Foundations of Convolutional Neural Networks">
-<meta property="og:url" content="http://yoursite.com/2018/03/14/D6/index.html">
+<meta property="og:title" content="Deep convolutional models&amp;#58; case studies &#x2F; Object detection">
+<meta property="og:url" content="http://yoursite.com/2018/04/23/D8/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week2和Week3。  Case Studies LeNet-5  ($n_H$,$n_W$↓, $n_C$↑)  AlexNet  (have a lot m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/03/14/D6/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/03/14/D6/2.jpg">
-<meta property="og:updated_time" content="2018-05-14T12:47:11.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/04/23/D8/11.jpg">
+<meta property="og:updated_time" content="2018-05-15T06:44:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Foundations of Convolutional Neural Networks">
-<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week 1。  Edge Detection（边缘检测） 原图*filter=新图（卷积） 各种filter 检测垂直边缘（vertical edges）：$\b">
-<meta name="twitter:image" content="http://yoursite.com/2018/03/14/D6/1.jpg">
+<meta name="twitter:title" content="Deep convolutional models&amp;#58; case studies &#x2F; Object detection">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) 本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week2和Week3。  Case Studies LeNet-5  ($n_H$,$n_W$↓, $n_C$↑)  AlexNet  (have a lot m">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/23/D8/1.jpg">
 
 
 
@@ -122,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/14/D6/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/23/D8/"/>
 
 
 
 
 
-  <title>Foundations of Convolutional Neural Networks | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Deep convolutional models&#58; case studies / Object detection | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -255,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/D6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/D8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zikun Lin">
@@ -272,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Foundations of Convolutional Neural Networks</h1>
+          <h1 class="post-title" itemprop="name headline">Deep convolutional models&#58; case studies / Object detection</h1>
         
 
         <div class="post-meta">
@@ -284,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T00:00:00+08:00">
-                2018-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T00:00:00+08:00">
+                2018-04-23
               </time>
             
 
@@ -325,8 +334,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/14/D6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/14/D6/" itemprop="commentsCount"></span>
+                <a href="/2018/04/23/D8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/23/D8/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,88 +363,199 @@
       
 
       
-        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/34476608" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/34476608" target="_blank" rel="noopener">Zhihu</a>.)</p>
-<p>本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的<a href="https://www.coursera.org/learn/convolutional-neural-networks/home/week/1" target="_blank" rel="noopener">Week 1</a>。</p>
+        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/35227987" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/35227987" target="_blank" rel="noopener">Zhihu</a>.)</p>
+<p>本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的<a href="https://www.coursera.org/learn/convolutional-neural-networks/home/week/2" target="_blank" rel="noopener">Week2</a>和<a href="https://www.coursera.org/learn/convolutional-neural-networks/home/week/3" target="_blank" rel="noopener">Week3</a>。</p>
 <hr>
-<h1 id="Edge-Detection（边缘检测）"><a href="#Edge-Detection（边缘检测）" class="headerlink" title="Edge Detection（边缘检测）"></a>Edge Detection（边缘检测）</h1><ul>
-<li>原图*filter=新图（卷积）</li>
-<li>各种filter<ul>
-<li>检测垂直边缘（vertical edges）：$\begin{bmatrix} 1 &amp; 0 &amp; -1 \ 1 &amp; 0 &amp; -1 \ 1 &amp; 0 &amp; -1 \ \end{bmatrix}$</li>
-<li>检测水平边缘（horizontal edges）：$\begin{bmatrix} 1 &amp; 1 &amp; 1 \ 0 &amp; 0 &amp; 0 \ -1 &amp; -1 &amp; -1 \ \end{bmatrix}$</li>
-<li>Sobel filter：$\begin{bmatrix} 1 &amp; 0 &amp; -1 \ 2 &amp; 0 &amp; -2 \ 1 &amp; 0 &amp; -1 \ \end{bmatrix}$，更加鲁棒</li>
-<li>Scharr filter：$\begin{bmatrix} 3 &amp; 0 &amp; -3 \ 10 &amp; 0 &amp; -10 \ 3 &amp; 0 &amp; -3 \ \end{bmatrix}$</li>
-<li>这也是检测垂直边缘：$\begin{bmatrix} 0 &amp; 1 &amp; -1 &amp; 0 \ 1 &amp; 3 &amp; -3 &amp; -1\ 1 &amp; 3 &amp; -3 &amp; -1 \ 0 &amp; 1 &amp; -1 &amp; 0\\\end{bmatrix}$</li>
+<h1 id="Case-Studies"><a href="#Case-Studies" class="headerlink" title="Case Studies"></a>Case Studies</h1><ul>
+<li>LeNet-5</li>
 </ul>
-</li>
-<li>使用deep learning不需手工选择这9个数字，可以通过学习得到</li>
-</ul>
-<h1 id="Padding（填充）"><a href="#Padding（填充）" class="headerlink" title="Padding（填充）"></a>Padding（填充）</h1><ul>
-<li>(n×n)*(f×f)=(n-f+1)×(n-f+1)</li>
-<li>问题<ul>
-<li>图片被缩小</li>
-<li>边缘部分使用次数少，丢失边缘部分信息</li>
-</ul>
-</li>
-<li>解决<ul>
-<li>填充图片（周围填充一圈0，p=padding=1）</li>
-<li>输出大小成为(n+2p-f+1)×(n+2p-f+1)</li>
-</ul>
-</li>
-<li>分类<ul>
-<li>Valid convolution：没有填充</li>
-<li>Same convolution：使得输出大小等于输入，p=(f-1)/2<ul>
-<li>一般f都是奇数<ul>
-<li>使得padding能够对称</li>
-<li>使得卷积核有中心像素</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="Strided-Convolutions（带步长的卷积）"><a href="#Strided-Convolutions（带步长的卷积）" class="headerlink" title="Strided Convolutions（带步长的卷积）"></a>Strided Convolutions（带步长的卷积）</h1><ul>
-<li>卷积核一次移动多个步长</li>
-<li><p>输出大小成为$\biggl \lfloor \frac{n+2p-f}{s}+1 \biggr \rfloor \times \biggl \lfloor \frac{n+2p-f}{s}+1 \biggr \rfloor$</p>
-</li>
-<li><p><strong>问题</strong>：卷积不是要翻转吗（如<a href="https://www.zhihu.com/question/52237725/answer/137933858" target="_blank" rel="noopener">该问题</a>）？<strong>解答</strong>：其实之前做的叫做“交叉相关”，但在机器学习的约定中，经常忽略掉翻转的操作称为“卷积”。</p>
-</li>
-</ul>
-<h1 id="Convolutions-Over-Volume（三维上的卷积）"><a href="#Convolutions-Over-Volume（三维上的卷积）" class="headerlink" title="Convolutions Over Volume（三维上的卷积）"></a>Convolutions Over Volume（三维上的卷积）</h1><ul>
-<li>$(n×n×n_c)*(f×f×n_c)=(n-f+1)×(n-f+1)×n_c’$（$n_c’$ 是卷积核个数）</li>
-</ul>
-<h1 id="卷积网络"><a href="#卷积网络" class="headerlink" title="卷积网络"></a>卷积网络</h1><ul>
-<li>单层卷积网络</li>
-</ul>
-<p><img src="/2018/03/14/D6/1.jpg" alt=""></p>
-<p><img src="/2018/03/14/D6/2.jpg" alt=""></p>
+<p><img src="/2018/04/23/D8/1.jpg" alt=""><br>($n_H$,$n_W$↓, $n_C$↑)</p>
 <ul>
-<li>ConvNet<ul>
-<li>一般来说，height和width↓，channel↑</li>
-<li>Conv+Pooling+Fully Connected<ul>
-<li>Pooling<ul>
-<li>参数：f（大小）、s（步长）</li>
-<li>输出大小成为$\biggl \lfloor \frac{n_H-f}{s}+1 \biggr \rfloor \times \biggl \lfloor \frac{n_W-f}{s}+1 \biggr \rfloor \times n_c$</li>
-<li>基本不用padding</li>
-<li>种类<ul>
-<li>max pooling：该区域具有相关的特征，池化后保留高数值</li>
-<li>average pooling：用得比较少</li>
+<li>AlexNet</li>
+</ul>
+<p><img src="/2018/04/23/D8/2.jpg" alt=""><br>(have a lot more hidden units and training on a lot more data)</p>
+<ul>
+<li>VGG-16</li>
+</ul>
+<p><img src="/2018/04/23/D8/3.jpg" alt=""></p>
+<ul>
+<li><p>ResNet</p>
+<ul>
+<li>跳跃链接（skip connection）</li>
+</ul>
+<p><img src="/2018/04/23/D8/4.jpg" alt=""></p>
+<ul>
+<li>ResNet</li>
+</ul>
+<p><img src="/2018/04/23/D8/5.jpg" alt=""></p>
+<p><img src="/2018/04/23/D8/6.jpg" alt=""><br>(具体实现模型——identity block)</p>
+<p><img src="/2018/04/23/D8/7.jpg" alt=""><br>(具体实现模型——convolutional block)</p>
+<ul>
+<li>Why work?<ul>
+<li>doesn’t hurt performance：参数学习较为容易</li>
+<li>对比plain net: 随着层数越来越深，难以学习参数，结果变差</li>
 </ul>
 </li>
-<li>No parameters to learn!</li>
+<li>如果相加两向量维数不同，则可乘以一变换矩阵即可</li>
+</ul>
+</li>
+<li>Networks in Networks and 1x1 Convolutions<ul>
+<li>变维相当于嵌入了一个 fully connected NN</li>
+<li>是一个改变$n_C$的方法</li>
+</ul>
+</li>
+<li>Inception Network<ul>
+<li>motivation<ul>
+<li>将不同卷积核（1<em>1，3</em>3，5*5，都用same）的输出结果拼在一起（“我全都要”）</li>
+<li>cost问题：计算量贼大<ul>
+<li>解决：在其中增加一层$n_C$较小的1*1卷积</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Inception Network</li>
+</ul>
+</li>
+</ul>
+<h1 id="Practical-advice-for-using-ConvNets"><a href="#Practical-advice-for-using-ConvNets" class="headerlink" title="Practical advice for using ConvNets"></a>Practical advice for using ConvNets</h1><ul>
+<li>Using open-source implementation</li>
+<li>Transfer learning<ul>
+<li>下载networks（+weights）</li>
+<li>freeze前部分的参数，训练softmax部分</li>
+<li>larger data：对前部分参数，freeze一部分、train一部分</li>
+</ul>
+</li>
+<li>Data Augmentation<ul>
+<li>mirroring / random cropping / rotation / shearing / local warping</li>
+<li>Color shifting: RGB各改一些<ul>
+<li>Advanced: PCA color augmentation (AlexNet paper)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>State of Computer Vision<ul>
+<li>Little Data ← [transfer learning, object detection, image recognition, speech recognition, ] → Lots of Data</li>
+<li>tips for doing well on benchmarks<ul>
+<li>ensembling：多训几个取平均</li>
+<li>multi-crop at test time：在不同crop上test取平均</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-<li>Why Convolutions——大大减少参数个数<ul>
-<li>例如：32<em>32</em>3→28<em>28</em>6，FC需要约14M个参数，CNN仅需(5<em>5+1)</em>6=156个参数</li>
-<li>原因<ul>
-<li>Parameter sharing：feature detector可以在图片的各个部分重复使用</li>
-<li>Sparcity of connections：在每层，输出仅取决于少部分输入</li>
+<h1 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h1><p>这次作业多选题好多……提交了6次才全对。所以把几道错题特别记录一波。</p>
+<ol start="3">
+<li>In order to be able to build very deep networks, we usually only use pooling layers to downsize the height/width of the activation volumes while convolutions are used with “valid” padding. Otherwise, we would downsize the input of the model too quickly.</li>
+</ol>
+<ul>
+<li>False. Convolutions are used with “same” padding.</li>
+</ul>
+<ol start="6">
+<li>Which ones of the following statements on Residual Networks are true? (Check all that apply.)<br>A. The skip-connection makes it easy for the network to learn an identity mapping between the input and the output within the ResNet block.<br>B. Using a skip-connection helps the gradient to backpropagate and thus helps you to train deeper networks<br>C. A ResNet with L layers would have on the order of $L^2$skip connections in total.<br>D. The skip-connections compute a complex non-linear function of the input to pass to a deeper layer in the network.</li>
+</ol>
+<ul>
+<li>AB. C: $L^2\rightarrow \frac{L}{2}$</li>
+</ul>
+<ol start="9">
+<li>Which ones of the following statements on Inception Networks are true? (Check all that apply.)<br>A. Inception blocks usually use 1x1 convolutions to reduce the input data volume’s size before applying 3x3 and 5x5 convolutions.<br>B. A single inception block allows the network to use a combination of 1x1, 3x3, 5x5 convolutions and pooling.<br>C. Making an inception network deeper (by stacking more inception blocks together) should not hurt training set performance.<br>D. Inception networks incorporates a variety of network architectures (similar to dropout, which randomly chooses a network architecture on each step) and thus has a similar regularizing effect as dropout.</li>
+</ol>
+<ul>
+<li>AB. C: “should not” x</li>
+</ul>
+<ol start="10">
+<li>Which of the following are common reasons for using open-source implementations of ConvNets (both the model and/or weights)? Check all that apply.<br>A. It is a convenient way to get working an implementation of a complex ConvNet architecture.<br>B. A model trained for one computer vision task can usually be used to perform data augmentation even for a different computer vision task.<br>C. The same techniques for winning computer vision competitions, such as using multiple crops at test time, are widely used in practical deployments (or production system deployments) of ConvNets.<br>D. Parameters trained for one computer vision task are often useful as pretraining for other computer vision tasks.</li>
+</ol>
+<ul>
+<li>AD. C: “are widely used in practical deployments” x，实际工程运用少，因为加大计算量带来计算负担，性能提升并没有很大。</li>
+</ul>
+<h1 id="Programming-assignments"><a href="#Programming-assignments" class="headerlink" title="Programming assignments"></a>Programming assignments</h1><ol>
+<li>Happy House</li>
+</ol>
+<p>这其实是Keras入门教学，因为训练很慢所以用了它里面给的示例网络训100个epoch，训练目标是判断图片中的人是否happy（1为happy，0为unhappy）……</p>
+<p>随便找了几张图来尝试，结果如下：</p>
+<p><img src="/2018/04/23/D8/8.jpg" alt=""><br>(看，这位CMU博士多么happy啊！)</p>
+<p><img src="/2018/04/23/D8/9.jpg" alt=""><br>(诶，这位015好像不怎么happy。)</p>
+<p><img src="/2018/04/23/D8/10.jpg" alt=""><br>(嗯，02还是很happy的。)</p>
+<hr>
+<h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><ul>
+<li>Object Localization<ul>
+<li>Classification with localization: 在classification的基础上加个bounding box说明位置<ul>
+<li>target label:$\left[ \begin{matrix} p_c \ b_x \ b_y \ b_h \ b_w \ c_1 \ c_2 \ c_3 \ \end{matrix} \right]$ ,$p_c$代表出现object的概率</li>
+<li>Loss $L(\hat{y},y)$ : ($y_1=p_c$)<ul>
+<li>$(y_1-\hat{y}_1)^2+(y_2-\hat{y}_2)^2+…+(y_8-\hat{y}_8)^2, if\space y_1=1$</li>
+<li>$(y_1-\hat{y}_1)^2, if\space y_1=0$</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>Detection: multiple objects</li>
+</ul>
+</li>
+<li>Landmark Detection<ul>
+<li>特征0：是否是face/pose……？</li>
+<li>特征1~n：每个特征点的位置</li>
+</ul>
+</li>
+<li><p>Object Detection</p>
+<ul>
+<li>用几乎仅含object的图片进行训练</li>
+<li><p>sliding windows detection</p>
+<ul>
+<li>步骤：先用较小窗口进行滑动，后用较大窗口进行滑动</li>
+<li>问题：计算成本太大</li>
+<li><p>解决：Convolutional Implementation of Sliding Windows</p>
+<ul>
+<li>将FC层变为卷积层：例如5<em>5</em>16层，可以通过用400个5<em>5卷积变为400维向量，再用400个1</em>1卷积变成新的400维向量。</li>
+</ul>
+<p><img src="/2018/04/23/D8/11.jpg" alt=""><br>(通过卷积共享大量运算)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bounding Box Predictions：YOLO算法（You Only Look Once）</p>
+<ul>
+<li>综述<ul>
+<li>划分成多个小网格</li>
+<li>对于每个小网格，标记target label（位置是相对网格位置决定）</li>
+</ul>
+</li>
+<li>最后目标：100<em>100</em>3→conv, pool, …→3<em>3</em>8（或者19<em>19</em>8类似）</li>
+<li>19*19不需要训练361次，只需要通过一个卷积网络共享大量计算</li>
+</ul>
+</li>
+<li>交并比（Intersection Over Union）<ul>
+<li>两个边界框交集除以并集的比率</li>
+<li>≥0.5一般被判定为正确</li>
+</ul>
+</li>
+<li>非最大值抑制（Non-max Suppression）</li>
+<li>问题：一个object可能会占据多个小网格，会被多次识别</li>
+<li>解决步骤：<ul>
+<li>舍弃所有$p_c$小于一定值（如0.6）的detection</li>
+<li>对于剩余的detection，重复进行：<ul>
+<li>寻找最confident的detection</li>
+<li>抑制和刚才detection的IoU≥0.5的detection</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Anchor Boxes<ul>
+<li>问题：一个网格只能识别一个object，不能识别多个</li>
+<li>解决：（例如两个anchor boxes）将8维向量扩增为16（2*8）维，分别对应两种长宽比的anchor boxes，优先标记具有更高IoU的anchor box</li>
+</ul>
+</li>
+<li>YOLO Algorithm<ul>
+<li>对于每个小网格，获得两个bounding boxes</li>
+<li>去掉低可能性的predictions</li>
+<li>对每一类，用“非最大值抑制”获得最终结果</li>
+<li>注意：（习题）只有包含center point的小网格是responsible的</li>
+</ul>
+</li>
+<li>Region Proposals (R-CNN)<ul>
+<li>propose regions (segmentation algorithm)（Faster R-CNN：用ConvNet来propose regions）</li>
+<li>对每个region进行classify（Fast R-CNN：用sliding windows ）</li>
+<li>输出label和bounding box</li>
 </ul>
 </li>
 </ul>
@@ -463,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/16/D5/" rel="next" title="ML Strategy (2)">
-                <i class="fa fa-chevron-left"></i> ML Strategy (2)
+              <a href="/2018/04/16/D7/" rel="next" title="Sequence Models">
+                <i class="fa fa-chevron-left"></i> Sequence Models
               </a>
             
           </div>
@@ -472,10 +592,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/16/D7/" rel="prev" title="Sequence Models">
-                Sequence Models <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -606,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Edge-Detection（边缘检测）"><span class="nav-number">1.</span> <span class="nav-text">Edge Detection（边缘检测）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Padding（填充）"><span class="nav-number">2.</span> <span class="nav-text">Padding（填充）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Strided-Convolutions（带步长的卷积）"><span class="nav-number">3.</span> <span class="nav-text">Strided Convolutions（带步长的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolutions-Over-Volume（三维上的卷积）"><span class="nav-number">4.</span> <span class="nav-text">Convolutions Over Volume（三维上的卷积）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积网络"><span class="nav-number">5.</span> <span class="nav-text">卷积网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Case-Studies"><span class="nav-number">1.</span> <span class="nav-text">Case Studies</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Practical-advice-for-using-ConvNets"><span class="nav-number">2.</span> <span class="nav-text">Practical advice for using ConvNets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming-assignments"><span class="nav-number">4.</span> <span class="nav-text">Programming assignments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-detection"><span class="nav-number">5.</span> <span class="nav-text">Object detection</span></a></li></ol></div>
             
 
           </div>
