@@ -79,17 +79,25 @@
 
 
 
-<meta name="description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About (关于我)">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) Deeplearning.ai的最后一次笔记了。本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week4。 (莓良心之Neural style transfer版)  Face Recognition veri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Special applications&amp;#58; Face recognition &amp; Neural style transfer">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/D9/index.html">
 <meta property="og:site_name" content="Zikun’s space">
-<meta property="og:description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
+<meta property="og:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) Deeplearning.ai的最后一次笔记了。本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week4。 (莓良心之Neural style transfer版)  Face Recognition veri">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T07:14:41.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/D9/7.jpg">
+<meta property="og:updated_time" content="2018-05-15T07:02:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About (关于我)">
-<meta name="twitter:description" content="About myself (关于我自己)你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。 Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, an">
+<meta name="twitter:title" content="Special applications&amp;#58; Face recognition &amp; Neural style transfer">
+<meta name="twitter:description" content="本文首发于本人知乎专栏。 (This passage was first published in Zhihu.) Deeplearning.ai的最后一次笔记了。本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的Week4。 (莓良心之Neural style transfer版)  Face Recognition veri">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/02/D9/1.jpg">
 
 
 
@@ -119,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/02/D9/"/>
 
 
 
 
 
-  <title>About (关于我) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Special applications&#58; Face recognition & Neural style transfer | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -240,47 +248,260 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/D9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">About (关于我)</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="About-myself-关于我自己"><a href="#About-myself-关于我自己" class="headerlink" title="About myself (关于我自己)"></a><br>About myself (关于我自己)</h2><p><br>你好，我是林子坤。我现在是清华大学自动化系本科生，在今年秋季将成为哥伦比亚大学的计算机硕士。</p>
-<p>Hi, I’m Zikun Lin, I’m now a bachelor student majoring in Automation (a.k.a. Computer Engineering in U.S.) in Tsinghua University, and I am an incoming master student in Columbia University’s computer science program from this fall.</p>
-<p><br>在我的本科阶段，我培养起了对计算机科学的兴趣。在学习了一些相关课程后，我也参与了一些机器学习和自然语言处理的科研项目。我现在正在学习更多有关深度学习、算法和操作系统的相关知识。</p>
-<p>In my undergraduate period, I cultivated my interest in computer science. After attending some related courses, I also conducted research in machine learning and natural language processing. And I’m now learning more about deep learning, algorithms and operating systems.</p>
-<p><br>说到空余时间，我和系里、院里很多同学一样，喜欢看动画（这也是我在清华选了日语课的原因）。我也是osu!（一款不太热门的节奏游戏）的新手玩家。</p>
-<p>As for my spare time, like many peers in my department and my school, I enjoy watching animations (and that’s why I’m taking Japanese courses in Tsinghua). I’m also an newbie in osu!, a not-so-well-known rhythm game.</p>
-<p><br>如果你希望获得更多有关我的科研和项目经历的信息，请点击我的<a href="https://www.linkedin.com/in/zikun-lin-989586132/" target="_blank" rel="noopener">领英主页</a>。</p>
-<p>If you want to get more information about my research and project experience, please refer to my <a href="https://www.linkedin.com/in/zikun-lin-989586132/" target="_blank" rel="noopener">LinkedIn page</a>.</p>
-<h2 id="About-this-website-关于这个网站"><a href="#About-this-website-关于这个网站" class="headerlink" title="About this website (关于这个网站)"></a><br><br>About this website (关于这个网站)</h2><p><br>这个网站将会包含我自2018年以来的学习内容的笔记和理解，包括Coursera课程“deeplearning.ai”、学堂在线课程“操作系统”、“Leetcode”中的算法分析和我正在清华上的日语课。</p>
-<p>This website will contain my notes and understandings about my study from 2018, including Coursera course “deeplearning.ai”, Xuetangx course “Operating System”, algorithm analyses in “Leetcode” and the Japanese course I’m now taking in Tsinghua.</p>
-<p><br>我也想在此分享我生活中的一些感受，如果我有时间的话……</p>
-<p>I also want to share some feelings in my life here, if I have time…</p>
-<p><br>我很抱歉我没法像这篇文章一样将每句话进行汉译英或英译汉。我更喜欢使用中文记录笔记，因为这能让我复习起来更方便。但是有些计算机名词不太方便翻译成中文，所以我文章的一些部分将会是英文（毕竟英语是国际语言……）</p>
-<p>I’m sorry that I don’t have time to translate every sentence from Chinese to English or conversely, like this passage. I prefer to write my notes in Chinese since it’s much easier for me to review. But there are some terms in computer science which are difficult to translate to Chinese, so some parts of my passages will be in English (after all, English is the global language…)</p>
-
+          <h1 class="post-title" itemprop="name headline">Special applications&#58; Face recognition & Neural style transfer</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T00:00:00+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deeplearning-ai-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Deeplearning.ai Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/02/D9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/02/D9/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>本文首发于<a href="https://zhuanlan.zhihu.com/p/36167482" target="_blank" rel="noopener">本人知乎专栏</a>。 (This passage was first published in <a href="https://zhuanlan.zhihu.com/p/36167482" target="_blank" rel="noopener">Zhihu</a>.)</p>
+<p>Deeplearning.ai的最后一次笔记了。本周笔记摘自“deeplearning.ai”第四门课程“Convolutional Neural Networks”的<a href="https://link.zhihu.com/?target=https%3A//www.coursera.org/learn/convolutional-neural-networks/home/week/4" target="_blank" rel="noopener">Week4</a>。</p>
+<p><img src="/2018/05/02/D9/1.jpg" alt=""><br>(莓良心之Neural style transfer版)</p>
+<hr>
+<h1 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h1><ul>
+<li>verification vs. recognition<ul>
+<li>verification：判断face是否为对应人（1:1对应）</li>
+<li>recognition：输出face对应人的ID（1:K对应）</li>
+</ul>
+</li>
+<li>One shot learning problem（单样本学习问题）<ul>
+<li>只见过一张照片，但是却要判断是否是同一个人</li>
+<li>每次新人加入都要重新训练网络？</li>
+<li>解决：similarity function<ul>
+<li>d(img1, img2) = degree of difference between pictures</li>
+<li>d&lt;τ(阈值)判断为同一个人</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Siamese Network<ul>
+<li>将人脸输入ConvNet</li>
+<li>输出一个encoding向量（如128维）</li>
+<li>计算两张图片的向量差值的二范数（作为d(img1, img2)）</li>
+</ul>
+</li>
+<li>Triplet Loss<ul>
+<li>输入：图片A，正例P，反例N</li>
+<li>目标：$||f(A)-f(P)||^2_2\leq||f(A)-f(N)||^2_2$</li>
+<li>注意：要防止不等式左右两边全零（要保证每张图片encoding不同，目标：$f(A)-f(N)%7C%7C%5E2_2%5Cleq0-%5Calpha)||f(A)-f(P)||^2_2-||f(A)-f(N)||^2_2\leq0-\alpha$，α称为margin）</li>
+<li>Loss Function<ul>
+<li>$L(A,P,N)\max(||f(A)-f(P)||_2-||f(A)-f(N)||_2+\alpha,0)$</li>
+<li>$J=\sum_{i=1}^m{L(A^{(i)},P^{(i)},N^{(i)})}$</li>
+</ul>
+</li>
+<li>训练集必须保证有一个人的多个样本</li>
+<li>选择A、P、N<ul>
+<li>如果随机抽取，上述要求很容易被满足</li>
+<li>需要抽取一些训练得比较艰难的样本</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Face Verification and Binary Classification<ul>
+<li>另一种方式：将之前两人所获得的encoding向量输入logistic分类器$y=\sigma(\sum_{i=1}^{128}{w_i|f(x^{(i)})_k-f(x^{(j)})_k|+b})$或$y=\sigma(\sum_{i=1}^{128}{w_i\frac{(f(x^{(i)})_k-f(x^{(j)})_k)^2}{f(x^{(i)})_k+f(x^{(j)})_k}+b})$</li>
+<li>为了减少计算量，可以pre-compute每个人的encoding</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Neural-Style-Transfer"><a href="#Neural-Style-Transfer" class="headerlink" title="Neural Style Transfer"></a>Neural Style Transfer</h1><ul>
+<li>What are deep ConvNets learning?</li>
+</ul>
+<p><img src="/2018/05/02/D9/2.jpg" alt=""><br>(让hidden units变得highly activated的patches)</p>
+<ul>
+<li><p>Cost Function</p>
+<ul>
+<li>$C(G) = \alpha J_{content}(C,G) + \beta J_{style}(S,G)$</li>
+</ul>
+<p><img src="/2018/05/02/D9/3.jpg" alt=""></p>
+<ul>
+<li>计算content cost function: 使用pre-trained的隐藏层参数进行比较，$J_{content}(C,G) = \frac{1}{2}||a^{<a href="C">l</a>}-a^{<a href="G">l</a>}||^2$</li>
+</ul>
+<p><img src="/2018/05/02/D9/4.jpg" alt=""></p>
+<ul>
+<li>计算style cost function<ul>
+<li>style: correlation between activations across channels<ul>
+<li>correlation: which of these high level texture components tend to occur or not occur together in part of an image</li>
+<li>style matrix (Gram matrix G): let $a^{[l]}_{i,j,k}$= activation at (i,j,k), $G^{[l]}=n_c^{[l]}\times n_c^{[l]}$<ul>
+<li>$G^{<a href="S">l</a>}_{kk’}=\sum_{i=1}^{n^{[l]}_H}\sum_{j=1}^{n^{[l]}_W}a^{<a href="S">l</a>}_{ijk}a^{<a href="S">l</a>}_{ijk’},\space G^{<a href="G">l</a>}_{kk’}=\sum_{i=1}^{n^{[l]}_H}\sum_{j=1}^{n^{[l]}_W}a^{<a href="G">l</a>}_{ijk}a^{<a href="G">l</a>}_{ijk’}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>style cost function: $J^{[l]}_{style}(S,G)=\frac{1}{(2n_H^{[l]}n_W^{[l]}n_C^{[l]})^2}||G^{<a href="S">l</a>}-G^{<a href="G">l</a>}||^2_F=\frac{1}{(2n_H^{[l]}n_W^{[l]}n_C^{[l]})^2}\sum_k\sum_{k’}(G^{<a href="S">l</a>}_{kk’}-G^{<a href="G">l</a>}_{kk’})$<br>$J_{style}(S,G)=\sum_l \lambda^{[l]}J^{[l]}_{style}(S,G)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1D and 3D Generalizations<ul>
+<li>2D e.g.: 14x14x3 * 5x5x3 → 10x10x16</li>
+<li>1D e.g.: 14x1 * 5x1 → 10x16</li>
+<li>3D e.g.: 14x14x14x1 * 5x5x5x1 → 10x10x10x16</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>跑了一波Nerual Style Transfer，结果发现效果并不太好，num_iterations = 200，model=”pretrained-model/imagenet-vgg-verydeep-19.mat”。</p>
+<p><img src="/2018/05/02/D9/5.jpg" alt=""><br>(content)</p>
+<p><img src="/2018/05/02/D9/6.jpg" alt=""><br>(Louvre style)</p>
+<p><img src="/2018/05/02/D9/7.jpg" alt=""><br>(generated picture)</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/23/D8/" rel="next" title="Deep convolutional models&#58; case studies / Object detection">
+                <i class="fa fa-chevron-left"></i> Deep convolutional models&#58; case studies / Object detection
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -392,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-myself-关于我自己"><span class="nav-number">1.</span> <span class="nav-text">About myself (关于我自己)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-this-website-关于这个网站"><span class="nav-number">2.</span> <span class="nav-text">About this website (关于这个网站)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Face-Recognition"><span class="nav-number">1.</span> <span class="nav-text">Face Recognition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Style-Transfer"><span class="nav-number">2.</span> <span class="nav-text">Neural Style Transfer</span></a></li></ol></div>
             
 
           </div>
