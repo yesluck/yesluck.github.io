@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Remove Elements系列27.  Remove Element Given an array  _nums_  and a value  _val_, remove all instances ofthat value in-place  and return the new length. Do not allocate extra space for another array, y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A0-1A">
+<meta property="og:url" content="http://yoursite.com/2018/08/04/A0-1A/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="Remove Elements系列27.  Remove Element Given an array  _nums_  and a value  _val_, remove all instances ofthat value in-place  and return the new length. Do not allocate extra space for another array, y">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-04T13:37:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A0-1A">
+<meta name="twitter:description" content="Remove Elements系列27.  Remove Element Given an array  _nums_  and a value  _val_, remove all instances ofthat value in-place  and return the new length. Do not allocate extra space for another array, y">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/04/A0-1A/"/>
+
+
+
+
+
+  <title>A0-1A | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/04/A0-1A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">A0-1A</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T21:37:32+08:00">
+                2018-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/04/A0-1A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/04/A0-1A/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Remove-Elements系列"><a href="#Remove-Elements系列" class="headerlink" title="Remove Elements系列"></a>Remove Elements系列</h1><h2 id="27-Remove-Element"><a href="#27-Remove-Element" class="headerlink" title="27.  Remove Element"></a>27.  Remove Element</h2><blockquote>
+<p>Given an array  _nums_  and a value  _val_, remove all instances of<br>that value <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank" rel="noopener"><strong>in-place</strong></a>  and return the new length.</p>
+<p>Do not allocate extra space for another array, you must do this by <strong>modifying the input array  <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank" rel="noopener">in-place</a></strong>  with O(1) extra memory.</p>
+<p> The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+</blockquote>
+<p>对于这题，设置一个指针<code>pointer</code>，当发现当前遍历的这个数不等于所给的<code>val</code>时，进行这样的操作：</p>
+<pre><code>nums[pointer++] = num;
+</code></pre><p>这操作会造成什么呢？首先，<code>nums[pointer] = num</code>，即把<code>nums</code>中的数字依次放回；其次，<code>pointer++</code>，即把指针向右推进一格。在遇到<code>val</code>前，<code>nums</code>中的元素其实是没有变化的。</p>
+<p>那么遇到<code>val</code>时会发生什么呢？首先<code>nums</code>中的这个数字不会被放回，其次指针不会向右推进，可以说是什么也没有发生。那么在此之后，<code>nums</code>中的元素便会发生变化了，因为<code>pointer</code>指针始终落后于正在被遍历的元素下标，所以相当于是跳了一个数后、把后面的元素依次塞回前面来。</p>
+<p>可以看出这类题目的主要核心操作就是<code>nums[pointer++] = num;</code>这步操作，而思考的核心内容就是执行这步操作的条件。比如在此题中，这个条件是<code>num != val</code>，而下面两道变式题里的条件有所变化，但是核心操作是完全不变的。</p>
+<h3 id="变式1：26-Remove-Duplicates-from-Sorted-Array"><a href="#变式1：26-Remove-Duplicates-from-Sorted-Array" class="headerlink" title="变式1：26. Remove Duplicates from Sorted Array"></a>变式1：26. Remove Duplicates from Sorted Array</h3><p>同样是remove，这题要求将重复的元素移除。操作所需要的条件其实就是<code>num &gt; nums[pointer - 1]</code>，即当前遍历到的元素大于前一个放进来的元素——如果大于，那就继续放置累加；如果等于那就不放了。</p>
+<p>为了代码的简洁性，可直接把条件改为<code>pointer == 0 || num &gt; nums[pointer - 1]</code>。</p>
+<h3 id="变式2：80-Remove-Duplicates-from-Sorted-Array-II"><a href="#变式2：80-Remove-Duplicates-from-Sorted-Array-II" class="headerlink" title="变式2：80.  Remove Duplicates from Sorted Array II"></a>变式2：80.  Remove Duplicates from Sorted Array II</h3><p>和上题基本一样，只需把条件改为<code>pointer &lt; 2 || num &gt; nums[pointer - 2]</code>，同样的道理。</p>
+<h1 id="遍历系列"><a href="#遍历系列" class="headerlink" title="遍历系列"></a>遍历系列</h1><h2 id="277-Find-the-Celebrity"><a href="#277-Find-the-Celebrity" class="headerlink" title="277. Find the Celebrity"></a>277. Find the Celebrity</h2><blockquote>
+<p>Suppose you are at a party with  <code>n</code>  people (labeled from  <code>0</code>  to <code>n - 1</code>) and among them, there may exist one celebrity. The definition of a celebrity is that all the other  <code>n - 1</code>  people know him/her but he/she does not know any of them.</p>
+<p>Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: “Hi, A. Do you know B?” to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).</p>
+<p>You are given a helper function  <code>bool knows(a, b)</code>  which tells you whether A knows B. Implement a function  <code>int findCelebrity(n)</code>, your function should minimize the number of calls to  <code>knows</code>.</p>
+<p><strong>Note</strong>: There will be exactly one celebrity if he/she is in the party. Return the celebrity’s label if there is a celebrity in the˜ party. If there is no celebrity, return  <code>-1</code>.</p>
+</blockquote>
+<p>本题的目标是为了找到一个“名人”。“名人”的特征便是：所有人都知道他，但是他不知道所有人。为此一个巧妙的做法便是进行两次遍历，其中第一次遍历的方式尤为巧妙。</p>
+<p>在第一次遍历中，我们先假定第一位成员为名人。那么在继续往下遍历的过程中，如果发现他认识了谁，那么就把名人身份交给他，依此类推；如果他并不认识现在遍历的这位成员，则现在这位成员便有人不认识，那就肯定不是名人了。</p>
+<p>但是按照题目所说，名人是不一定存在的。所以需要进行第二次遍历进行判断。如果<code>i != candidate &amp;&amp; (knows(candidate, i) || !knows(i, candidate))</code>则说明这个名人是个假人，返回-1。</p>
+<h2 id="134-Gas-Station"><a href="#134-Gas-Station" class="headerlink" title="134. Gas Station"></a>134. Gas Station</h2><p>其实这题的本来标注是Greedy的，和上题的第一轮遍历后丢弃的思想有点类似。</p>
+<blockquote>
+<p>There are  _N_  gas stations along a circular route, where the amount of gas at station  _i_  is  <code>gas[i]</code>.</p>
+<p>You have a car with an unlimited gas tank and it costs  <code>cost[i]</code>  of gas to travel from station  _i_  to its next station (_i_+1). You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
+<p><strong>Note:</strong> </p>
+<ul>
+<li>If there exists a solution, it is guaranteed to be unique.</li>
+<li>Both input arrays are non-empty and have the same length.</li>
+<li>Each element in the input arrays is a non-negative integer.</li>
+</ul>
+</blockquote>
+<p>这题的主要目的是找到一个起点，使得车能够中间都有油地跑完。主要思路是：先尝试从0进去遍历试跑，如果到哪里（<code>i</code>）抛锚了就更换起点为<code>i+1</code>。</p>
+<p>其中一个重要的核心思想是：如果前面一段路程（如0~i）抛锚了，那么前面一段路程的后半部分子集（如k~i）一定会导致抛锚。道理很简单：既然0能到k，如果k也能到i的话，为什么最后会抛锚呢？这就导致了矛盾。</p>
+<p>需要设置几个记录变量：</p>
+<ol>
+<li><code>start</code>变量，记录起点信息</li>
+<li><code>remain</code>变量，记录当前车上剩下的油</li>
+<li><code>before</code>变量，记录最终确定的起点前路程所欠下的油。</li>
+</ol>
+<p>在遍历时需要进行的操作是：</p>
+<ol>
+<li>计算<code>remain = remain + gas[i] - cost[I];</code>。</li>
+<li>判断是否抛锚（<code>remain &lt; 0</code>），若抛锚了则将<code>remain</code>加入<code>before</code>作为欠下的债，<code>remain</code>置零；并把下一点作为起点（<code>start = i + 1;</code>）。</li>
+</ol>
+<p>最后需要判断一下到底能不能跑完：<code>return remain + before &gt;= 0 ? start : -1;</code>。</p>
+<h2 id="299-Bulls-and-Cows"><a href="#299-Bulls-and-Cows" class="headerlink" title="299. Bulls and Cows"></a>299. Bulls and Cows</h2><p>题目很好理解，在网上看到一个超级巧妙的算法，只需进行一次遍历：</p>
+<p>在遍历前，设置长度为10数组代表数字0~9（类似10个bucket）。首先，对于遍历到的这位，如果secret和guess相同，那就直接<code>bull++</code>没的说了。那么如果不相同，那么便进行比较，如果数组值<code>numbers[secret.charAt(i) - &#39;0&#39;] &lt; 0</code>或<code>numbers[guess.charAt(i) - &#39;0&#39;] &gt; 0</code>则<code>cows++</code>。</p>
+<p>那么进行这波骚比较的前提便是下面的关键思路：凡是碰到<code>secret</code>中的数，都给这个桶+1；凡是碰到<code>guess</code>中的数，都给这个桶-1。那么，如果这个桶&gt;0，说明碰到过<code>guess</code>中的数了，如果再碰次<code>secret</code>中的数，就能够识别出来了。</p>
+<p>可以说是“有借有还”，一借一还的过程就是一次心有灵犀。如果最后有没借没还的东西说明猜错了，啥都不是，也就别管它了。</p>
+<h2 id="274-H-Index"><a href="#274-H-Index" class="headerlink" title="274. H-Index"></a>274. H-Index</h2><blockquote>
+<p>Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.</p>
+<p>According to the  <a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="noopener">definition of h-index on Wikipedia</a>: “A scientist has index  _h_  if  _h_  of his/her  _N_  papers have  <strong>at least</strong>  _h_  citations each, and the other  _N − h_  papers have  <strong>no more than</strong>  _h_  citations each.”</p>
+</blockquote>
+<p>这题的目的是计算h指数。大概思路是：先建立长度为<code>citations.length + 1</code>的bucket数组，按照引用次数放到这些桶中；随后按照引用次数从大往小看这些桶，并累加总引用次数，当达到<code>count &gt;= i</code>时便返回桶值。</p>
+<h3 id="变式：275-H-Index-II"><a href="#变式：275-H-Index-II" class="headerlink" title="变式：275. H-Index II"></a>变式：275. H-Index II</h3><blockquote>
+<p>Given an array of citations  <strong>sorted in ascending order</strong> (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.</p>
+<ul>
+<li>This is a follow up problem to <a href="https://leetcode.com/problems/h-index/description/" target="_blank" rel="noopener">H-Index</a>, where  <code>citations</code>  is now guaranteed to be sorted in ascending order.</li>
+<li>Could you solve it in logarithmic time complexity?</li>
+</ul>
+</blockquote>
+<p>这题同样是计算h指数，但是因为所给的<code>citations</code>数组已经是升序排列了，因此可以使用二分查找法，在对数时间内完成。</p>
+<p>二分的基本循环步骤是：</p>
+<ol>
+<li>确定中心点：<code>mid = left + (right - left) / 2;</code></li>
+<li>修改边界<ul>
+<li>如果中心点的引用量高于<code>len - mid</code>值，修改右边界搜索左半边<br>  <code>if(citations[mid] &gt;= len - mid) right = mid - 1;</code></li>
+<li>如果中心点的引用量低于<code>len - mid</code>值，修改左边界搜索右半边<br>  <code>else    left = mid + 1;</code></li>
+</ul>
+</li>
+</ol>
+<p>经过循环后，最后返回值为<code>len-(right+1)</code>或<code>len-left</code>。</p>
+<h2 id="243-Shortest-Word-Distance"><a href="#243-Shortest-Word-Distance" class="headerlink" title="243. Shortest Word Distance"></a>243. Shortest Word Distance</h2><p>这题要求的是在一个（可能有重复的）单词数组中，两个给定的不同单词之间的最短距离。感觉很简单没啥好解释的，就直接贴代码吧应该之后也能看懂……</p>
+<pre><code>class Solution {
+    public int shortestDistance(String[] words, String word1, String word2) {
+        int p1 = -1, p2 = -1, min = Integer.MAX_VALUE;
+        for(int i = 0; i &lt; words.length; i++)
+        {
+            if(words[i].equals(word1))  p1 = i;
+            if(words[i].equals(word2))  p2 = i;
+            if(p1 != -1 &amp;&amp; p2 != -1)    min = Math.min(min, Math.abs(p1 - p2));
+        }
+        return min;
+    }
+}
+</code></pre><h3 id="变式：245-Shortest-Word-Distance-III"><a href="#变式：245-Shortest-Word-Distance-III" class="headerlink" title="变式：245. Shortest Word Distance III"></a>变式：245. Shortest Word Distance III</h3><p>上题变式，给定的两个单词有可能是相同的。这时只需要在第二个单词时讨论是否相同即可。</p>
+<pre><code>if(words[i].equals(word2))
+{
+    if(word1.equals(word2)) p1 = p2;
+    p2 = i;
+}
+</code></pre><h1 id="交换系列"><a href="#交换系列" class="headerlink" title="交换系列"></a>交换系列</h1><h2 id="189-Rotate-Array"><a href="#189-Rotate-Array" class="headerlink" title="189.  Rotate Array"></a>189.  Rotate Array</h2><blockquote>
+<p>Given an array, rotate the array to the right by _k_ steps, where _k_ is non-negative.</p>
+</blockquote>
+<p>最简单的方法实在太简单了。题目要求尝试使用O(1)的方法。看了讨论区看到一个有趣的（标准）解法，就是进行三次倒序：整段倒序、左段倒序、右段倒序。代码如下：</p>
+<pre><code>class Solution {
+    public void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    private void reverse(int[] nums, int start, int end)
+    {
+        int temp = 0;
+        while(start &lt; end)
+        {
+            temp = nums[start];
+            nums[start++] = nums[end];
+            nums[end--] = temp;
+        }
+    }
+}
+</code></pre><h2 id="41-First-Missing-Positive"><a href="#41-First-Missing-Positive" class="headerlink" title="41. First Missing Positive"></a>41. First Missing Positive</h2><blockquote>
+<p>Given an unsorted integer array, find the smallest missing positive integer.</p>
+</blockquote>
+<p>寻找第一个缺失的正整数。这是一道hard题，因为它的思路的确不太好想……但是明白思路后其实便很简单直接了。</p>
+<p>这题的主要思路是：既然要找到缺失的正整数，那我就把原来的矩阵进行元素交换一波，让每个整数<code>i</code>处于<code>nums[i-1]</code>位置上。这样在最后从左到右看一波，哪个没乖乖站在位置上（<code>nums[i-1]</code>上不是<code>i</code>），这个<code>i</code>就是所要找的数。</p>
+<p>这个交换过程是本体算法的核心，比较需要注意。首先交换的条件是：1. 不等（<code>nums[i] != i+1</code>）；2. <code>nums[i] &gt;= 1 &amp;&amp; nums[i] &lt;= n</code>，即有换的地方，不然数组都越界了我给您往哪搁啊是不；3. <code>nums[nums[i] - 1] != nums[i]</code>，即有换的必要，不然俩都相等了，再怎么移都改变不了惨烈现状了，您哪就等着被输出吧（如果没有更小的可输出数值）。</p>
+<p>然后要换的是哪两个数呢？是<code>nums[nums[i] - 1]</code>和<code>nums[i]</code>。为啥呢？因为<code>nums[i]</code>这数不在该在的位置吧，没事，我把你移过去，你该在的位置是<code>nums[nums[i] - 1]</code>，这样以此类推，把每个数都妥妥地安置好。</p>
+<p>整理下思路，代码如下所示：</p>
+<pre><code>class Solution {
+    public int firstMissingPositive(int[] nums) {
+        int i = 0;
+        int temp = 0;
+        int n = nums.length;
+        // 核心部分就是下面这段while循环
+        while(i &lt; n)
+        {
+            if(nums[i] != i+1 &amp;&amp; nums[i] &gt;= 1 &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[nums[i] - 1] != nums[i])
+            {
+                temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
+            else i++;
+        }
+        for(i = 0; i &lt; n; i++)
+        {
+            if(nums[i] != i+1)  return i+1;
+        }
+        return n+1;
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/02/D9/" rel="next" title="Special applications&#58; Face recognition & Neural style transfer">
+                <i class="fa fa-chevron-left"></i> Special applications&#58; Face recognition & Neural style transfer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Elements系列"><span class="nav-number">1.</span> <span class="nav-text">Remove Elements系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#27-Remove-Element"><span class="nav-number">1.1.</span> <span class="nav-text">27.  Remove Element</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变式1：26-Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.1.1.</span> <span class="nav-text">变式1：26. Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变式2：80-Remove-Duplicates-from-Sorted-Array-II"><span class="nav-number">1.1.2.</span> <span class="nav-text">变式2：80.  Remove Duplicates from Sorted Array II</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遍历系列"><span class="nav-number">2.</span> <span class="nav-text">遍历系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#277-Find-the-Celebrity"><span class="nav-number">2.1.</span> <span class="nav-text">277. Find the Celebrity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#134-Gas-Station"><span class="nav-number">2.2.</span> <span class="nav-text">134. Gas Station</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#299-Bulls-and-Cows"><span class="nav-number">2.3.</span> <span class="nav-text">299. Bulls and Cows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#274-H-Index"><span class="nav-number">2.4.</span> <span class="nav-text">274. H-Index</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变式：275-H-Index-II"><span class="nav-number">2.4.1.</span> <span class="nav-text">变式：275. H-Index II</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#243-Shortest-Word-Distance"><span class="nav-number">2.5.</span> <span class="nav-text">243. Shortest Word Distance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变式：245-Shortest-Word-Distance-III"><span class="nav-number">2.5.1.</span> <span class="nav-text">变式：245. Shortest Word Distance III</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交换系列"><span class="nav-number">3.</span> <span class="nav-text">交换系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#189-Rotate-Array"><span class="nav-number">3.1.</span> <span class="nav-text">189.  Rotate Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-First-Missing-Positive"><span class="nav-number">3.2.</span> <span class="nav-text">41. First Missing Positive</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
