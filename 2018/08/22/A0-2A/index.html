@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="匹配系列28. Implement strStr()这题的目的是字符串匹配。其实最科学的做法是KMP来着的。但是因为有点复杂就先把这方法搁置着吧…… 下面的方法作者自称“elegant”，看上去也很优雅。他通过进行尝试，分别设置i为长串中的匹配起点、j为短串中的当前遍历位置，进行逐步推进。在推进过程中，分别有以下三种情况：  j == needle.length()，说明短串当前位置已经走到终点，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据结构2A (Strings简单部分)">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/A0-2A/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="匹配系列28. Implement strStr()这题的目的是字符串匹配。其实最科学的做法是KMP来着的。但是因为有点复杂就先把这方法搁置着吧…… 下面的方法作者自称“elegant”，看上去也很优雅。他通过进行尝试，分别设置i为长串中的匹配起点、j为短串中的当前遍历位置，进行逐步推进。在推进过程中，分别有以下三种情况：  j == needle.length()，说明短串当前位置已经走到终点，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-22T15:57:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基本数据结构2A (Strings简单部分)">
+<meta name="twitter:description" content="匹配系列28. Implement strStr()这题的目的是字符串匹配。其实最科学的做法是KMP来着的。但是因为有点复杂就先把这方法搁置着吧…… 下面的方法作者自称“elegant”，看上去也很优雅。他通过进行尝试，分别设置i为长串中的匹配起点、j为短串中的当前遍历位置，进行逐步推进。在推进过程中，分别有以下三种情况：  j == needle.length()，说明短串当前位置已经走到终点，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/A0-2A/"/>
+
+
+
+
+
+  <title>基本数据结构2A (Strings简单部分) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/A0-2A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基本数据结构2A (Strings简单部分)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-22T00:00:00-04:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/22/A0-2A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/22/A0-2A/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="匹配系列"><a href="#匹配系列" class="headerlink" title="匹配系列"></a>匹配系列</h1><h2 id="28-Implement-strStr"><a href="#28-Implement-strStr" class="headerlink" title="28. Implement strStr()"></a>28. Implement strStr()</h2><p>这题的目的是字符串匹配。其实最科学的做法是KMP来着的。但是因为有点复杂就先把这方法搁置着吧……</p>
+<p>下面的方法作者自称“elegant”，看上去也很优雅。他通过进行尝试，分别设置<code>i</code>为长串中的匹配起点、<code>j</code>为短串中的当前遍历位置，进行逐步推进。在推进过程中，分别有以下三种情况：</p>
+<ol>
+<li><code>j == needle.length()</code>，说明短串当前位置已经走到终点，顺利遍历完成，可返回<code>i</code>为最终结果。</li>
+<li><code>i + j == haystack.length()</code>，说明一直看到长串的终点都还匹配不上，返回-1。</li>
+<li><code>haystack.charAt(i+j) != needle.charAt(j)</code>，当前没匹配上，长串匹配起点右移一格。</li>
+</ol>
+<p>代码如下所示：</p>
+<pre><code>class Solution {
+    public int strStr(String haystack, String needle) {
+        for(int i = 0;; i++)
+        {
+            for(int j = 0;; j++)
+            {
+                if(j == needle.length())    return i;
+                if(i + j == haystack.length())  return -1;
+                if(haystack.charAt(i+j) != needle.charAt(j))    break;
+            }
+        }
+    }
+}
+</code></pre><h2 id="14-Longest-Common-Prefix"><a href="#14-Longest-Common-Prefix" class="headerlink" title="14. Longest Common Prefix"></a>14. Longest Common Prefix</h2><blockquote>
+<p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string  <code>&quot;&quot;</code>.</p>
+</blockquote>
+<p>这题discussion里给出的做法相当没意思，有种方法用到了<code>subarray</code>自带函数简直作弊就算了。另一种方法将字符串数组先进行排序，然后只需依次比较第一个字符串和最后一个字符串的各个元素即可。</p>
+<p>代码如下，其实难点反而是java中StringBuilder的使用方法。</p>
+<pre><code>class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+        if(strs.length == 0)    return sb.toString();
+        Arrays.sort(strs);
+        char[] a = strs[0].toCharArray();
+        char[] b = strs[strs.length - 1].toCharArray();
+        for(int i = 0; i &lt; a.length; i++)
+        {
+            if(i &lt; b.length &amp;&amp; a[i] == b[i])    sb.append(a[i]);
+            else break;
+        }
+        return sb.toString();
+    }
+}
+</code></pre><h2 id="58-Length-of-Last-Word"><a href="#58-Length-of-Last-Word" class="headerlink" title="58. Length of Last Word"></a>58. Length of Last Word</h2><blockquote>
+<p>Given a string  _s_  consists of upper/lower-case alphabets and empty space characters  <code>&#39; &#39;</code>, return the length of last word in the string.</p>
+<p>If the last word does not exist, return 0.</p>
+<p><strong>Note:</strong>  A word is defined as a character sequence consists of non-space characters only.</p>
+</blockquote>
+<p>…… 从后往前看，先忽略掉最后面的空格，再一直看到最后一个词前面的空格为止。直接贴代码。</p>
+<pre><code>class Solution {
+    public int lengthOfLastWord(String s) {
+        int len = s.length();
+        if(len == 0)    return 0;
+        int count = 0;
+        while(s.charAt(len-1) == &apos; &apos; &amp;&amp; len &gt; 0)
+        {
+            len -= 1;
+            if(len == 0)    return 0;
+        }
+        for(int i = len-1; i &gt;= 0; i--)
+        {
+            if(s.charAt(i) == &apos; &apos;)   break;
+            count++;
+        }
+        return count;
+    }
+}
+</code></pre><h2 id="387-First-Unique-Character-in-a-String"><a href="#387-First-Unique-Character-in-a-String" class="headerlink" title="387. First Unique Character in a String"></a>387. First Unique Character in a String</h2><blockquote>
+<p>Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1.</p>
+</blockquote>
+<p>使用方法：设置26个字母桶，挨个往里放就行了。</p>
+<h2 id="383-Ransom-Note"><a href="#383-Ransom-Note" class="headerlink" title="383. Ransom Note"></a>383. Ransom Note</h2><blockquote>
+<p>Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.</p>
+<p>Each letter in the magazine string can only be used once in your<br>ransom note.</p>
+</blockquote>
+<p>这题跟上面一样，设置26个字母桶，先把magazine的内容挨个往里放，再把ransom的内容挨个拿出来。如果哪次没得拿就输出false了。</p>
+<h1 id="交换系列"><a href="#交换系列" class="headerlink" title="交换系列"></a>交换系列</h1><h2 id="344-Reverse-String"><a href="#344-Reverse-String" class="headerlink" title="344. Reverse String"></a>344. Reverse String</h2><blockquote>
+<p>Write a function that takes a string as input and returns the string reversed.</p>
+<p><strong>Example:</strong>   Given s = “hello”, return “olleh”.</p>
+</blockquote>
+<p>这题做法就是设置两个指针，一个从左往右、一个从右往左，然后逐对交换即可。</p>
+<h2 id="151-Reverse-Words-in-a-String"><a href="#151-Reverse-Words-in-a-String" class="headerlink" title="151. Reverse Words in a String"></a>151. Reverse Words in a String</h2><p>这题题意很好理解，就是把字符串中的单词翻转，并将空格处理成合理格式。主要采用几步操作：第一步，通过<code>reverse</code>函数把所有字符通通翻转；第二步，通过<code>reverseEachWord</code>函数进行单词内部翻转（其中需要调用<code>reverse</code>函数）；第三步，通过<code>cleanSpaces</code>函数把空格处理成合理格式。</p>
+<p>第一步和上一题所述方法一样，不再赘述。</p>
+<p>第二步，论<code>reverseEachWord</code>的实现（小剧场）：</p>
+<ul>
+<li><p>有两个好兄弟，一个叫<code>i</code>，一个叫<code>j</code>。<code>i</code>最喜欢空格，空格能给他十足的动力让他往前飞奔，否则他就精疲力尽；<code>j</code>和他刚好相反，空格会耗尽他的体力，在非空格的时候他才能向前奔跑。</p>
+</li>
+<li><p>这天，他们面对着重重阻碍，上面写的是“eulb_si_yks_eht”，他们想越过这些阻碍一起到达终点。最开始时，<code>j</code>看着这些字母满心欢喜，一下冲了出去，（通过多次<code>j++</code>）跑到了第一个空格处【第一次<code>while</code>循环，实现了“eulb”向“blue”的reverse】。</p>
+</li>
+<li><p>此时<code>i</code>在后面（<code>i&lt;j</code>）急得团团转，<code>j</code>面对这个空格也毫无办法。<code>j</code>说：“<code>i</code>，你过来吧！”说着伸出了自己的长手，（通过多次<code>i++</code>）把<code>i</code>一把拽了过来。<code>i</code>看着自己脚下的空格满心欢喜，瞬间向前蹦了一步，到达了“s”字母处。此时<code>j</code>在后面犯了难（<code>j&lt;i</code>），但<code>i</code>说：“兄弟，你帮了我一大把，我也把你拉过来吧！”于是<code>i</code>和<code>j</code>又回到了同一起点，他们同时站在了“s”的位置上。</p>
+</li>
+<li><p>就这样，<code>i</code>和<code>j</code>齐心协力。先在奇数次<code>while</code>循环内由<code>j</code>先跑到空格处，实现一次单词翻转；又在偶数次<code>while</code>循环内通过两人的相互帮助，回到同一字母起点。</p>
+</li>
+<li><p>代码如下所示：</p>
+<pre><code>private void reverseEachWord(char[] a, int n)
+{
+    int i = 0, j = 0;
+    while(i &lt; n)
+    {
+        while(i &lt; j || (i &lt; n &amp;&amp; a[i] == &apos; &apos;))  i++;
+        while(j &lt; i || (j &lt; n &amp;&amp; a[j] != &apos; &apos;))  j++;
+        reverse(a, i, j-1);
+    }
+}
+</code></pre></li>
+</ul>
+<p>第三步，清理空格。</p>
+<pre><code>private String cleanSpaces(char[] a, int n)
+{
+    int i = 0, j = 0;
+    while(j &lt; n &amp;&amp; a[j] == &apos; &apos;) j++;
+    while(j &lt; n)
+    {
+        while(j &lt; n &amp;&amp; a[j] != &apos; &apos;) a[i++] = a[j++];
+        while(j &lt; n &amp;&amp; a[j] == &apos; &apos;) j++;
+        if(j &lt; n)   a[i++] = &apos; &apos;;
+    }
+    return new String(a).substring(0, i);
+}
+</code></pre><p>这题步骤较多，指针处理较为繁杂，但是理解思路后一遍写出来还是很清晰的。</p>
+<h2 id="186-Reverse-Words-in-a-String-II"><a href="#186-Reverse-Words-in-a-String-II" class="headerlink" title="186. Reverse Words in a String II"></a>186. Reverse Words in a String II</h2><p>使用上题方法，这跟上题完全一样，甚至更加简单。</p>
+<h2 id="345-Reverse-Vowels-of-a-String"><a href="#345-Reverse-Vowels-of-a-String" class="headerlink" title="345. Reverse Vowels of a String"></a>345. Reverse Vowels of a String</h2><p>翻转元音字母。需要增加一步跳过非元音字母的操作，主要的新增语法有以下几个：</p>
+<ol>
+<li>建立元音目录：<code>String vowels = &quot;aeiouAEIOU&quot;;</code></li>
+<li><p>在交换循环中增加两行跳过的判断：</p>
+<pre><code>while(i &lt; j)
+{
+    while(i &lt; j &amp;&amp; !vowels.contains(chars[i] + &quot;&quot;))  i++;
+    while(i &lt; j &amp;&amp; !vowels.contains(chars[j] + &quot;&quot;))  j--;
+    char temp = chars[i];
+    chars[i++] = chars[j];
+    chars[j--] = temp;
+}
+</code></pre></li>
+</ol>
+<h1 id="结构系列"><a href="#结构系列" class="headerlink" title="结构系列"></a>结构系列</h1><h2 id="205-Isomorphic-Strings"><a href="#205-Isomorphic-Strings" class="headerlink" title="205.  Isomorphic Strings"></a>205.  Isomorphic Strings</h2><p>这题使用了一种之前比较少用的map方法，便是在<code>int[]</code>数组中使用字母当作索引的下标，数组内容当作字母的代号。在遍历过程中，如果这两个字母之前见过，且代号不符，则可随时输出false；否则为它们进行新的编号。</p>
+<pre><code>class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        int[] m1 = new int[256];
+        int[] m2 = new int[256];
+        int n = s.length();
+        for(int i = 0; i &lt; n; i++)
+        {
+            if(m1[s.charAt(i)] != m2[t.charAt(i)])  return false;
+            m1[s.charAt(i)] = i+1;
+            m2[t.charAt(i)] = i+1;
+        }
+        return true;
+    }
+}
+</code></pre><h2 id="290-Word-Pattern"><a href="#290-Word-Pattern" class="headerlink" title="290. Word Pattern"></a>290. Word Pattern</h2><blockquote>
+<p>Given a  <code>pattern</code>  and a string  <code>str</code>, find if  <code>str</code>  follows the<br>same pattern.</p>
+<p>Here  <strong>follow</strong>  means a full match, such that there is a bijection between a letter in  <code>pattern</code>  and a  <strong>non-empty</strong>  word in  <code>str</code>.</p>
+</blockquote>
+<p>这题和上题有些类似，但是其中一个匹配对象是字符串（单词）而不是字母，这使得我们无法使用上一题中的索引方式。</p>
+<p>在这题中，一个比较快捷的方式就是引入HashMap，即构造字符为“key”，单词为“Value”的一一对应关系。随后若有可比性（字符和单词的序列长度相同）则判断当前字符（Key）是否已经存入HashMap。</p>
+<ul>
+<li><p>若已经存入，则判断当前单词（Value）是否依照HashMap中的对应关系出现。若不是则直接输出<code>false</code>结果。</p>
+</li>
+<li><p>若尚未存入，则判断HashMap中是否已经有当前单词（Value）。若已经存入则直接输出<code>false</code>结果。</p>
+</li>
+</ul>
+<p>最后，若经过以上判断后没有差错，则可以直接输出<code>true</code>结果。</p>
+<p>总体代码如下所示：</p>
+<pre><code>class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] words = str.split(&quot; &quot;);
+        if(pattern.length() != words.length)  return false;
+
+        HashMap&lt;Character, String&gt; map = new HashMap&lt;Character, String&gt;();
+        for(int i = 0; i &lt; pattern.length(); i++)
+        {
+            char c = pattern.charAt(i);
+            if(map.containsKey(c))
+            {
+                if(!map.get(c).equals(words[i]))    return false;
+            }
+            else
+            {
+                if(map.containsValue(words[i]))     return false;
+                map.put(c, words[i]);
+            }
+        }
+        return true;
+    }
+}
+</code></pre><h2 id="242-Valid-Anagram"><a href="#242-Valid-Anagram" class="headerlink" title="242. Valid Anagram"></a>242. Valid Anagram</h2><p>判断两个单词是否是同字母异序词。大概想到的几种办法：第一就是放26个桶，然后看两边桶装的情况是否相等；第二就是建两个数组疯狂往里加字母，最后排序一下看数组是否相等。</p>
+<h3 id="变式：49-Group-Anagrams"><a href="#变式：49-Group-Anagrams" class="headerlink" title="变式：49. Group Anagrams"></a>变式：49. Group Anagrams</h3><p>这题需要将同字母异序词进行归类合并。采取的办法是建立一个由String到List的一个map。其中的String是经过排序后的单词（即由a到z排列的一个单词），List便是单词列表。</p>
+<p>按照这样的结构，key便是这个排过序的单词，value便是这个列表。如果key不存在就加进去，存在就把这个单词加到该key的value里。其中涉及到比较重要的函数便是<code>put()</code>和<code>get()</code>函数了：</p>
+<pre><code>if(!map.containsKey(keyStr))    map.put(keyStr, new ArrayList&lt;String&gt;());
+map.get(keyStr).add(s);
+</code></pre><h3 id="变式：249-Group-Shifted-Strings"><a href="#变式：249-Group-Shifted-Strings" class="headerlink" title="变式：249. Group Shifted Strings"></a>变式：249. Group Shifted Strings</h3><p>这题跟上面那题的方法一样，都是需要group。但是这题要求group的是“shifted strings”，即能够互相偏移的字符串。因此我想到的办法是对于每一个字符串都进行偏移，使得首字符都是‘a’，从而成为该字符串的key，随后的方法便和上题一样了。</p>
+<h2 id="161-One-Edit-Distance"><a href="#161-One-Edit-Distance" class="headerlink" title="161. One Edit Distance"></a>161. One Edit Distance</h2><blockquote>
+<p>Given two strings  <strong>_s_</strong> and  <strong>_t_</strong>, determine if they are both<br>one edit distance apart.</p>
+<p><strong>Note:</strong></p>
+<p>There are 3 possiblities to satisify one edit distance apart:</p>
+<ol>
+<li>Insert a character into  <strong>_s_</strong> to get <strong>_t_</strong></li>
+<li>Delete a character from <strong>_s_</strong> to get <strong>_t_</strong></li>
+<li>Replace a character of <strong>_s_</strong> to get <strong>_t_</strong></li>
+</ol>
+</blockquote>
+<p>这题需要判断两个字符串之间是否能够仅通过“one edit”便能达到完全相同（因此其实可以直接先判处字符串之间长度差距&gt;1的那些测试样例）。</p>
+<p>对于Note中的描述的情况，其实都可以寻找首次出现不同的字符位置<code>i</code>。对于第一种情况，需要判断字符串s的第<code>i</code>位之后的子串和字符串t的第<code>i+1</code>位之后的子串是否相同；对于第二种情况则恰好相反；对于第三种情况便需要判断两个字符串第<code>i+1</code>位之后的子串是否相同。</p>
+<p>而如果始终没有找到首次出现不同的字符位置，那么只能出现一种情况——两个字符串长度相差1（否则就是0 edits了也不行）。</p>
+<p>整体代码如下：</p>
+<pre><code>class Solution {
+    public boolean isOneEditDistance(String s, String t) {
+        if(Math.abs(s.length() - t.length()) &gt; 1)   return false;
+        for(int i = 0; i &lt; Math.min(s.length(), t.length()); i++)
+        {
+            if(s.charAt(i) != t.charAt(i))
+            {
+                if(s.length() == t.length())    return s.substring(i+1).equals(t.substring(i+1));
+                else if(s.length() &gt; t.length())    return s.substring(i+1).equals(t.substring(i));
+                else    return s.substring(i).equals(t.substring(i+1));
+            }
+        }
+        return Math.abs(s.length() - t.length()) == 1;
+    }
+}
+</code></pre><h2 id="38-Count-and-Say"><a href="#38-Count-and-Say" class="headerlink" title="38. Count and Say"></a>38. Count and Say</h2><p>这题因为十分无聊(?)而成功收获了3k+的反对……整题便是一个从小到大迭代累积的过程，整体代码如下。</p>
+<pre><code>class Solution {
+    public String countAndSay(int n) {
+        String str = &quot;1&quot;;
+        for(int i = 1; i &lt; n; i++)
+        {
+            int count = 1;
+            String temp = &quot;&quot;;
+            for(int j = 1; j &lt; str.length(); j++)
+            {
+                if(str.charAt(j) == str.charAt(j-1))
+                    count++;
+                else
+                {
+                    temp = temp + (char)(count + &apos;0&apos;) + str.charAt(j-1);
+                    count = 1;
+                }
+            }
+            str = temp + (char)(count + &apos;0&apos;) + str.charAt(str.length() - 1);
+        }
+        return str;
+    }
+}
+</code></pre><h1 id="回文系列"><a href="#回文系列" class="headerlink" title="回文系列"></a>回文系列</h1><h2 id="125-Valid-Palindrome"><a href="#125-Valid-Palindrome" class="headerlink" title="125. Valid Palindrome"></a>125. Valid Palindrome</h2><p>简单题，判断是否为回文语句。主要需要使用几个不太常用的函数。</p>
+<pre><code>class Solution {
+    public boolean isPalindrome(String s) {
+        int head = 0, tail = s.length() - 1;
+        while(head &lt; tail)
+        {
+            char cHead = s.charAt(head);
+            char cTail = s.charAt(tail);
+            if(Character.isLetterOrDigit(cHead) == false)   head++;
+            else if(Character.isLetterOrDigit(cTail) == false)  tail--;
+            else if(Character.toLowerCase(cHead) != Character.toLowerCase(cTail))   return false;
+            else
+            {
+                head++;
+                tail--;
+            }
+        }
+        return true;
+    }
+}
+</code></pre><h2 id="266-Palindrome-Permutation"><a href="#266-Palindrome-Permutation" class="headerlink" title="266.  Palindrome Permutation"></a>266.  Palindrome Permutation</h2><p>判断一个字符串中的所有字符是否能够组成回文序列。使用HashSet即可实现，思路很直接。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/04/A0-1A/" rel="next" title="基本数据结构1A (Arrays简单部分)">
+                <i class="fa fa-chevron-left"></i> 基本数据结构1A (Arrays简单部分)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#匹配系列"><span class="nav-number">1.</span> <span class="nav-text">匹配系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">1.1.</span> <span class="nav-text">28. Implement strStr()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Longest-Common-Prefix"><span class="nav-number">1.2.</span> <span class="nav-text">14. Longest Common Prefix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#58-Length-of-Last-Word"><span class="nav-number">1.3.</span> <span class="nav-text">58. Length of Last Word</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#387-First-Unique-Character-in-a-String"><span class="nav-number">1.4.</span> <span class="nav-text">387. First Unique Character in a String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#383-Ransom-Note"><span class="nav-number">1.5.</span> <span class="nav-text">383. Ransom Note</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交换系列"><span class="nav-number">2.</span> <span class="nav-text">交换系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#344-Reverse-String"><span class="nav-number">2.1.</span> <span class="nav-text">344. Reverse String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#151-Reverse-Words-in-a-String"><span class="nav-number">2.2.</span> <span class="nav-text">151. Reverse Words in a String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#186-Reverse-Words-in-a-String-II"><span class="nav-number">2.3.</span> <span class="nav-text">186. Reverse Words in a String II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#345-Reverse-Vowels-of-a-String"><span class="nav-number">2.4.</span> <span class="nav-text">345. Reverse Vowels of a String</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构系列"><span class="nav-number">3.</span> <span class="nav-text">结构系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#205-Isomorphic-Strings"><span class="nav-number">3.1.</span> <span class="nav-text">205.  Isomorphic Strings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#290-Word-Pattern"><span class="nav-number">3.2.</span> <span class="nav-text">290. Word Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#242-Valid-Anagram"><span class="nav-number">3.3.</span> <span class="nav-text">242. Valid Anagram</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变式：49-Group-Anagrams"><span class="nav-number">3.3.1.</span> <span class="nav-text">变式：49. Group Anagrams</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变式：249-Group-Shifted-Strings"><span class="nav-number">3.3.2.</span> <span class="nav-text">变式：249. Group Shifted Strings</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#161-One-Edit-Distance"><span class="nav-number">3.4.</span> <span class="nav-text">161. One Edit Distance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-number">3.5.</span> <span class="nav-text">38. Count and Say</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回文系列"><span class="nav-number">4.</span> <span class="nav-text">回文系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#125-Valid-Palindrome"><span class="nav-number">4.1.</span> <span class="nav-text">125. Valid Palindrome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#266-Palindrome-Permutation"><span class="nav-number">4.2.</span> <span class="nav-text">266.  Palindrome Permutation</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
