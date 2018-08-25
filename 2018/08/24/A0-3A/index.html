@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="翻转部分206. Reverse Linked List这题要求反转链表。思路大概有两种。经过实测，第一种代码长速度快、第二种代码段速度慢。 第一种方法：迭代实现。初始化时先设置好当前节点p和新的链表头newHead。随后进入迭代：  设置临时变量temp = p.next（以防当前p.next之后没有索引） 进行方向调换，即将p.next指向newHead。 向右移动，准备进行下一轮的变换： n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据结构3A (List简单部分)">
+<meta property="og:url" content="http://yoursite.com/2018/08/24/A0-3A/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="翻转部分206. Reverse Linked List这题要求反转链表。思路大概有两种。经过实测，第一种代码长速度快、第二种代码段速度慢。 第一种方法：迭代实现。初始化时先设置好当前节点p和新的链表头newHead。随后进入迭代：  设置临时变量temp = p.next（以防当前p.next之后没有索引） 进行方向调换，即将p.next指向newHead。 向右移动，准备进行下一轮的变换： n">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-25T01:29:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基本数据结构3A (List简单部分)">
+<meta name="twitter:description" content="翻转部分206. Reverse Linked List这题要求反转链表。思路大概有两种。经过实测，第一种代码长速度快、第二种代码段速度慢。 第一种方法：迭代实现。初始化时先设置好当前节点p和新的链表头newHead。随后进入迭代：  设置临时变量temp = p.next（以防当前p.next之后没有索引） 进行方向调换，即将p.next指向newHead。 向右移动，准备进行下一轮的变换： n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/24/A0-3A/"/>
+
+
+
+
+
+  <title>基本数据结构3A (List简单部分) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/A0-3A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基本数据结构3A (List简单部分)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T00:00:00-04:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/24/A0-3A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/24/A0-3A/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="翻转部分"><a href="#翻转部分" class="headerlink" title="翻转部分"></a>翻转部分</h1><h2 id="206-Reverse-Linked-List"><a href="#206-Reverse-Linked-List" class="headerlink" title="206. Reverse Linked List"></a>206. Reverse Linked List</h2><p>这题要求反转链表。思路大概有两种。经过实测，第一种代码长速度快、第二种代码段速度慢。</p>
+<p>第一种方法：迭代实现。初始化时先设置好当前节点<code>p</code>和新的链表头<code>newHead</code>。随后进入迭代：</p>
+<ol>
+<li>设置临时变量<code>temp = p.next</code>（以防当前<code>p.next</code>之后没有索引）</li>
+<li>进行方向调换，即将<code>p.next</code>指向<code>newHead</code>。</li>
+<li><p>向右移动，准备进行下一轮的变换：</p>
+<pre><code>newHead = p;
+p = temp;
+</code></pre></li>
+</ol>
+<p>完整代码如下所示：</p>
+<pre><code>class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null)   return head;
+        ListNode p = head;
+        ListNode newHead = null;
+        while(p != null)
+        {
+            ListNode temp = p.next;
+            p.next = newHead;
+            newHead = p;
+            p = temp;
+        }
+        return newHead;
+    }
+}
+</code></pre><p>这题虽然是个easy题，但是第二种方法（递归实现）还是比较折磨人的。主要步骤是以下几步：</p>
+<p>第一步，将指针迅速移到链表最后（倒数1、2位分别为<code>newHead</code>、<code>head</code>）。实现这一步实际上是通过递归的首步操作进行的，即如下代码片段：</p>
+<pre><code>class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null)   return head;
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+}
+</code></pre><p>第二步，进行位置调换。这里需要进行两步操作：</p>
+<pre><code>head.next.next = head;
+head.next = null;
+</code></pre><p>那么<code>head.next = null;</code>这步是否会影响下一层递归中<code>head.next.next = head;</code>的赋值过程呢？这个问题引用网上的<a href="https://blog.csdn.net/u012814856/article/details/73500654" target="_blank" rel="noopener">博客</a>分析如下：</p>
+<p>我们在每次递归中，处理的对象都是  <code>head-&gt;next</code>  这个对象，那么这个对象在这层递归过程中，就是一个局部变量而已，我们设置  <code>head-&gt;next-&gt;next</code>  的指向，并没有修改  <code>head-&gt;next</code>  的值哦，而是通过我们存储的局部变量  <code>head-&gt;next</code>  来寻找到我们需要改变的对象而已。</p>
+<p>所以说，因为每层递归之中的  <code>head-&gt;next</code>  的值都是相互不会影响的，所以  <code>head-&gt;next = nullptr</code>  的运行结果，就是我们期望看到的，整个链表的第一个节点的 next 指针被设置为空，此时返回正好达成题意。</p>
+<h2 id="92-Reverse-Linked-List-II"><a href="#92-Reverse-Linked-List-II" class="headerlink" title="92.  Reverse Linked List II"></a>92.  Reverse Linked List II</h2><p>这题要求翻转的是链表中其中一部分，因此在上题的基础上有所扩展，需要增加<code>cur</code>和<code>newEnd</code>变量。其中<code>cur</code>变量表示待翻转部分的前一个节点，<code>newEnd</code>变量代表待翻转部分的第一个节点（也是这部分翻转后的新终点）。</p>
+<p>之后的翻转步骤和上一题可谓是完全一样。翻转结束后分别将<code>newEnd</code>接到后半部分（原本是接到null）、将<code>cur</code>接到<code>newHead</code>上即可。</p>
+<p>代码如下所示：</p>
+<pre><code>class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy, newHead = null;
+        for(int i = 1; i &lt; m; i++)  cur = cur.next;
+        ListNode newEnd = cur.next, p = newEnd, temp = null;
+        for(int i = m; i &lt;= n; i++)
+        {
+            temp = p.next;
+            p.next = newHead;
+            newHead = p;
+            p = temp;
+        }
+        cur.next.next = p;
+        cur.next = newHead;
+        return dummy.next;
+    }
+}
+</code></pre><h2 id="24-Swap-Nodes-in-Pairs"><a href="#24-Swap-Nodes-in-Pairs" class="headerlink" title="24. Swap Nodes in Pairs"></a>24. Swap Nodes in Pairs</h2><p>这题属于第一题的变式题，需要两个两个地分别交换相邻的两个节点。同样也可以分别使用迭代和递归的方法进行解答。</p>
+<p>第一种方法依旧是迭代。不过因为这次的每波操作涉及到两个节点再附带上之前那个节点，所以在初始化过程中要先在链表的最前面加上一个辅助节点，随后便能进入迭代。</p>
+<p>在每轮迭代中，假设需要交换的两个节点分别是左节点和右节点，左节点之前的叫做先辈节点吧。在每次迭代开始时，我们只知道先辈节点和左节点，所以要首先赋值右节点。随后按顺序进行以下操作：</p>
+<ol>
+<li>左节点不指向右节点，指向右右节点（篡夺右节点的地位第一步）</li>
+<li>先辈节点不指向左节点，指向右节点（先辈钦定，把右节点往左拉）</li>
+<li>右节点不指向右右节点，指向左节点（右节点无奈让位，彻底归左）</li>
+</ol>
+<p>最后，为了能够使得迭代过程得以继续，需要为下一轮的迭代指定左节点和先辈节点。此时左节点右移后变成了下一轮的先辈节点，右右节点其实就是下一轮的左节点。这样的思路写下来如下所示：</p>
+<pre><code>class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head == null || head.next == null)   return head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode senpai = dummy;
+        ListNode left = head;
+        ListNode right;
+        while(left != null &amp;&amp; left.next != null)
+        {
+            right = left.next;
+            left.next = right.next;
+            senpai.next = right;
+            right.next = left;
+            senpai = left;
+            left = left.next;
+        }
+        return dummy.next;
+    }
+}
+</code></pre><p>第二种方法是递归遍历到链表末尾，然后先交换末尾两个，然后依次往前交换。代码非常简洁，但理解难度还是有一些的。</p>
+<p>同样也是先把指针移动到最后，再从后向前进行交换。代码如下所示（最好画画图比较明白）：</p>
+<pre><code>class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head == null || head.next == null)   return head;
+        ListNode t = head.next;
+        head.next = swapPairs(head.next.next);
+        t.next = head;
+        return t;
+    }
+}
+</code></pre><h2 id="328-Odd-Even-Linked-List"><a href="#328-Odd-Even-Linked-List" class="headerlink" title="328. Odd Even Linked List"></a>328. Odd Even Linked List</h2><p>这题需要将奇偶节点分类排序。自己想了一种比较直接的解法，需要事先记录奇数头节点（其实就是head）、奇数尾节点、偶数头节点、偶数尾节点，其中为了找到尾节点需要先遍历一遍链表。随后依次进行<code>p.next = p.next.next;</code>操作直到最后。最后将奇数尾节点和偶数头节点相连、偶数尾节点指向null即可。该方法比最快的方法仅慢了1ms，应该还算是比较直截了当的。</p>
+<h1 id="成环部分"><a href="#成环部分" class="headerlink" title="成环部分"></a>成环部分</h1><h2 id="141-Linked-List-Cycle"><a href="#141-Linked-List-Cycle" class="headerlink" title="141. Linked List Cycle"></a>141. Linked List Cycle</h2><p>确定链表里是否有环。这题是个很经典的快慢指针思路的题——一个快指针一次跑两格、一个慢指针一次跑一格。如果有成环那么它们总有一天会相遇。有了这个思路之后便十分简单了。</p>
+<pre><code>public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head == null || head.next == null)    return false;
+        ListNode slow = head;
+        ListNode fast = head;
+        while(slow.next != null &amp;&amp; fast.next != null &amp;&amp; fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast)    return true;
+        }
+        return false;
+    }
+}
+</code></pre><h2 id="142-Linked-List-Cycle-II"><a href="#142-Linked-List-Cycle-II" class="headerlink" title="142. Linked List Cycle II"></a>142. Linked List Cycle II</h2><p>这题属于紧接上题背景之后的一道题。需要找到相交点入口。这里需要再将慢指针置于链表头、快指针原地不动，二者重新开始以步数为1同时出发。（需要计算证明）</p>
+<h1 id="增删部分"><a href="#增删部分" class="headerlink" title="增删部分"></a>增删部分</h1><h2 id="237-Delete-Node-in-a-Linked-List"><a href="#237-Delete-Node-in-a-Linked-List" class="headerlink" title="237. Delete Node in a Linked List"></a>237. Delete Node in a Linked List</h2><p>并不需要解释。</p>
+<pre><code>class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
+</code></pre><h2 id="19-Remove-Nth-Node-From-End-of-List"><a href="#19-Remove-Nth-Node-From-End-of-List" class="headerlink" title="19. Remove Nth Node From End of List"></a>19. Remove Nth Node From End of List</h2><p>快慢指针思路，看到链表里的“Nth Node”就应该想到快慢指针。快指针先走N步，随后快慢指针一起往终点走，此时慢指针的指向便是“Nth Node”。然后remove过程就一行就行了。</p>
+<h2 id="中间跳过一些一些实在太简单的题"><a href="#中间跳过一些一些实在太简单的题" class="headerlink" title="中间跳过一些一些实在太简单的题"></a>中间跳过一些一些实在太简单的题</h2><ol start="83">
+<li><p>Remove Duplicates from Sorted List</p>
+</li>
+<li><p>Remove Linked List Elements</p>
+</li>
+</ol>
+<h2 id="82-Remove-Duplicates-from-Sorted-List-II"><a href="#82-Remove-Duplicates-from-Sorted-List-II" class="headerlink" title="82. Remove Duplicates from Sorted List II"></a>82. Remove Duplicates from Sorted List II</h2><p>这题也是得先放一个dummy，以防head的修改。设置<code>pre</code>指针先指向dummy，<code>cur</code>指针先指向head。</p>
+<p>然后核心步骤主要有以下几个：</p>
+<ol>
+<li>当<code>cur</code>的值和<code>cur</code>后一个节点的值相同时，疯狂将cur右移。这样就能将<code>cur</code>移到这一大堆重复数字的最后一个。为了实现这个操作需要使用while循环。</li>
+<li>判断这波操作中是否存在重复的数字，其实就是判断<code>cur</code>是否还能够乖乖待在原地，即是否还是<code>pre</code>的后继。如果乖乖呆在原地，那么把<code>pre</code>和<code>cur</code>分别推进一格就行；如果<code>cur</code>已经飞奔到了千里之外，那么就需要使用<code>pre.next = cur.next;</code>操作使得跳过中间的重复部分，最后还需要将<code>cur</code>向右移动一格。</li>
+</ol>
+<p>中间部分代码如下所示：</p>
+<pre><code>while(cur != null)
+{
+    while(cur.next != null &amp;&amp; cur.val == cur.next.val)  cur = cur.next;
+    if(pre.next == cur) pre = cur;
+    else    pre.next = cur.next;
+    cur = cur.next;
+}
+</code></pre><h1 id="加减计算部分"><a href="#加减计算部分" class="headerlink" title="加减计算部分"></a>加减计算部分</h1><h2 id="369-Plus-One-Linked-List"><a href="#369-Plus-One-Linked-List" class="headerlink" title="369. Plus One Linked List"></a>369. Plus One Linked List</h2><p>这题方法非常多样，大概比较直接的方法有两种，然后也有一种递归法比较简洁（但是递归感觉都比较不好一下子理解，所以先搁在这）。</p>
+<p>第一种方法便是翻转、相加、再翻转。这个方法需要调用翻转函数两次，因此看起来是比较费时的。</p>
+<p>第二种方法是比较巧妙的“找9法”，即找到右第一个非“9”数字，将其+1，并将后面的数字置0。当然也有一种情况是“全是9”，这种需要补一位就可以单独拿出来讨论了。</p>
+<p>第二种方法自己写的代码如下所示：</p>
+<pre><code>class Solution {
+    public ListNode plusOne(ListNode head) {
+        if(head == null)    return head;
+        ListNode dummy = new ListNode(1);
+        ListNode right = null, p = head;
+        while(p != null)
+        {
+            if(p.val != 9)  right = p;
+            p = p.next;
+        }
+        if(right != null)
+        {
+            right.val += 1;
+            while(right.next != null)
+            {
+                right = right.next;
+                right.val = 0;
+            }
+            return head;
+        }
+        else
+        {
+            ListNode q = head;
+            while(q != null)
+            {
+                q.val = 0;
+                q = q.next;
+            }
+            dummy.next = head;
+            return dummy;
+        }
+    }
+}
+</code></pre><h2 id="2-Add-Two-Numbers"><a href="#2-Add-Two-Numbers" class="headerlink" title="2. Add Two Numbers"></a>2. Add Two Numbers</h2><p>这题的思路十分直接，而且因为链表和数字本身就是倒序关系，因此并不存在需要翻转两次这样的操作，直接上去干就行。</p>
+<pre><code>class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int sum = 0;
+        ListNode dummy = new ListNode(0), res = dummy;
+        ListNode c1 = l1, c2 = l2;
+        while(c1 != null || c2 != null)
+        {
+            if(c1 != null)  sum += c1.val;
+            if(c2 != null)  sum += c2.val;
+            res.next = new ListNode(sum % 10);
+            res = res.next;
+            if(c1 != null) c1 = c1.next;
+            if(c2 != null) c2 = c2.next;
+            sum /= 10;
+        }
+        if(sum == 1)    res.next = new ListNode(1);
+        return dummy.next;
+    }
+}
+</code></pre><h1 id="其它部分"><a href="#其它部分" class="headerlink" title="其它部分"></a>其它部分</h1><h2 id="160-Intersection-of-Two-Linked-Lists"><a href="#160-Intersection-of-Two-Linked-Lists" class="headerlink" title="160. Intersection of Two Linked Lists"></a>160. Intersection of Two Linked Lists</h2><p>这题其实主要就是思路问题。要寻找两个链表A和B的交点，一个巧妙的思路就是把B和A分别接到A和B的后面，然后看到第一个重合的节点就是交点。</p>
+<p>为了进行这波操作，需要将listA和listB指针同时向右移动，发现相等便返回结束程序。那么如何把B和A分别接到A和B的后面呢？这时当我们发现listA和listB中有一个是null时，便把它们接上去即可。</p>
+<p>程序代码如下：</p>
+<pre><code>public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode listA = headA, listB = headB;
+        while(listA != null &amp;&amp; listB != null)
+        {
+            if(listA == listB)  return listA;
+            listA = listA.next;
+            listB = listB.next;
+            if(listA == listB)  return listA;
+            if(listA == null)   listA = headB;
+            if(listB == null)   listB = headA;
+        }
+        return null;
+    }
+}
+</code></pre><h2 id="21-Merge-Two-Sorted-Lists"><a href="#21-Merge-Two-Sorted-Lists" class="headerlink" title="21. Merge Two Sorted Lists"></a>21. Merge Two Sorted Lists</h2><p>这题一个巧妙的方法就是递归。递归依旧不好用文字解释，但是对着代码画图就会思路比较清楚了。</p>
+<pre><code>class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null)  return l2;
+        if(l2 == null)  return l1;
+        if(l1.val &lt; l2.val) 
+        {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        }
+        else
+        {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
+    }
+}
+</code></pre><h1 id="提高综合部分"><a href="#提高综合部分" class="headerlink" title="提高综合部分"></a>提高综合部分</h1><h2 id="234-Palindrome-Linked-List"><a href="#234-Palindrome-Linked-List" class="headerlink" title="234. Palindrome Linked List"></a>234. Palindrome Linked List</h2><blockquote>
+<p>Given a singly linked list, determine if it is a palindrome.</p>
+</blockquote>
+<p>这题其实是之前很多题的综合，几个思路：1. 快慢指针找中点、2. 中点后链表部分翻转、3. 依次比对中点前后的链表值是否相等。</p>
+<p>其中1. 快慢指针找中点的代码如下所示：</p>
+<pre><code>if(head == null || head.next == null)   return true;
+ListNode slow = head, fast = head;
+while(fast.next != null &amp;&amp; fast.next.next != null)
+{
+    slow = slow.next;
+    fast = fast.next.next;
+}
+</code></pre><p>其中2. 中点后链表部分翻转的代码如下所示：</p>
+<pre><code>ListNode p = slow.next, pre = head, newHead = null, temp = null;
+while(p != null)
+{
+    temp = p.next;
+    p.next = newHead;
+    newHead = p;
+    p = temp;
+}
+slow.next = newHead;
+</code></pre><p>其中3. 依次比对中点前后的链表值是否相等的代码如下所示：</p>
+<pre><code>while(newHead != null)
+{
+    if(pre.val != newHead.val)  return false;
+    pre = pre.next;
+    newHead = newHead.next;
+}
+return true;
+</code></pre><h2 id="143-Reorder-List"><a href="#143-Reorder-List" class="headerlink" title="143. Reorder List"></a>143. Reorder List</h2><p>三个部分结合：快慢指针找中点、后半部分翻转、依次连接。其中依次连接部分如下所示：</p>
+<pre><code>ListNode first = head, second = newHead, temp1 = null, temp2 = null;
+while(second != null)
+{
+    temp1 = first.next;
+    first.next = second;
+    temp2 = second.next;
+    second.next = temp1;
+    first = temp1;
+    second = temp2;
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/22/A0-2A/" rel="next" title="基本数据结构2A (Strings简单部分)">
+                <i class="fa fa-chevron-left"></i> 基本数据结构2A (Strings简单部分)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#翻转部分"><span class="nav-number">1.</span> <span class="nav-text">翻转部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#206-Reverse-Linked-List"><span class="nav-number">1.1.</span> <span class="nav-text">206. Reverse Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#92-Reverse-Linked-List-II"><span class="nav-number">1.2.</span> <span class="nav-text">92.  Reverse Linked List II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-Swap-Nodes-in-Pairs"><span class="nav-number">1.3.</span> <span class="nav-text">24. Swap Nodes in Pairs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#328-Odd-Even-Linked-List"><span class="nav-number">1.4.</span> <span class="nav-text">328. Odd Even Linked List</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成环部分"><span class="nav-number">2.</span> <span class="nav-text">成环部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#141-Linked-List-Cycle"><span class="nav-number">2.1.</span> <span class="nav-text">141. Linked List Cycle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#142-Linked-List-Cycle-II"><span class="nav-number">2.2.</span> <span class="nav-text">142. Linked List Cycle II</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增删部分"><span class="nav-number">3.</span> <span class="nav-text">增删部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#237-Delete-Node-in-a-Linked-List"><span class="nav-number">3.1.</span> <span class="nav-text">237. Delete Node in a Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-Remove-Nth-Node-From-End-of-List"><span class="nav-number">3.2.</span> <span class="nav-text">19. Remove Nth Node From End of List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间跳过一些一些实在太简单的题"><span class="nav-number">3.3.</span> <span class="nav-text">中间跳过一些一些实在太简单的题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#82-Remove-Duplicates-from-Sorted-List-II"><span class="nav-number">3.4.</span> <span class="nav-text">82. Remove Duplicates from Sorted List II</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加减计算部分"><span class="nav-number">4.</span> <span class="nav-text">加减计算部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#369-Plus-One-Linked-List"><span class="nav-number">4.1.</span> <span class="nav-text">369. Plus One Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Add-Two-Numbers"><span class="nav-number">4.2.</span> <span class="nav-text">2. Add Two Numbers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它部分"><span class="nav-number">5.</span> <span class="nav-text">其它部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#160-Intersection-of-Two-Linked-Lists"><span class="nav-number">5.1.</span> <span class="nav-text">160. Intersection of Two Linked Lists</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-Merge-Two-Sorted-Lists"><span class="nav-number">5.2.</span> <span class="nav-text">21. Merge Two Sorted Lists</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提高综合部分"><span class="nav-number">6.</span> <span class="nav-text">提高综合部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#234-Palindrome-Linked-List"><span class="nav-number">6.1.</span> <span class="nav-text">234. Palindrome Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#143-Reorder-List"><span class="nav-number">6.2.</span> <span class="nav-text">143. Reorder List</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
