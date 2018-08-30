@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="70. Climbing Stairs动态规划还有一类有趣的题，便是将较大的问题分解为较小问题。例如这题：  You are climbing a stair case. It takes  _n_  steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming (从Climbing Stairs开始的基本动态规划)">
+<meta property="og:url" content="http://yoursite.com/2018/08/30/A1-A/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="70. Climbing Stairs动态规划还有一类有趣的题，便是将较大的问题分解为较小问题。例如这题：  You are climbing a stair case. It takes  _n_  steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-30T22:54:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dynamic Programming (从Climbing Stairs开始的基本动态规划)">
+<meta name="twitter:description" content="70. Climbing Stairs动态规划还有一类有趣的题，便是将较大的问题分解为较小问题。例如这题：  You are climbing a stair case. It takes  _n_  steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/30/A1-A/"/>
+
+
+
+
+
+  <title>Dynamic Programming (从Climbing Stairs开始的基本动态规划) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/A1-A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dynamic Programming (从Climbing Stairs开始的基本动态规划)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-30T00:00:00-04:00">
+                2018-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/A1-A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/30/A1-A/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h1><p>动态规划还有一类有趣的题，便是将较大的问题分解为较小问题。例如这题：</p>
+<blockquote>
+<p>You are climbing a stair case. It takes  _n_  steps to reach to the top.</p>
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<p><strong>Note:</strong>  Given  _n_  will be a positive integer.</p>
+</blockquote>
+<p>这题的思路便是最基本的拆分。例如，我的台阶有10级，那么跳到第10级的方法数其实便是跳到第8级后再跳2级和跳到第9级后再跳1级的方法数之和。依此类推，递推公式为：</p>
+<p><code>res[i] = res[i - 1] + res[i - 2];</code></p>
+<p>那么，一步步向前递推，只需要人为为<code>res[0]</code>和<code>res[1]</code>赋值，那么整个递推链便成功完成。<br>本题核心代码为递推公式，完整代码如下所示：</p>
+<pre><code>class Solution {
+    public int climbStairs(int n) {
+        int[] res = new int [n];
+        if(n == 0)  return 0;
+        if(n == 1)  return 1;
+        if(n == 2)  return 2;
+        res[0] = 1;
+        res[1] = 2;
+        for(int i = 2; i &lt; n; i++)
+        {
+            res[i] = res[i - 1] + res[i - 2];
+        }
+        return res[n - 1];
+       }
+}
+</code></pre><h1 id="变式题——746-Min-Cost-Climbing-Stairs"><a href="#变式题——746-Min-Cost-Climbing-Stairs" class="headerlink" title="变式题——746. Min Cost Climbing Stairs"></a>变式题——746. Min Cost Climbing Stairs</h1><blockquote>
+<p>On a staircase, the  <code>i</code>-th step has some non-negative cost  <code>cost[i]</code>assigned (0 indexed).</p>
+<p>Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.</p>
+</blockquote>
+<p>在这题里，每一步的爬升增加了代价，我们需要求取爬到顶端的最小代价。</p>
+<p>同样对问题进行拆分，我们需要逆推求取到达每一级所需要的最小代价。那么递推公式便如下所示：</p>
+<pre><code>localSumCost[i] = Math.min(localSumCost[i-1] + cost[i-1], localSumCost[i-2] + cost[i-2]);
+</code></pre><p>而递推的起点便是<code>localSumCost[0]</code>和<code>localSumCost[1]</code>，按照题意它们都是0。于是完整代码如下所示。</p>
+<pre><code>class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int[] localSumCost = new int [cost.length + 1];
+        localSumCost[0] = 0;
+        localSumCost[1] = 0;
+        for(int i = 2; i &lt; cost.length + 1; i++)
+        {
+            localSumCost[i] = Math.min(localSumCost[i-1] + cost[i-1], localSumCost[i-2] + cost[i-2]);
+        }
+        return localSumCost[cost.length];
+    }
+}
+</code></pre><p>需要注意的是开设的数组长度是<code>cost.length + 1</code>，因为需要考虑第0级台阶，因此总的台阶数需要+1。</p>
+<h1 id="变式题——二维场景？其实还是一维哒！"><a href="#变式题——二维场景？其实还是一维哒！" class="headerlink" title="变式题——二维场景？其实还是一维哒！"></a>变式题——二维场景？其实还是一维哒！</h1><h2 id="62-Unique-Paths"><a href="#62-Unique-Paths" class="headerlink" title="62. Unique Paths"></a>62. Unique Paths</h2><p>啊，变成二维了，一次一步，同样的道理。简单一句，<code>dp[i][j] = dp[i-1][j] + dp[i][j-1]</code>。</p>
+<h2 id="63-Unique-Paths-II"><a href="#63-Unique-Paths-II" class="headerlink" title="63. Unique Paths II"></a>63. Unique Paths II</h2><p>在这题中，原始的二维空间里多了一个障碍物。为了简化代码，我们先对上题的空间进行一个优化：对于起点到点(i,j)的路径总数：<code>ways[j]</code>= 起点到点<code>(i-1, j)</code>的路径总数：<code>ways[j] + 起点到点(i, j-1)的路径总数 ways[j-1]</code>，于是我们就得到递推式：<code>ways[j] = ways[j] + ways[j-1]</code>。这样依次看每一行，每行结果累积，就不需要设置二维矩阵了。</p>
+<p>那么本题循环中的核心部分便成为：</p>
+<pre><code>if(obstacleGrid[i][j] == 1) dp[j] = 0;
+else    if(j &gt; 0)   dp[j] = dp[j] + dp[j - 1];
+</code></pre><p>因此，其实这题和上题都可以化成一维情况。</p>
+<h2 id="120-Triangle"><a href="#120-Triangle" class="headerlink" title="120. Triangle"></a>120. Triangle</h2><blockquote>
+<p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
+</blockquote>
+<p>看起来是三角，其实还是可以化成一维的题。因为这题从下到上，每次都只需要看一层的情况，还不需要回头，所以把结果直接累计一波上来就行。</p>
+<p>设置一个一维数组<code>dp</code>，为了减少初始化的代码量可以将<code>dp</code>长度多开一个（相当于给三角形的底端多加了一层全0）。于是核心公式便是：</p>
+<pre><code>dp[j] = Math.min(dp[j], dp[j+1]) + triangle.get(i).get(j);
+</code></pre><p>意思便是，在这一层，第<code>j</code>个元素的累积和等于下一层第<code>j</code>或第<code>j+1</code>个元素的累积和+本层第<code>j</code>个元素。具体选哪一个，就按照题目要求，挑最小的那个就行。</p>
+<h1 id="变式题——看上去不那么直接"><a href="#变式题——看上去不那么直接" class="headerlink" title="变式题——看上去不那么直接"></a>变式题——看上去不那么直接</h1><h2 id="279-Perfect-Squares"><a href="#279-Perfect-Squares" class="headerlink" title="279. Perfect Squares"></a>279. Perfect Squares</h2><blockquote>
+<p>Given a positive integer  _n_, find the least number of perfect square numbers (for example,  <code>1, 4, 9, 16, ...</code>) which sum to  _n_.</p>
+</blockquote>
+<p>嗯，求组成某个数的最少完全平方数个数。先假设每个数只能由1组成，再从小到大依次来看，试着减去可减的平方数，来找到最为科学的组合：</p>
+<pre><code>num[i] = Math.min(num[i], num[i - j * j] + 1);
+</code></pre><h2 id="322-Coin-Change"><a href="#322-Coin-Change" class="headerlink" title="322. Coin Change"></a>322. Coin Change</h2><blockquote>
+<p>You are given coins of different denominations and a total amount of money _amount_. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.</p>
+</blockquote>
+<p>这题跟上题（279. Perfect Squares）真的很相似了……因为核心代码同样是：</p>
+<pre><code>dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+</code></pre><p>但是还是有些不同的。主要的不同在于coins数组中的排列顺序并不是按照数字大小顺序排列的，因此还需要进行一波操作：首先，对于<code>dp</code>数组的初始化，因为最终需要求最小值，所以初始的数据应该是越大越好，在java中可以设置为<code>Integer.MAX_VALUE</code>；其次，对于核心代码的更新，是需要设置条件的：需要金额起码得达到这枚硬币的面值、<code>dp[i - coins[j]]</code>不是<code>Integer.MAX_VALUE</code>（不然这波更新就毫无意义了，还会溢出到负数hhh），归纳成代码便是：</p>
+<pre><code>if(i - coins[j] &gt;= 0 &amp;&amp; dp[i - coins[j]] != Integer.MAX_VALUE)
+</code></pre><p>于是整体代码便是：</p>
+<pre><code>class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int [amount + 1];
+        for(int i = 1; i &lt;= amount; i++)
+        {
+            dp[i] = Integer.MAX_VALUE;
+            for(int j = 0; j &lt; coins.length; j++)
+            {
+                if(i - coins[j] &gt;= 0 &amp;&amp; dp[i - coins[j]] != Integer.MAX_VALUE)
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+            }
+        }
+        if(dp[amount] == Integer.MAX_VALUE || dp[amount] &lt; 0)  return -1;
+        return dp[amount];
+    }
+}
+</code></pre><h2 id="139-Word-Break"><a href="#139-Word-Break" class="headerlink" title="139.  Word Break"></a>139.  Word Break</h2><blockquote>
+<p>Given a  <strong>non-empty</strong>  string  _s_  and a dictionary  _wordDict_<br>containing a list of  <strong>non-empty</strong>  words, determine if  _s_  can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The same word in the dictionary may be reused multiple times in the segmentation.</li>
+<li>You may assume the dictionary does not contain duplicate words.</li>
+</ul>
+</blockquote>
+<p>这题的主要目标是看字符串是否能够被拆分为词典中的词的组合。按照动态规划的思路，我们将从左到右按字符依次查看。设置一个一维数组<code>dp</code>，为了减小代码量跟之前一样把长度多开一个（<code>dp[0]</code>记为true）。</p>
+<p>看的顺序大概是这样：先以第1个字母为词语终点，即只看第1个字母，如果在词典里就记为true，否则记为false；再以第2个字母为词语终点，即看第1~2、第2个字母分别组成的两个词……【其中，第1~2个字母组成的词如果在词典里就记为true，否则记为false；而第2个字母组成的词要记为true需要什么条件呢？那就是它之前的true了，它自己也要在词典里，具体公式如下所示：】</p>
+<pre><code>if(dp[j] == true &amp;&amp; wordDict.contains(tmp)) dp[i] = true;
+</code></pre><p>其中<code>i</code>便是外循环，即词语终点；<code>j</code>为内循环，即词语起点。</p>
+<h2 id="看起来不太友善（312-amp-375）"><a href="#看起来不太友善（312-amp-375）" class="headerlink" title="看起来不太友善（312&amp;375）"></a>看起来不太友善（312&amp;375）</h2><h1 id="256-Paint-House"><a href="#256-Paint-House" class="headerlink" title="256. Paint House"></a>256. Paint House</h1><blockquote>
+<p>There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.</p>
+<p>The cost of painting each house with a certain color is represented by a <code>n x 3</code> cost matrix. For example,<code>costs[0][0]</code> is the cost of painting house 0 with color red; <code>costs[1][2]</code> is the cost of painting house 1 with color green, and so on… Find the minimum cost to paint all houses.</p>
+<p>Note:   All costs are positive integers.</p>
+</blockquote>
+<p>这是一个<strong>二维</strong>的动态规划问题（真的来到二维了）。第一维是房子编号、第二维是颜色编号。每个房子的染色代价可以这样计算：如果当前房子染红色的话，最小代价将是上一个房子的绿色和蓝色的最小代价+当前房子染红色的代价，对另外两种颜色也是如此。因此核心代码便是：</p>
+<pre><code>dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + costs[i][0];
+dp[i][1] = min(dp[i-1][0], dp[i-1][2]) + costs[i][1];
+dp[i][2] = min(dp[i-1][0], dp[i-1][1]) + costs[i][2];
+</code></pre><h2 id="265-Paint-House-II（五颜六色）"><a href="#265-Paint-House-II（五颜六色）" class="headerlink" title="265. Paint House II（五颜六色）"></a>265. Paint House II（五颜六色）</h2><p>如果把上题中的3种颜色换成k种，难度就从easy突增为hard了。</p>
+<p>。。。</p>
+<h1 id="变式题"><a href="#变式题" class="headerlink" title="变式题"></a>变式题</h1><h2 id="64-Minimum-Path-Sum"><a href="#64-Minimum-Path-Sum" class="headerlink" title="64. Minimum Path Sum"></a>64. Minimum Path Sum</h2><p>做完前面的题，这题就太简单了，一遍就能写对。。。</p>
+<p>复习补充：以下代码称为“我也会写骚代码”。</p>
+<pre><code>class Solution {
+    public int minPathSum(int[][] grid) {
+        for(int i = 0; i &lt; grid.length; i++)
+            for(int j = 0; j &lt; grid[0].length; j++)
+                grid[i][j] += (i == 0 &amp;&amp; j == 0 ? 0 :Math.min((i == 0 ? Integer.MAX_VALUE : grid[i-1][j]), (j == 0 ? Integer.MAX_VALUE : grid[i][j-1])));
+        return grid[grid.length-1][grid[0].length - 1];
+    }
+}
+</code></pre><p>也许骚代码的一个特征就是尽量少用大括号尽量少行数吧（然而还是两层循环啊喂！）……</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/24/A0-3A/" rel="next" title="基本数据结构3A (List简单部分)">
+                <i class="fa fa-chevron-left"></i> 基本数据结构3A (List简单部分)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#70-Climbing-Stairs"><span class="nav-number">1.</span> <span class="nav-text">70. Climbing Stairs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变式题——746-Min-Cost-Climbing-Stairs"><span class="nav-number">2.</span> <span class="nav-text">变式题——746. Min Cost Climbing Stairs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变式题——二维场景？其实还是一维哒！"><span class="nav-number">3.</span> <span class="nav-text">变式题——二维场景？其实还是一维哒！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#62-Unique-Paths"><span class="nav-number">3.1.</span> <span class="nav-text">62. Unique Paths</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-Unique-Paths-II"><span class="nav-number">3.2.</span> <span class="nav-text">63. Unique Paths II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#120-Triangle"><span class="nav-number">3.3.</span> <span class="nav-text">120. Triangle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变式题——看上去不那么直接"><span class="nav-number">4.</span> <span class="nav-text">变式题——看上去不那么直接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#279-Perfect-Squares"><span class="nav-number">4.1.</span> <span class="nav-text">279. Perfect Squares</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#322-Coin-Change"><span class="nav-number">4.2.</span> <span class="nav-text">322. Coin Change</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#139-Word-Break"><span class="nav-number">4.3.</span> <span class="nav-text">139.  Word Break</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看起来不太友善（312-amp-375）"><span class="nav-number">4.4.</span> <span class="nav-text">看起来不太友善（312&amp;375）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#256-Paint-House"><span class="nav-number">5.</span> <span class="nav-text">256. Paint House</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#265-Paint-House-II（五颜六色）"><span class="nav-number">5.1.</span> <span class="nav-text">265. Paint House II（五颜六色）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变式题"><span class="nav-number">6.</span> <span class="nav-text">变式题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#64-Minimum-Path-Sum"><span class="nav-number">6.1.</span> <span class="nav-text">64. Minimum Path Sum</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
