@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="278. First Bad Version最基本的二分查找问题。需要注意的点有两个。第一，求中点时使用mid = left + (right - left) / 2;以防溢出；第二，left = mid + 1;。 public class Solution extends VersionControl {     public int firstBadVersion(int n) {">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Binary Search (基本部分)">
+<meta property="og:url" content="http://yoursite.com/2018/09/02/A3-A/index.html">
+<meta property="og:site_name" content="Zikun’s space">
+<meta property="og:description" content="278. First Bad Version最基本的二分查找问题。需要注意的点有两个。第一，求中点时使用mid = left + (right - left) / 2;以防溢出；第二，left = mid + 1;。 public class Solution extends VersionControl {     public int firstBadVersion(int n) {">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-02T05:34:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Binary Search (基本部分)">
+<meta name="twitter:description" content="278. First Bad Version最基本的二分查找问题。需要注意的点有两个。第一，求中点时使用mid = left + (right - left) / 2;以防溢出；第二，left = mid + 1;。 public class Solution extends VersionControl {     public int firstBadVersion(int n) {">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/02/A3-A/"/>
+
+
+
+
+
+  <title>Binary Search (基本部分) | Zikun’s space</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zikun’s space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home (首页)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About (关于我)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories (分类)
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archive (档案)
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/A3-A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zikun Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zikun’s space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Binary Search (基本部分)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00-04:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/02/A3-A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/02/A3-A/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="278-First-Bad-Version"><a href="#278-First-Bad-Version" class="headerlink" title="278. First Bad Version"></a>278. First Bad Version</h2><p>最基本的二分查找问题。需要注意的点有两个。第一，求中点时使用<code>mid = left + (right - left) / 2;</code>以防溢出；第二，<code>left = mid + 1;</code>。</p>
+<pre><code>public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int left = 1, right = n;
+        int mid = left + (right - left) / 2;
+        while(left &lt; right)
+        {
+            if(isBadVersion(mid) == true)
+                right = mid;
+            else
+                left = mid + 1;
+            mid = left + (right - left) / 2;
+        }
+        return left;    // left right mid allOK
+    }
+}
+</code></pre><h2 id="35-Search-Insert-Position"><a href="#35-Search-Insert-Position" class="headerlink" title="35. Search Insert Position"></a>35. Search Insert Position</h2><p>这题也是同样的套路。需要注意两个特殊环节：一是最后一个数字如果还不到<code>target</code>时，可以直接输出<code>nums.length</code>；二是进行循环时如果发现<code>nums[mid] == target</code>时，可以直接输出<code>mid</code>。</p>
+<h2 id="33-Search-in-Rotated-Sorted-Array"><a href="#33-Search-in-Rotated-Sorted-Array" class="headerlink" title="**33. Search in Rotated Sorted Array"></a>**33. Search in Rotated Sorted Array</h2><h3 id="正常解法"><a href="#正常解法" class="headerlink" title="正常解法"></a>正常解法</h3><p>两次二分查找，三次最佳击败96.29%。第一次查找出中间的切分点【万分注意见153题】，第二次查找出需要的下标。注意第二次查找时应该设置<code>while(left &lt;= right)</code>，以防单元素数组直接跳过循环输出-1。</p>
+<h3 id="Tricky解法"><a href="#Tricky解法" class="headerlink" title="Tricky解法"></a>Tricky解法</h3><p>这题还有一个特别特别tricky的解法，三次最佳击败也是96.29%，但是特别特别容易出错。</p>
+<p>首先，我们的左右坐标要设置成<code>int left = 0, right = nums.length;</code>【万分注意！】</p>
+<p>其次，我们设置一个“比较数”，先初始化为<code>nums[mid]</code>，但还不一定是<code>nums[mid]</code>。我们要看<code>nums[mid]</code>和<code>target</code>是不是在切分线的同一半边【万分注意！<code>if((nums[mid] &lt; nums[0]) != (target &lt; nums[0]))</code>必须用小于号或者大于等于号！不能用大于号或者小于等于号！（记住<strong>左&gt;中&gt;右</strong>）】。如果是就直接进行常规比较，如果不是就将“比较数”设为正或负无穷【同样万分注意！必须用小于号或者大于等于号！】。</p>
+<p>随后的比较便是“比较数”和目标值的常规比较了……</p>
+<h2 id="81-Search-in-Rotated-Sorted-Array-II"><a href="#81-Search-in-Rotated-Sorted-Array-II" class="headerlink" title="*81.  Search in Rotated Sorted Array II"></a><em>*</em>81.  Search in Rotated Sorted Array II</h2><p>这题加入了重复项，就变得更加复杂了。需要增加的一个判断是中间值切分开的两个部分哪个是sorted，然后如果target在sorted部分的范围内就把搜索范围缩小到sorted部分里进行二分，否则就在unsorted部分里进行二分搜索。</p>
+<pre><code>class Solution {
+    public boolean search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while(left &lt;= right)
+        {
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target)     return true;
+            if(nums[mid] &lt; nums[right] || nums[mid] &lt; nums[left])
+            {
+                if(nums[mid] &lt; target &amp;&amp; nums[right] &gt;= target)
+                    left = mid + 1;
+                else    right = mid - 1;
+            }
+            else if(nums[mid] &gt; nums[right] || nums[mid] &gt; nums[left])
+            {
+                if(nums[mid] &gt; target &amp;&amp; nums[left] &lt;= target)
+                    right = mid - 1;
+                else    left = mid + 1;
+            }
+            else left++;
+        }
+        return false;
+    }
+}
+</code></pre><h2 id="153-Find-Minimum-in-Rotated-Sorted-Array"><a href="#153-Find-Minimum-in-Rotated-Sorted-Array" class="headerlink" title="153. Find Minimum in Rotated Sorted Array"></a>153. Find Minimum in Rotated Sorted Array</h2><p>这其实就是第33题的第一步。再次【万分注意！如果直接进行单纯的二分操作，必须<code>if(nums[mid] &gt; nums[right])</code>，其它都不行！为啥？因为<code>left=mid+1</code>，所以不能拿<code>left</code>来比！】</p>
+<p>如果不想考虑上面的这个问题，可以在发现<code>nums[left] &lt; nums[right]</code>时当场输出<code>nums[left]</code>。代码如下所示：</p>
+<pre><code>class Solution {
+    public int findMin(int[] nums) {
+        int left = 0, right = nums.length - 1, mid = 0;
+        while(left &lt; right)
+        {
+            if(nums[left] &lt; nums[right])
+                return nums[left];
+            mid = left + (right - left) / 2;
+            if(nums[mid] &lt; nums[left])
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return nums[left];
+    }
+}
+</code></pre><h2 id="154-Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#154-Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="154. Find Minimum in Rotated Sorted Array II"></a>154. Find Minimum in Rotated Sorted Array II</h2><p>上面两题思路的综合。</p>
+<pre><code>class Solution {
+    public int findMin(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        while(left &lt; right)
+        {
+            int mid = left + (right - left) / 2;
+            if(nums[left] &lt; nums[right])
+                return nums[left];
+            if(nums[mid] &gt; nums[right])
+                left = mid + 1;
+            else if(nums[mid] &lt; nums[right])
+                right = mid;
+            else
+                left++;
+        }
+        return nums[left];
+    }
+}
+</code></pre><h2 id="162-Find-Peak-Element"><a href="#162-Find-Peak-Element" class="headerlink" title="162.  Find Peak Element"></a>162.  Find Peak Element</h2><p>找峰顶，常见思路。</p>
+<pre><code>class Solution {
+    public int findPeakElement(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        while(left &lt; right)
+        {
+            int mid = left + (right - left) / 2;
+            if(nums[mid] &lt; nums[mid+1])
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+}
+</code></pre><h2 id="374-Guess-Number-Higher-or-Lower"><a href="#374-Guess-Number-Higher-or-Lower" class="headerlink" title="374. Guess Number Higher or Lower"></a>374. Guess Number Higher or Lower</h2><p>常规操作，别方。</p>
+<pre><code>public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        int left = 1, right = n;
+        while(left &lt; right)
+        {
+            int mid = left + (right - left) / 2;
+            int guess = guess(mid);
+            if(guess == 0)
+                return mid;
+            else if(guess == -1)
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return n;
+    }
+}
+</code></pre><h2 id="34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="34. Find First and Last Position of Element in Sorted Array"></a>34. Find First and Last Position of Element in Sorted Array</h2><p>这题需要找到正序数组中等于<code>target</code>的元素始末下标。这题的巧妙思路如下所示：先使用二分寻找找到第一个≥target的数，再找到第一个≥(target+1)的数并下标-1输出结果。</p>
+<p>其中一个值得注意的是：二分查找的右侧设置为<code>nums.length</code>。这是为了方便进行下标-1的操作。</p>
+<pre><code>class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int start = findFirstGreater(nums, target);
+        if(start == nums.length || nums[start] != target)
+            return new int[]{-1,-1};
+        return new int[]{start, findFirstGreater(nums, target + 1) - 1};
+    }
+    private int findFirstGreater(int[] nums, int target)
+    {
+        int left = 0, right = nums.length;  // 注意！关键！
+        while(left &lt; right)
+        {
+            int mid = left + (right - left) / 2;
+            if(nums[mid] &lt; target)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+}
+</code></pre><h2 id="349-Intersection-of-Two-Arrays"><a href="#349-Intersection-of-Two-Arrays" class="headerlink" title="349. Intersection of Two Arrays"></a>349. Intersection of Two Arrays</h2><h2 id="350-Intersection-of-Two-Arrays-II"><a href="#350-Intersection-of-Two-Arrays-II" class="headerlink" title="350. Intersection of Two Arrays II"></a>350. Intersection of Two Arrays II</h2><p>这两题其实并不需要用到二分查找，用HashSet和HashMap不就好了……</p>
+<p>第350题的HashMap需要把出现次数作为value，代码如下：</p>
+<pre><code>class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap&lt;Integer, Integer&gt; hm = new HashMap&lt;Integer, Integer&gt;();
+        List&lt;Integer&gt; ls = new ArrayList&lt;Integer&gt;();
+        for(int i = 0; i &lt; nums1.length; i++)
+        {
+            if(hm.containsKey(nums1[i]))
+                hm.put(nums1[i], hm.get(nums1[i]) + 1);
+            else    hm.put(nums1[i], 1);
+        }
+        for(int i = 0; i &lt; nums2.length; i++)
+        {
+            if(hm.containsKey(nums2[i]) &amp;&amp; hm.get(nums2[i]) != 0)
+            {
+                ls.add(nums2[i]);
+                hm.put(nums2[i], hm.get(nums2[i]) - 1);
+            }
+        }
+        int[] res = new int[ls.size()];
+        for(int i = 0; i &lt; ls.size(); i++)
+            res[i] = ls.get(i);
+        return res;
+    }
+}
+</code></pre><h2 id="300-Longest-Increasing-Subsequence"><a href="#300-Longest-Increasing-Subsequence" class="headerlink" title="300. Longest Increasing Subsequence"></a>300. Longest Increasing Subsequence</h2><p>这题比较好的办法是动态规划+二分查找。对于数组中每一个数，都查找一遍动态规划数组中是否有比它大的数。如果有就替换成自己，如果没有就把自己加到动归数组的屁股后面。于是动态规划数组就不断加长，并且是升序排列的。</p>
+<pre><code>class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] dp = new int[nums.length];
+        int len = 0;
+        for(int i = 0; i &lt; nums.length; i++)
+        {
+            int left = 0, right = len;
+            while(left &lt; right)
+            {
+                int mid = left + (right - left) / 2;
+                if(dp[mid] &lt; nums[i])
+                    left = mid + 1;
+                else    right = mid;
+            }
+            if(right == len)
+            {
+                dp[len] = nums[i];
+                len++;
+            }
+            else    dp[right] = nums[i];
+        }
+        return len;
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/30/A2-A/" rel="next" title="Backtracking (基本部分)">
+                <i class="fa fa-chevron-left"></i> Backtracking (基本部分)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zikun Lin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#278-First-Bad-Version"><span class="nav-number">1.</span> <span class="nav-text">278. First Bad Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-Search-Insert-Position"><span class="nav-number">2.</span> <span class="nav-text">35. Search Insert Position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-Search-in-Rotated-Sorted-Array"><span class="nav-number">3.</span> <span class="nav-text">**33. Search in Rotated Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正常解法"><span class="nav-number">3.1.</span> <span class="nav-text">正常解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tricky解法"><span class="nav-number">3.2.</span> <span class="nav-text">Tricky解法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#81-Search-in-Rotated-Sorted-Array-II"><span class="nav-number">4.</span> <span class="nav-text">*81.  Search in Rotated Sorted Array II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#153-Find-Minimum-in-Rotated-Sorted-Array"><span class="nav-number">5.</span> <span class="nav-text">153. Find Minimum in Rotated Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#154-Find-Minimum-in-Rotated-Sorted-Array-II"><span class="nav-number">6.</span> <span class="nav-text">154. Find Minimum in Rotated Sorted Array II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#162-Find-Peak-Element"><span class="nav-number">7.</span> <span class="nav-text">162.  Find Peak Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#374-Guess-Number-Higher-or-Lower"><span class="nav-number">8.</span> <span class="nav-text">374. Guess Number Higher or Lower</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><span class="nav-number">9.</span> <span class="nav-text">34. Find First and Last Position of Element in Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#349-Intersection-of-Two-Arrays"><span class="nav-number">10.</span> <span class="nav-text">349. Intersection of Two Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#350-Intersection-of-Two-Arrays-II"><span class="nav-number">11.</span> <span class="nav-text">350. Intersection of Two Arrays II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#300-Longest-Increasing-Subsequence"><span class="nav-number">12.</span> <span class="nav-text">300. Longest Increasing Subsequence</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zikun Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yesluck',
+            repo: 'yesluck.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'd6e4089bbac365a2c2f51773bbc8656a28c2f419',
+            
+                client_id: '0b2f26fcf8f55ad3ed05'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
